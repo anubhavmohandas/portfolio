@@ -79,7 +79,7 @@ this.messages = {
 
 ## 📞 Contact
 
-- **Email**: contact@anubhavmohandas.com
+- **Email**: reachme.anubhav@gmail.com
 - **LinkedIn**: [Anubhav Mohandas](https://www.linkedin.com/in/anubhavmohandas/)
 - **GitHub**: [anubhavmohandas](https://github.com/anubhavmohandas)
 
