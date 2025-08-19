@@ -602,7 +602,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Experience Timeline */
+        /* Experience Timeline - FIXED */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -631,6 +631,13 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.4s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            /* FIXED: Make timeline items visible by default */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation class for timeline items when they come into view */
+        .timeline-item.will-animate {
             opacity: 0;
             transform: translateY(50px);
         }
@@ -1038,28 +1045,28 @@
         <h2 class="section-title">Experience & Focus Areas</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-date">Current</div>
+                <div class="timeline-date">Current Focus</div>
                 <h3 class="timeline-title">Cyber Forensics Research</h3>
-                <p class="timeline-company">Digital Investigations</p>
-                <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis.</p>
+                <p class="timeline-company">Digital Investigations & Security Research</p>
+                <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis. Actively researching new techniques in digital evidence collection and analysis.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Ongoing</div>
+                <div class="timeline-date">Active Development</div>
                 <h3 class="timeline-title">Security Tool Development</h3>
                 <p class="timeline-company">Open Source Projects</p>
-                <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities.</p>
+                <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities. Contributing to the cybersecurity community through practical tools and research.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Continuous</div>
-                <h3 class="timeline-title">Threat Analysis & Research</h3>
-                <p class="timeline-company">Cybersecurity Domain</p>
-                <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and staying ahead of emerging cybersecurity challenges.</p>
+                <div class="timeline-date">Specialization</div>
+                <h3 class="timeline-title">Digital Forensics & Threat Analysis</h3>
+                <p class="timeline-company">Cybersecurity Research</p>
+                <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and investigative methodologies. Always staying updated with the latest cybersecurity trends and techniques to enhance security posture.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">2019-2023</div>
-                <h3 class="timeline-title">Security Operations Specialist</h3>
-                <p class="timeline-company">Various Organizations</p>
-                <p class="timeline-description">Led incident response teams, conducted digital forensics investigations, and developed security protocols for enterprise environments.</p>
+                <div class="timeline-date">Personal Interest</div>
+                <h3 class="timeline-title">Continuous Learning & Travel</h3>
+                <p class="timeline-company">Professional Development</p>
+                <p class="timeline-description">Love traveling and exploring new places when not diving deep into code or analyzing security threats. Always learning and sharing knowledge with the cybersecurity community.</p>
             </div>
         </div>
     </section>
@@ -1075,12 +1082,13 @@
                     <h3 class="project-title">Recon Scanner</h3>
                     <p class="project-description">
                         Advanced reconnaissance tool designed for cybersecurity professionals to perform comprehensive 
-                        security assessments and threat detection.
+                        security assessments and automated reconnaissance on target domains.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Network Security</span>
                         <span class="tech-tag">Reconnaissance</span>
+                        <span class="tech-tag">OSINT</span>
                     </div>
                 </div>
             </div>
@@ -1089,83 +1097,85 @@
                     <i class="fas fa-microscope"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Forensics Research</h3>
+                    <h3 class="project-title">Digital Forensics Research</h3>
                     <p class="project-description">
                         Ongoing research in digital forensics methodologies, focusing on innovative approaches 
-                        to digital evidence collection and analysis.
+                        to digital evidence collection, analysis, and investigative techniques.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Digital Forensics</span>
                         <span class="tech-tag">Research</span>
+                        <span class="tech-tag">Investigation</span>
+                        <span class="tech-tag">Evidence Analysis</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Security Utilities Collection</h3>
+                    <p class="project-description">
+                        Collection of cybersecurity tools and utilities designed to enhance security operations 
+                        and streamline threat assessment processes for security professionals.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Security Tools</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">Open Source</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Vulnerability Assessment Tools</h3>
+                    <p class="project-description">
+                        Development of tools for vulnerability assessment and security testing, helping 
+                        identify potential security weaknesses in systems and applications.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vulnerability Assessment</span>
+                        <span class="tech-tag">Security Testing</span>
+                        <span class="tech-tag">Penetration Testing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">OSINT Framework</h3>
+                    <p class="project-description">
+                        Open Source Intelligence gathering framework for collecting and analyzing publicly 
+                        available information for security research and investigations.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">OSINT</span>
+                        <span class="tech-tag">Information Gathering</span>
                         <span class="tech-tag">Investigation</span>
                     </div>
                 </div>
             </div>
             <div class="project-card">
                 <div class="project-icon">
-                    <i class="fas fa-shield-virus"></i>
+                    <i class="fas fa-code"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Security Utilities</h3>
+                    <h3 class="project-title">Cybersecurity Research Projects</h3>
                     <p class="project-description">
-                        Collection of security tools and utilities designed to enhance cybersecurity operations 
-                        and streamline threat assessment processes.
+                        Various research projects focused on advancing cybersecurity methodologies, 
+                        developing new techniques, and contributing to the security community.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Security Tools</span>
-                        <span class="tech-tag">Automation</span>
-                        <span class="tech-tag">Open Source</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">AI-Powered Threat Detection</h3>
-                    <p class="project-description">
-                        Machine learning models for automated threat detection and anomaly identification 
-                        in network traffic and system logs.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">AI</span>
-                        <span class="tech-tag">Threat Detection</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Mobile Forensics Suite</h3>
-                    <p class="project-description">
-                        Comprehensive mobile device forensics toolkit for extracting and analyzing 
-                        digital evidence from smartphones and tablets.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Mobile Security</span>
-                        <span class="tech-tag">Android</span>
-                        <span class="tech-tag">iOS</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-cloud"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Cloud Security Analyzer</h3>
-                    <p class="project-description">
-                        Cloud infrastructure security assessment tool that identifies vulnerabilities 
-                        and misconfigurations across multiple cloud platforms.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Cloud Security</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Azure</span>
+                        <span class="tech-tag">Research</span>
+                        <span class="tech-tag">Innovation</span>
+                        <span class="tech-tag">Community</span>
                     </div>
                 </div>
             </div>
@@ -1319,7 +1329,7 @@
             });
         });
 
-        // Animate elements on scroll
+        // Animate elements on scroll - IMPROVED
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1331,12 +1341,14 @@
                     entry.target.classList.add('animated');
                     
                     // Animate timeline items with delay
-                    if (entry.target.classList.contains('timeline')) {
-                        const timelineItems = entry.target.querySelectorAll('.timeline-item');
+                    if (entry.target.classList.contains('timeline') || entry.target.id === 'experience') {
+                        const timelineItems = document.querySelectorAll('.timeline-item');
                         timelineItems.forEach((item, index) => {
+                            // Add animation class to make them start invisible
+                            item.classList.add('will-animate');
                             setTimeout(() => {
                                 item.classList.add('animate');
-                            }, index * 200);
+                            }, index * 300);
                         });
                     }
                 }
