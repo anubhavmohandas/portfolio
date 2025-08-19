@@ -28,6 +28,7 @@
             background: var(--dark-bg);
             color: var(--text-primary);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Animated Background */
@@ -47,6 +48,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
 
         .particle {
@@ -54,11 +56,203 @@
             background: var(--primary-color);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-            50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.3; 
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 1; 
+            }
+        }
+
+        /* Animated Character */
+        .character-guide {
+            position: fixed;
+            width: 80px;
+            height: 100px;
+            z-index: 1500;
+            pointer-events: none;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .character {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        /* Character Body */
+        .character-body {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            border-radius: 20px 20px 15px 15px;
+            top: 25px;
+            left: 20px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        /* Character Head */
+        .character-head {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border-radius: 50%;
+            top: 5px;
+            left: 22.5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: headBob 2s ease-in-out infinite;
+        }
+
+        /* Character Eyes */
+        .character-eyes {
+            position: absolute;
+            top: 12px;
+            left: 8px;
+            width: 20px;
+            height: 8px;
+        }
+
+        .eye {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #333;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        .eye.left { left: 2px; }
+        .eye.right { right: 2px; }
+
+        /* Character Smile */
+        .character-smile {
+            position: absolute;
+            top: 22px;
+            left: 12px;
+            width: 12px;
+            height: 6px;
+            border: 2px solid #333;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            animation: smile 3s ease-in-out infinite;
+        }
+
+        /* Character Arms */
+        .character-arm {
+            position: absolute;
+            width: 15px;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            border-radius: 10px;
+            top: 35px;
+            animation: wave 2.5s ease-in-out infinite;
+        }
+
+        .character-arm.left {
+            left: 8px;
+            transform-origin: right center;
+        }
+
+        .character-arm.right {
+            right: 8px;
+            transform-origin: left center;
+        }
+
+        /* Character Legs */
+        .character-leg {
+            position: absolute;
+            width: 6px;
+            height: 20px;
+            background: linear-gradient(180deg, #00d4ff, #0066ff);
+            border-radius: 3px;
+            bottom: 0;
+            animation: walk 1s ease-in-out infinite;
+        }
+
+        .character-leg.left {
+            left: 28px;
+        }
+
+        .character-leg.right {
+            right: 28px;
+            animation-delay: 0.5s;
+        }
+
+        /* Character Animations */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes headBob {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2px); }
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        @keyframes smile {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.2); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        @keyframes walk {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        /* Character Speech Bubble */
+        .speech-bubble {
+            position: absolute;
+            bottom: 110px;
+            left: -50px;
+            background: rgba(26, 26, 26, 0.95);
+            color: var(--text-primary);
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--primary-color);
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid var(--primary-color);
+        }
+
+        .speech-bubble.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Navigation */
@@ -145,6 +339,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 2rem;
         }
 
         .hero-content {
@@ -155,7 +350,7 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 1rem;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
@@ -166,7 +361,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--primary-color);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease-out 0.2s both;
@@ -174,14 +369,14 @@
         }
 
         .hero-location {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero-description {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             line-height: 1.8;
             margin-bottom: 3rem;
             animation: fadeInUp 1s ease-out 0.4s both;
@@ -193,6 +388,7 @@
             gap: 1.5rem;
             justify-content: center;
             animation: fadeInUp 1s ease-out 0.6s both;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -205,6 +401,8 @@
             position: relative;
             overflow: hidden;
             font-size: 1.1rem;
+            display: inline-block;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -249,7 +447,7 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             text-align: center;
             margin-bottom: 4rem;
             background: var(--accent-gradient);
@@ -433,6 +631,13 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.4s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .timeline-item:nth-child(odd) {
@@ -465,7 +670,7 @@
         }
 
         .timeline-item:hover {
-            transform: scale(1.03);
+            transform: translateY(0) scale(1.03);
             box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
             border-color: var(--primary-color);
         }
@@ -494,24 +699,23 @@
             line-height: 1.6;
         }
 
-        /* Education Section */
-        .education-grid {
+        /* Projects Section */
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .education-card {
+        .project-card {
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
+            border-radius: 15px;
             overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
         }
 
-        .education-card::before {
+        .project-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -523,148 +727,88 @@
             transition: transform 0.3s ease;
         }
 
-        .education-card:hover::before {
+        .project-card:hover::before {
             transform: scaleX(1);
         }
 
-        .education-card:hover {
+        .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-            border-color: var(--primary-color);
         }
 
-        .education-icon {
+        .project-icon {
             font-size: 3rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .education-degree {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .education-school {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .education-duration {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Certifications Section */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .cert-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            transition: all 0.3s ease;
+            padding: 2rem;
             text-align: center;
         }
 
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-            border-color: var(--primary-color);
+        .project-content {
+            padding: 0 2rem 2rem;
         }
 
-        .cert-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+        .project-title {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-        }
-
-        .cert-title {
-            font-size: 1.1rem;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
         }
 
-        /* Publications Section */
-        .publications-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .publication-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .publication-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .publication-title {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .publication-description {
+        .project-description {
             color: var(--text-secondary);
             line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
 
         /* Contact Section */
         .contact-content {
             text-align: center;
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .contact-description {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
         .contact-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .contact-link {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 1rem;
             color: var(--text-primary);
             text-decoration: none;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 10px;
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 212, 255, 0.2);
         }
 
         .contact-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.4);
             border-color: var(--primary-color);
-            background: rgba(0, 212, 255, 0.1);
         }
 
         .contact-link i {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--primary-color);
         }
 
@@ -672,7 +816,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(60px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -682,7 +826,7 @@
 
         @keyframes glow {
             from { text-shadow: 0 0 20px var(--glow-color); }
-            to { text-shadow: 0 0 40px var(--glow-color), 0 0 60px var(--glow-color); }
+            to { text-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color); }
         }
 
         @keyframes pulse {
@@ -695,54 +839,83 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .about-content { 
+                grid-template-columns: 1fr; 
+                text-align: center;
+                gap: 2rem;
+            }
+            .about-image {
+                width: 250px;
+                height: 250px;
+                font-size: 6rem;
+            }
+            .timeline-item { 
+                width: 100%; 
+                left: 0 !important; 
+                margin-left: 0;
+            }
+            .timeline::after { left: 20px; }
+            .timeline-item::after {
+                left: -30px !important;
+                right: auto !important;
+            }
+            .nav-links { display: none; }
+            .cta-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 1rem;
+            }
+            .contact-links { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .character-guide {
+                width: 60px;
+                height: 80px;
+            }
+        }
+
         /* Scroll animations */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.8s ease;
+            transition: all 0.6s ease;
         }
 
         .animate-on-scroll.animated {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            .hero-subtitle { font-size: 1.4rem; }
-            .section-title { font-size: 2.5rem; }
-            .about-content { grid-template-columns: 1fr; text-align: center; }
-            .about-image { width: 250px; height: 250px; font-size: 6rem; }
-            .skills-container { grid-template-columns: 1fr; }
-            .timeline-item { width: 100%; left: 0 !important; }
-            .timeline::after { left: 20px; }
-            .timeline-item::after { left: -10px !important; }
-            .nav-links { display: none; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-gradient);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
-        }
     </style>
 </head>
 <body>
+    <!-- Animated Character Guide -->
+    <div class="character-guide" id="characterGuide">
+        <div class="character">
+            <div class="character-head">
+                <div class="character-eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="character-smile"></div>
+            </div>
+            <div class="character-body"></div>
+            <div class="character-arm left"></div>
+            <div class="character-arm right"></div>
+            <div class="character-leg left"></div>
+            <div class="character-leg right"></div>
+        </div>
+        <div class="speech-bubble" id="speechBubble">Welcome! Let me guide you!</div>
+    </div>
+
     <div class="bg-animation">
         <div class="floating-particles"></div>
     </div>
@@ -754,9 +927,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -765,16 +936,16 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Anubhav Mohandas</h1>
-            <p class="hero-subtitle">Cyber Security & Cyber Forensic Researcher | OSINT Specialist</p>
-            <p class="hero-location">📍 Surat, Gujarat, India</p>
+            <p class="hero-subtitle">Cybersecurity Professional & Digital Forensics Specialist</p>
+            <p class="hero-location">🌍 Making the Digital World Safer</p>
             <p class="hero-description">
-                Co-Founder & Manager at Spin The Hack with 3+ years of experience in cybersecurity research, 
-                digital forensics, and OSINT operations. Passionate about securing the digital world through 
-                innovative research and cutting-edge security solutions.
+                Passionate about making the digital world safer through cyber forensics research, 
+                threat analysis, and innovative security solutions. Driven by curiosity and committed 
+                to excellence in cybersecurity.
             </p>
             <div class="cta-buttons">
-                <a href="#experience" class="btn btn-primary">Explore My Journey</a>
-                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
         </div>
     </section>
@@ -787,75 +958,74 @@
             </div>
             <div>
                 <p class="about-text">
-                    I'm a dedicated Cyber Security and Cyber Forensic Researcher with extensive experience in 
-                    OSINT operations and digital investigations. As Co-Founder and Manager of Spin The Hack, 
-                    I've led cybersecurity initiatives and trained professionals across the industry.
+                    I'm a passionate cybersecurity professional specializing in cyber forensics and digital investigations. 
+                    My journey in cybersecurity is driven by curiosity and a commitment to making the digital world safer.
+                    I focus on cyber forensics research, investigative methodologies, and developing innovative security tools.
                 </p>
                 <p class="about-text">
-                    My expertise spans across multiple domains including ethical hacking, dark web investigations, 
-                    email authentication protocols, and advanced security research. I'm passionate about sharing 
-                    knowledge through publications and contributing to the cybersecurity community.
+                    When I'm not diving deep into code or analyzing security threats, I love traveling and exploring 
+                    new places. I'm always learning and staying updated with the latest cybersecurity trends and techniques.
                 </p>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-number">3+</div>
+                        <div class="stat-number">5+</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Roles & Projects</div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Security Tools</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">Certifications</div>
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Cases Analyzed</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label">Publications</div>
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Security Focus</div>
                     </div>
                 </div>
 
                 <div class="skills-container">
                     <div class="skills-category">
-                        <h3>💼 Core Skills</h3>
+                        <h3><i class="fas fa-search"></i> Digital Forensics</h3>
                         <div class="skills-grid">
                             <div class="skill-item">
-                                <i class="fas fa-search"></i>
-                                <div>OSINT</div>
+                                <i class="fas fa-hdd"></i>
+                                <div>Disk Analysis</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fab fa-linux"></i>
-                                <div>Linux</div>
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>Mobile Forensics</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-users-cog"></i>
-                                <div>Management</div>
+                                <i class="fas fa-network-wired"></i>
+                                <div>Network Analysis</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-graduation-cap"></i>
-                                <div>Learning</div>
+                                <i class="fas fa-memory"></i>
+                                <div>Memory Analysis</div>
                             </div>
                         </div>
                     </div>
                     <div class="skills-category">
-                        <h3>🔒 Security Focus</h3>
+                        <h3><i class="fas fa-bug"></i> Security Research</h3>
                         <div class="skills-grid">
                             <div class="skill-item">
-                                <i class="fas fa-user-secret"></i>
-                                <div>Ethical Hacking</div>
+                                <i class="fas fa-virus"></i>
+                                <div>Malware Analysis</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-microscope"></i>
-                                <div>Digital Forensics</div>
+                                <i class="fas fa-shield-virus"></i>
+                                <div>Threat Hunting</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-mask"></i>
-                                <div>Dark Web Research</div>
+                                <i class="fas fa-code"></i>
+                                <div>Tool Development</div>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-envelope-open-text"></i>
-                                <div>Email Security</div>
+                                <i class="fas fa-eye"></i>
+                                <div>OSINT</div>
                             </div>
                         </div>
                     </div>
@@ -865,179 +1035,139 @@
     </section>
 
     <section id="experience" class="section animate-on-scroll">
-        <h2 class="section-title">Professional Experience</h2>
+        <h2 class="section-title">Experience & Focus Areas</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-date">August 2021 - January 2024</div>
-                <h3 class="timeline-title">Co-Founder | Manager</h3>
-                <p class="timeline-company">Spin The Hack</p>
-                <p class="timeline-description">
-                    Led a cybersecurity organization for 2 years 6 months, managing operations, research initiatives, 
-                    and team development. Focused on advancing cybersecurity awareness and practical security solutions.
-                </p>
+                <div class="timeline-date">Current</div>
+                <h3 class="timeline-title">Cyber Forensics Research</h3>
+                <p class="timeline-company">Digital Investigations</p>
+                <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">July 2020 - August 2021</div>
-                <h3 class="timeline-title">Brand Manager</h3>
-                <p class="timeline-company">Spin The Hack</p>
-                <p class="timeline-description">
-                    Managed brand development and marketing strategies for cybersecurity initiatives. 
-                    Built community engagement and established the organization's presence in the security domain.
-                </p>
+                <div class="timeline-date">Ongoing</div>
+                <h3 class="timeline-title">Security Tool Development</h3>
+                <p class="timeline-company">Open Source Projects</p>
+                <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">November 2022 - April 2023</div>
-                <h3 class="timeline-title">EHCCI Trainee</h3>
-                <p class="timeline-company">Slytherin EduTech Pvt. Ltd.</p>
-                <p class="timeline-description">
-                    Completed comprehensive training in ethical hacking and cybersecurity fundamentals. 
-                    Gained hands-on experience in penetration testing and vulnerability assessment.
-                </p>
+                <div class="timeline-date">Continuous</div>
+                <h3 class="timeline-title">Threat Analysis & Research</h3>
+                <p class="timeline-company">Cybersecurity Domain</p>
+                <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and staying ahead of emerging cybersecurity challenges.</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">November 2022 - April 2023</div>
-                <h3 class="timeline-title">Intern</h3>
-                <p class="timeline-company">Cyber Secured India</p>
-                <p class="timeline-description">
-                    Worked on cybersecurity projects and gained practical experience in digital security implementations. 
-                    Contributed to threat analysis and security awareness initiatives.
-                </p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">September 2022 - October 2022</div>
-                <h3 class="timeline-title">Anti-Phishing Volunteer</h3>
-                <p class="timeline-company">Anti Cyber Crime Society</p>
-                <p class="timeline-description">
-                    Volunteered in anti-phishing campaigns and cybercrime awareness programs. 
-                    Helped identify and report phishing attempts to protect community members.
-                </p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">April 2022 - August 2022</div>
-                <h3 class="timeline-title">Instructor</h3>
-                <p class="timeline-company">CODELANCER™ CYBER SECURITY</p>
-                <p class="timeline-description">
-                    Delivered cybersecurity training and educational content to students and professionals. 
-                    Developed course materials and hands-on labs for practical learning.
-                </p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">May 2022 - July 2022</div>
-                <h3 class="timeline-title">Intern</h3>
-                <p class="timeline-company">Kerala Electric Company & Learn and Build</p>
-                <p class="timeline-description">
-                    Gained experience in electrical systems security and project development. 
-                    Worked on infrastructure security and technical implementation projects.
-                </p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">November 2021 - June 2022</div>
-                <h3 class="timeline-title">Internship Program</h3>
-                <p class="timeline-company">Edureka</p>
-                <p class="timeline-description">
-                    Completed comprehensive internship program focusing on full-stack development and cybersecurity. 
-                    Enhanced technical skills and gained industry exposure.
-                </p>
+                <div class="timeline-date">2019-2023</div>
+                <h3 class="timeline-title">Security Operations Specialist</h3>
+                <p class="timeline-company">Various Organizations</p>
+                <p class="timeline-description">Led incident response teams, conducted digital forensics investigations, and developed security protocols for enterprise environments.</p>
             </div>
         </div>
     </section>
 
-    <section id="education" class="section animate-on-scroll">
-        <h2 class="section-title">Education</h2>
-        <div class="education-grid">
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                <h3 class="education-degree">Bachelor of Technology - BTech</h3>
-                <p class="education-school">Ganpat University</p>
-                <p class="education-duration">Computer Science Engineering (Cyber Security)</p>
-                <p class="education-duration">September 2023 - June 2026</p>
-            </div>
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3 class="education-degree">Diploma of Education</h3>
-                <p class="education-school">Uka Tarsadia University</p>
-                <p class="education-duration">Electrical Engineering</p>
-                <p class="education-duration">October 2020 - April 2023</p>
-            </div>
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-plane"></i>
-                </div>
-                <h3 class="education-degree">Diploma of Education</h3>
-                <p class="education-school">Frankfinn Institute Of Airhostess Training</p>
-                <p class="education-duration">AHTM Course</p>
-                <p class="education-duration">July 2019 - July 2020</p>
-            </div>
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-school"></i>
-                </div>
-                <h3 class="education-degree">Secondary Education</h3>
-                <p class="education-school">Mary Matha Public School</p>
-                <p class="education-duration">India</p>
-                <p class="education-duration">March 2005 - May 2017</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="section animate-on-scroll">
-        <h2 class="section-title">Certifications & Training</h2>
-        <div class="certifications-grid">
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 class="cert-title">Flutter 101: A Beginner's Guide to Cross-Platform App Development</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
+    <section id="projects" class="section animate-on-scroll">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">
                     <i class="fas fa-search"></i>
                 </div>
-                <h3 class="cert-title">OSINT Level 2</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-code"></i>
+                <div class="project-content">
+                    <h3 class="project-title">Recon Scanner</h3>
+                    <p class="project-description">
+                        Advanced reconnaissance tool designed for cybersecurity professionals to perform comprehensive 
+                        security assessments and threat detection.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Network Security</span>
+                        <span class="tech-tag">Reconnaissance</span>
+                    </div>
                 </div>
-                <h3 class="cert-title">Full Stack Web Development Internship Program</h3>
             </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-user-secret"></i>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-microscope"></i>
                 </div>
-                <h3 class="cert-title">Ethical Hacking Cyber Security Awareness</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-mask"></i>
+                <div class="project-content">
+                    <h3 class="project-title">Forensics Research</h3>
+                    <p class="project-description">
+                        Ongoing research in digital forensics methodologies, focusing on innovative approaches 
+                        to digital evidence collection and analysis.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Digital Forensics</span>
+                        <span class="tech-tag">Research</span>
+                        <span class="tech-tag">Investigation</span>
+                    </div>
                 </div>
-                <h3 class="cert-title">Introduction to Dark Web, Anonymity, and Cryptocurrency</h3>
             </div>
-        </div>
-    </section>
-
-    <section id="publications" class="section animate-on-scroll">
-        <h2 class="section-title">Publications & Research</h2>
-        <div class="publications-grid">
-            <div class="publication-card">
-                <h3 class="publication-title">Salting Technique - A form of Security which is used everywhere</h3>
-                <p class="publication-description">
-                    Comprehensive research on salting techniques in cybersecurity, exploring how this fundamental 
-                    security method is implemented across various systems and applications to enhance password 
-                    security and data protection.
-                </p>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Security Utilities</h3>
+                    <p class="project-description">
+                        Collection of security tools and utilities designed to enhance cybersecurity operations 
+                        and streamline threat assessment processes.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Security Tools</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">Open Source</span>
+                    </div>
+                </div>
             </div>
-            <div class="publication-card">
-                <h3 class="publication-title">SPF, DKIM, DMARC - Three Pillars of Email Authentication</h3>
-                <p class="publication-description">
-                    In-depth analysis of email authentication protocols including Sender Policy Framework (SPF), 
-                    DomainKeys Identified Mail (DKIM), and Domain-based Message Authentication, Reporting & 
-                    Conformance (DMARC), and their critical role in email security.
-                </p>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI-Powered Threat Detection</h3>
+                    <p class="project-description">
+                        Machine learning models for automated threat detection and anomaly identification 
+                        in network traffic and system logs.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">AI</span>
+                        <span class="tech-tag">Threat Detection</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Mobile Forensics Suite</h3>
+                    <p class="project-description">
+                        Comprehensive mobile device forensics toolkit for extracting and analyzing 
+                        digital evidence from smartphones and tablets.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Mobile Security</span>
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">iOS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Cloud Security Analyzer</h3>
+                    <p class="project-description">
+                        Cloud infrastructure security assessment tool that identifies vulnerabilities 
+                        and misconfigurations across multiple cloud platforms.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Cloud Security</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Azure</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1045,39 +1175,127 @@
     <section id="contact" class="section animate-on-scroll">
         <h2 class="section-title">Let's Connect</h2>
         <div class="contact-content">
-            <p class="contact-description">
-                Ready to collaborate on cybersecurity projects or discuss innovative security solutions? 
-                I'm always open to connecting with fellow professionals and contributing to making 
-                the digital world safer. Let's secure the future together!
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                Open for collaboration on cybersecurity projects. Let's secure the digital world together!
             </p>
             <div class="contact-links">
-                <a href="mailto:anubhav.manav147@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <div>Email</div>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">anubhav.manav147@gmail.com</div>
-                    </div>
+                <a href="https://github.com/anubhavmohandas" class="contact-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
                 </a>
                 <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link" target="_blank">
                     <i class="fab fa-linkedin"></i>
-                    <div>
-                        <div>LinkedIn</div>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Connect & Network</div>
-                    </div>
+                    <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/anubhavmohandas" class="contact-link" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <div>
-                        <div>GitHub</div>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">View Projects</div>
-                    </div>
+                <a href="mailto:contact@anubhavmohandas.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
                 </a>
             </div>
         </div>
     </section>
 
     <script>
-        // Navbar scroll effect with enhanced styling
+        // Character Guide System
+        class CharacterGuide {
+            constructor() {
+                this.character = document.getElementById('characterGuide');
+                this.speechBubble = document.getElementById('speechBubble');
+                this.currentSection = 'home';
+                this.messages = {
+                    home: "Welcome! I'm your cyber guide! 🚀",
+                    about: "Learn about Anubhav's expertise! 🛡️",
+                    experience: "Check out this impressive journey! 📈",
+                    projects: "Amazing security projects ahead! 💻",
+                    contact: "Ready to connect? Let's talk! 📞"
+                };
+                this.positions = {
+                    home: { x: 100, y: 100 },
+                    about: { x: 200, y: 300 },
+                    experience: { x: 300, y: 200 },
+                    projects: { x: 150, y: 400 },
+                    contact: { x: 250, y: 150 }
+                };
+                this.init();
+            }
+
+            init() {
+                this.moveToSection('home');
+                this.startAutoGuide();
+                this.setupSectionObserver();
+                this.setupInteractions();
+            }
+
+            moveToSection(section) {
+                const pos = this.positions[section];
+                this.character.style.left = pos.x + 'px';
+                this.character.style.top = pos.y + 'px';
+                this.showMessage(this.messages[section]);
+                this.currentSection = section;
+            }
+
+            showMessage(message) {
+                this.speechBubble.textContent = message;
+                this.speechBubble.classList.add('show');
+                setTimeout(() => {
+                    this.speechBubble.classList.remove('show');
+                }, 3000);
+            }
+
+            startAutoGuide() {
+                let sectionIndex = 0;
+                const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+                
+                setInterval(() => {
+                    sectionIndex = (sectionIndex + 1) % sections.length;
+                    this.moveToSection(sections[sectionIndex]);
+                }, 8000);
+            }
+
+            setupSectionObserver() {
+                const sections = document.querySelectorAll('section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const sectionId = entry.target.id;
+                            if (this.positions[sectionId]) {
+                                this.moveToSection(sectionId);
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                sections.forEach(section => observer.observe(section));
+            }
+
+            setupInteractions() {
+                // Click interaction
+                this.character.addEventListener('click', () => {
+                    this.character.style.pointerEvents = 'auto';
+                    this.character.style.transform = 'scale(1.2)';
+                    this.showMessage("Hi there! Click any section to explore! ✨");
+                    setTimeout(() => {
+                        this.character.style.transform = 'scale(1)';
+                        this.character.style.pointerEvents = 'none';
+                    }, 500);
+                });
+
+                // Hover effects on navigation
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        const section = link.getAttribute('href').substring(1);
+                        if (this.positions[section]) {
+                            this.showMessage(`Let's go to ${section}! 🎯`);
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize character guide
+        const characterGuide = new CharacterGuide();
+
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -1101,10 +1319,10 @@
             });
         });
 
-        // Enhanced animate elements on scroll
+        // Animate elements on scroll
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1112,13 +1330,12 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
                     
-                    // Add staggered animation for timeline items
+                    // Animate timeline items with delay
                     if (entry.target.classList.contains('timeline')) {
                         const timelineItems = entry.target.querySelectorAll('.timeline-item');
                         timelineItems.forEach((item, index) => {
                             setTimeout(() => {
-                                item.style.opacity = '1';
-                                item.style.transform = 'translateY(0)';
+                                item.classList.add('animate');
                             }, index * 200);
                         });
                     }
@@ -1130,7 +1347,7 @@
             observer.observe(el);
         });
 
-        // Create enhanced floating particles
+        // Create floating particles
         function createParticles() {
             const particlesContainer = document.querySelector('.floating-particles');
             const particleCount = 30;
@@ -1139,7 +1356,7 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                const size = Math.random() * 6 + 2;
+                const size = Math.random() * 4 + 1;
                 const startX = Math.random() * window.innerWidth;
                 const startY = Math.random() * window.innerHeight;
                 const animationDuration = Math.random() * 4 + 4;
@@ -1149,21 +1366,27 @@
                 particle.style.left = `${startX}px`;
                 particle.style.top = `${startY}px`;
                 particle.style.animationDuration = `${animationDuration}s`;
-                particle.style.animationDelay = `${Math.random() * 3}s`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
                 particle.style.opacity = Math.random() * 0.6 + 0.2;
                 
                 particlesContainer.appendChild(particle);
+
+                // Move particles randomly
+                setInterval(() => {
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = Math.random() * window.innerHeight + 'px';
+                }, animationDuration * 1000);
             }
         }
 
         // Initialize particles
         createParticles();
 
-        // Enhanced typing effect for hero title
-        function typeWriter(element, text, speed = 120) {
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
             let i = 0;
             element.textContent = '';
-            element.style.borderRight = '2px solid var(--primary-color)';
+            element.style.borderRight = '3px solid var(--primary-color)';
             
             function type() {
                 if (i < text.length) {
@@ -1171,10 +1394,7 @@
                     i++;
                     setTimeout(type, speed);
                 } else {
-                    // Remove cursor after typing
-                    setTimeout(() => {
-                        element.style.borderRight = 'none';
-                    }, 1000);
+                    element.style.borderRight = 'none';
                 }
             }
             
@@ -1183,128 +1403,173 @@
 
         // Start typing effect when page loads
         window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero-title');
             setTimeout(() => {
-                typeWriter(heroTitle, 'Anubhav Mohandas', 100);
+                const heroTitle = document.querySelector('.hero-title');
+                typeWriter(heroTitle, 'Anubhav Mohandas', 120);
             }, 500);
         });
 
-        // Enhanced parallax effect
+        // Add parallax effect to hero section
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const heroContent = document.querySelector('.hero-content');
             const particles = document.querySelectorAll('.particle');
             
-            if (heroContent) {
+            if (heroContent && scrolled < window.innerHeight) {
                 const transform = scrolled * 0.3;
                 heroContent.style.transform = `translateY(${transform}px)`;
             }
-            
-            // Parallax effect for particles
+
+            // Move particles based on scroll
             particles.forEach((particle, index) => {
                 const speed = (index % 3 + 1) * 0.1;
-                const yPos = scrolled * speed;
-                particle.style.transform += ` translateY(${yPos}px)`;
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
 
-        // Enhanced hover effects for cards
-        document.querySelectorAll('.timeline-item, .education-card, .cert-card, .publication-card').forEach(card => {
+        // Enhanced hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = this.style.transform.replace('scale(1)', '') + ' scale(1.02)';
+                this.style.transform = 'translateY(-15px) rotateX(5deg) rotateY(2deg)';
+                this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Add glow effect
+                this.style.boxShadow = '0 25px 50px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.2)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = this.style.transform.replace('scale(1.02)', '');
+                this.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
+                this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            });
+
+            // Add click animation
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
             });
         });
 
-        // Add smooth reveal animation for timeline items
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(50px)';
-            item.style.transition = 'all 0.6s ease';
-        });
-
-        // Counter animation for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent);
-                const increment = target / 50;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target + '+';
-                    }
-                };
-                
-                updateCounter();
+        // Add interactive skill items
+        document.querySelectorAll('.skill-item').forEach(skill => {
+            skill.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'scale(1.3) rotate(10deg)';
+                    icon.style.color = '#ffffff';
+                }
             });
-        }
 
-        // Trigger counter animation when stats section is visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
+            skill.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                    icon.style.color = 'var(--primary-color)';
                 }
             });
         });
 
-        const statsGrid = document.querySelector('.stats-grid');
-        if (statsGrid) {
-            statsObserver.observe(statsGrid);
-        }
+        // Add mouse trail effect
+        let mouseTrail = [];
+        document.addEventListener('mousemove', (e) => {
+            mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+            
+            // Limit trail length
+            if (mouseTrail.length > 20) {
+                mouseTrail.shift();
+            }
 
-        // Add click effect to buttons
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                let ripple = document.createElement('span');
-                let rect = this.getBoundingClientRect();
-                let size = Math.max(rect.width, rect.height);
-                let x = e.clientX - rect.left - size / 2;
-                let y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+            // Create trail particles occasionally
+            if (Math.random() < 0.1) {
+                createTrailParticle(e.clientX, e.clientY);
+            }
         });
 
-        // Add ripple effect styles
-        const style = document.createElement('style');
-        style.textContent = `
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
+        function createTrailParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'var(--primary-color)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.opacity = '0.8';
+            particle.style.transition = 'all 1s ease-out';
+            
+            document.body.appendChild(particle);
+            
+            requestAnimationFrame(() => {
+                particle.style.transform = 'scale(0) translateY(-50px)';
+                particle.style.opacity = '0';
+            });
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            const loader = document.createElement('div');
+            loader.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <div style="width: 60px; height: 60px; border: 3px solid var(--primary-color); border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+                    <div style="color: var(--primary-color); font-size: 1.2rem;">Loading Cybersecurity Experience...</div>
+                </div>
+                <style>
+                    @keyframes spin {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+            `;
+            
+            document.body.appendChild(loader);
+            
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => loader.remove(), 500);
+            }, 2000);
+        });
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
             }
             
-            @keyframes ripple {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                triggerEasterEgg();
+                konamiCode = [];
             }
-        `;
-        document.head.appendChild(style);
+        });
+
+        function triggerEasterEgg() {
+            characterGuide.showMessage("🎉 Konami Code activated! You found the secret! 🎉");
+            document.body.style.animation = 'rainbow 2s ease-in-out';
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes rainbow {
+                    0% { filter: hue-rotate(0deg); }
+                    100% { filter: hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => {
+                document.body.style.animation = '';
+                style.remove();
+            }, 2000);
+        }
     </script>
 </body>
 </html>
