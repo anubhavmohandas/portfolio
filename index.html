@@ -610,7 +610,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Experience Timeline - FIXED */
+        /* Experience Timeline */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -639,12 +639,10 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: all 0.4s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            /* FIXED: Make timeline items visible by default */
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Animation class for timeline items when they come into view */
         .timeline-item.will-animate {
             opacity: 0;
             transform: translateY(50px);
@@ -717,7 +715,7 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
@@ -895,6 +893,9 @@
             .character-guide {
                 width: 60px;
                 height: 80px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1082,7 +1083,25 @@
     <section id="projects" class="section animate-on-scroll">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit', '_blank')" style="cursor: pointer;">
+                <div class="project-icon">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Ultimate Digital Forensics Toolkit</h3>
+                    <p class="project-description">
+                        Comprehensive all-in-one digital forensics toolkit featuring multiple investigation tools, 
+                        evidence collection utilities, and analysis capabilities for cybersecurity professionals.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Digital Forensics</span>
+                        <span class="tech-tag">Investigation</span>
+                        <span class="tech-tag">Evidence Analysis</span>
+                        <span class="tech-tag">All-in-One</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/recon_scanner', '_blank')" style="cursor: pointer;">
                 <div class="project-icon">
                     <i class="fas fa-search"></i>
                 </div>
@@ -1100,90 +1119,111 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/siem-kernel-exploit-detection', '_blank')" style="cursor: pointer;">
                 <div class="project-icon">
-                    <i class="fas fa-microscope"></i>
+                    <i class="fas fa-shield-virus"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Digital Forensics Research</h3>
+                    <h3 class="project-title">SIEM Kernel Exploit Detection</h3>
                     <p class="project-description">
-                        Ongoing research in digital forensics methodologies, focusing on innovative approaches 
-                        to digital evidence collection, analysis, and investigative techniques.
+                        Security Information and Event Management system specialized in detecting kernel-level 
+                        exploits and advanced persistent threats through comprehensive monitoring.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Digital Forensics</span>
-                        <span class="tech-tag">Research</span>
-                        <span class="tech-tag">Investigation</span>
-                        <span class="tech-tag">Evidence Analysis</span>
+                        <span class="tech-tag">SIEM</span>
+                        <span class="tech-tag">Exploit Detection</span>
+                        <span class="tech-tag">Kernel Security</span>
+                        <span class="tech-tag">Threat Monitoring</span>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator', '_blank')" style="cursor: pointer;">
                 <div class="project-icon">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-calculator"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Security Utilities Collection</h3>
+                    <h3 class="project-title">Enhanced CVSS Calculator</h3>
                     <p class="project-description">
-                        Collection of cybersecurity tools and utilities designed to enhance security operations 
-                        and streamline threat assessment processes for security professionals.
+                        Advanced Common Vulnerability Scoring System calculator with enhanced features for 
+                        accurate vulnerability assessment and risk prioritization.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Security Tools</span>
-                        <span class="tech-tag">Automation</span>
-                        <span class="tech-tag">Open Source</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-bug"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Vulnerability Assessment Tools</h3>
-                    <p class="project-description">
-                        Development of tools for vulnerability assessment and security testing, helping 
-                        identify potential security weaknesses in systems and applications.
-                    </p>
-                    <div class="project-tech">
+                        <span class="tech-tag">CVSS</span>
                         <span class="tech-tag">Vulnerability Assessment</span>
-                        <span class="tech-tag">Security Testing</span>
-                        <span class="tech-tag">Penetration Testing</span>
+                        <span class="tech-tag">Risk Management</span>
+                        <span class="tech-tag">Security Metrics</span>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/AuthGuard', '_blank')" style="cursor: pointer;">
                 <div class="project-icon">
-                    <i class="fas fa-eye"></i>
+                    <i class="fas fa-user-shield"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">OSINT Framework</h3>
+                    <h3 class="project-title">AuthGuard</h3>
                     <p class="project-description">
-                        Open Source Intelligence gathering framework for collecting and analyzing publicly 
-                        available information for security research and investigations.
+                        Robust authentication and authorization security system designed to protect applications 
+                        from unauthorized access and authentication bypass attacks.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">OSINT</span>
-                        <span class="tech-tag">Information Gathering</span>
-                        <span class="tech-tag">Investigation</span>
+                        <span class="tech-tag">Authentication</span>
+                        <span class="tech-tag">Authorization</span>
+                        <span class="tech-tag">Access Control</span>
+                        <span class="tech-tag">Security</span>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Jerry', '_blank')" style="cursor: pointer;">
                 <div class="project-icon">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-robot"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Cybersecurity Research Projects</h3>
+                    <h3 class="project-title">Jerry - Personalized Virtual AI</h3>
                     <p class="project-description">
-                        Various research projects focused on advancing cybersecurity methodologies, 
-                        developing new techniques, and contributing to the security community.
+                        Advanced personalized virtual AI assistant designed to provide intelligent automation 
+                        and personalized interactions for enhanced user experience.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Research</span>
-                        <span class="tech-tag">Innovation</span>
-                        <span class="tech-tag">Community</span>
+                        <span class="tech-tag">AI Assistant</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">Personalization</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/web_detection', '_blank')" style="cursor: pointer;">
+                <div class="project-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Web Detection System</h3>
+                    <p class="project-description">
+                        Advanced web-based detection system for identifying security threats, malicious activities, 
+                        and anomalous behavior in web applications and networks.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Web Security</span>
+                        <span class="tech-tag">Threat Detection</span>
+                        <span class="tech-tag">Anomaly Detection</span>
+                        <span class="tech-tag">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/password_strength_checker', '_blank')" style="cursor: pointer;">
+                <div class="project-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Password Strength Checker</h3>
+                    <p class="project-description">
+                        Comprehensive password strength evaluation tool that analyzes password security, 
+                        provides recommendations, and helps enforce strong password policies.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Password Security</span>
+                        <span class="tech-tag">Security Assessment</span>
+                        <span class="tech-tag">Policy Enforcement</span>
+                        <span class="tech-tag">Authentication</span>
                     </div>
                 </div>
             </div>
@@ -1204,6 +1244,10 @@
                 <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link" target="_blank">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
+                </a>
+                <a href="https://x.com/anubhavmohandas" class="contact-link" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
                 </a>
                 <a href="mailto:contact@anubhavmohandas.com" class="contact-link">
                     <i class="fas fa-envelope"></i>
