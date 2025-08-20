@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anubhav Mohandas - Cybersecurity Professional</title>
 
-     <!-- Security Headers -->
+    <!-- Security Headers -->
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -78,189 +78,362 @@
             }
         }
 
-        /* Animated Character */
+        /* ENHANCED CHARACTER GUIDE SYSTEM */
         .character-guide {
             position: fixed;
-            width: 80px;
-            height: 100px;
+            width: 90px;
+            height: 110px;
             z-index: 1500;
-            pointer-events: none;
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: characterIdle 3s ease-in-out infinite;
         }
 
+        .character-guide.moving {
+            animation: characterMove 2s ease-in-out infinite;
+        }
+
+        .character-guide.excited {
+            animation: characterExcited 0.6s ease-in-out 3;
+        }
+
+        .character-guide.thinking {
+            animation: characterThink 4s ease-in-out infinite;
+        }
+
+        /* Character Container */
         .character {
             position: relative;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
+            transition: transform 0.3s ease;
         }
 
-        /* Character Body */
+        .character-guide:hover .character {
+            transform: scale(1.15);
+        }
+
+        /* Enhanced Character Body */
         .character-body {
             position: absolute;
-            width: 40px;
-            height: 50px;
-            background: linear-gradient(135deg, #00d4ff, #0066ff);
-            border-radius: 20px 20px 15px 15px;
-            top: 25px;
-            left: 20px;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-            animation: breathe 3s ease-in-out infinite;
+            width: 45px;
+            height: 55px;
+            background: linear-gradient(135deg, #00d4ff, #0066ff, #6600ff);
+            border-radius: 25px 25px 18px 18px;
+            top: 28px;
+            left: 22px;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+            animation: bodyBreathe 3s ease-in-out infinite;
+            transition: all 0.3s ease;
         }
 
-        /* Character Head */
+        .character-guide.excited .character-body {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53, #ff6b6b);
+            animation: bodyExcited 0.4s ease-in-out infinite;
+        }
+
+        /* Enhanced Character Head */
         .character-head {
             position: absolute;
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffffff, #f8f8f8, #e0e0e0);
             border-radius: 50%;
             top: 5px;
-            left: 22.5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            animation: headBob 2s ease-in-out infinite;
+            left: 25px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            animation: headBob 2.5s ease-in-out infinite;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 212, 255, 0.3);
         }
 
-        /* Character Eyes */
+        /* Expressive Eyes */
         .character-eyes {
             position: absolute;
-            top: 12px;
-            left: 8px;
+            top: 14px;
+            left: 10px;
             width: 20px;
-            height: 8px;
+            height: 10px;
         }
 
         .eye {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background: #333;
             border-radius: 50%;
-            animation: blink 4s infinite;
+            animation: eyeBlink 5s infinite;
+            transition: all 0.3s ease;
         }
 
         .eye.left { left: 2px; }
         .eye.right { right: 2px; }
 
-        /* Character Smile */
-        .character-smile {
-            position: absolute;
-            top: 22px;
-            left: 12px;
-            width: 12px;
-            height: 6px;
-            border: 2px solid #333;
-            border-top: none;
-            border-radius: 0 0 12px 12px;
-            animation: smile 3s ease-in-out infinite;
+        /* Happy eyes on hover */
+        .character-guide:hover .eye {
+            height: 4px;
+            border-radius: 0 0 7px 7px;
+            background: #000;
+            animation: none;
         }
 
-        /* Character Arms */
+        /* Thinking eyes */
+        .character-guide.thinking .eye {
+            animation: eyesThinking 2s ease-in-out infinite;
+        }
+
+        /* Dynamic Smile */
+        .character-smile {
+            position: absolute;
+            top: 25px;
+            left: 13px;
+            width: 14px;
+            height: 7px;
+            border: 2px solid #333;
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+            animation: smileDefault 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .character-guide:hover .character-smile {
+            width: 18px;
+            height: 9px;
+            left: 11px;
+            border-width: 3px;
+            animation: smileHappy 0.5s ease-in-out infinite;
+        }
+
+        .character-guide.excited .character-smile {
+            width: 20px;
+            height: 12px;
+            left: 10px;
+            border-color: #ff6b6b;
+            animation: smileExcited 0.3s ease-in-out infinite;
+        }
+
+        /* Enhanced Arms with Better Animation */
         .character-arm {
             position: absolute;
-            width: 15px;
-            height: 4px;
+            width: 18px;
+            height: 5px;
             background: linear-gradient(90deg, #00d4ff, #0066ff);
-            border-radius: 10px;
-            top: 35px;
-            animation: wave 2.5s ease-in-out infinite;
+            border-radius: 12px;
+            top: 40px;
+            transition: all 0.3s ease;
         }
 
         .character-arm.left {
-            left: 8px;
+            left: 10px;
             transform-origin: right center;
+            animation: armWaveLeft 3s ease-in-out infinite;
         }
 
         .character-arm.right {
-            right: 8px;
+            right: 10px;
             transform-origin: left center;
+            animation: armWaveRight 3s ease-in-out infinite 0.5s;
         }
 
-        /* Character Legs */
+        .character-guide:hover .character-arm {
+            animation: armCelebrate 0.6s ease-in-out infinite;
+        }
+
+        .character-guide.excited .character-arm {
+            animation: armExcited 0.3s ease-in-out infinite;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+        }
+
+        /* Walking Legs */
         .character-leg {
             position: absolute;
-            width: 6px;
-            height: 20px;
+            width: 8px;
+            height: 25px;
             background: linear-gradient(180deg, #00d4ff, #0066ff);
-            border-radius: 3px;
-            bottom: 0;
-            animation: walk 1s ease-in-out infinite;
+            border-radius: 4px;
+            bottom: 2px;
         }
 
         .character-leg.left {
-            left: 28px;
+            left: 30px;
+            animation: legWalk 1.2s ease-in-out infinite;
         }
 
         .character-leg.right {
-            right: 28px;
-            animation-delay: 0.5s;
+            right: 30px;
+            animation: legWalk 1.2s ease-in-out infinite 0.6s;
         }
 
-        /* Character Animations */
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .character-guide.moving .character-leg {
+            animation-duration: 0.8s;
         }
 
-        @keyframes headBob {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-2px); }
-        }
-
-        @keyframes blink {
-            0%, 90%, 100% { transform: scaleY(1); }
-            95% { transform: scaleY(0.1); }
-        }
-
-        @keyframes smile {
-            0%, 100% { transform: scaleX(1); }
-            50% { transform: scaleX(1.2); }
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-15deg); }
-            75% { transform: rotate(15deg); }
-        }
-
-        @keyframes walk {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(5deg); }
-        }
-
-        /* Character Speech Bubble */
+        /* ENHANCED SPEECH BUBBLE SYSTEM */
         .speech-bubble {
             position: absolute;
-            bottom: 110px;
-            left: -50px;
+            bottom: 120px;
+            left: -80px;
             background: rgba(26, 26, 26, 0.95);
             color: var(--text-primary);
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 15px 20px;
+            border-radius: 25px;
             border: 2px solid var(--primary-color);
-            font-size: 12px;
-            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
             opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(15px) scale(0.8);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(15px);
+            max-width: 220px;
+            white-space: normal;
+            text-align: center;
+            z-index: 1600;
         }
 
         .speech-bubble::after {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 20px;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid var(--primary-color);
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid var(--primary-color);
         }
 
         .speech-bubble.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+        }
+
+        /* Different bubble styles for different moods */
+        .speech-bubble.excited {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            animation: bubbleExcited 0.5s ease-in-out infinite;
+        }
+
+        .speech-bubble.excited::after {
+            border-top-color: #ff6b6b;
+        }
+
+        .speech-bubble.thinking {
+            border-style: dashed;
+            border-color: #ffd93d;
+            background: rgba(255, 217, 61, 0.1);
+            animation: bubbleThinking 2s ease-in-out infinite;
+        }
+
+        .speech-bubble.thinking::after {
+            border-top-color: #ffd93d;
+            border-top-style: solid;
+        }
+
+        /* CHARACTER ANIMATIONS */
+        @keyframes characterIdle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(1deg); }
+        }
+
+        @keyframes characterMove {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-2deg); }
+            75% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        @keyframes characterExcited {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        @keyframes characterThink {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-2px) rotate(-1deg); }
+            75% { transform: translateY(-2px) rotate(1deg); }
+        }
+
+        @keyframes bodyBreathe {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        @keyframes bodyExcited {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes headBob {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(-1deg); }
+        }
+
+        @keyframes eyeBlink {
+            0%, 85%, 100% { transform: scaleY(1); }
+            90%, 95% { transform: scaleY(0.1); }
+        }
+
+        @keyframes eyesThinking {
+            0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(-1px); }
+            75% { transform: translateX(1px); }
+        }
+
+        @keyframes smileDefault {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.1); }
+        }
+
+        @keyframes smileHappy {
+            0%, 100% { transform: scaleX(1) scaleY(1); }
+            50% { transform: scaleX(1.2) scaleY(1.3); }
+        }
+
+        @keyframes smileExcited {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.3); }
+        }
+
+        @keyframes armWaveLeft {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        @keyframes armWaveRight {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        @keyframes armCelebrate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-40deg); }
+            75% { transform: rotate(40deg); }
+        }
+
+        @keyframes armExcited {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+        }
+
+        @keyframes legWalk {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(10deg); }
+        }
+
+        @keyframes bubbleExcited {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bubbleThinking {
+            0%, 100% { border-color: #ffd93d; opacity: 1; }
+            50% { border-color: #ffeb3b; opacity: 0.8; }
         }
 
         /* Navigation */
@@ -726,6 +899,7 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 212, 255, 0.2);
             position: relative;
+            cursor: pointer;
         }
 
         .project-card::before {
@@ -891,8 +1065,13 @@
                 gap: 2rem;
             }
             .character-guide {
-                width: 60px;
-                height: 80px;
+                width: 70px;
+                height: 90px;
+            }
+            .speech-bubble {
+                max-width: 160px;
+                font-size: 12px;
+                left: -60px;
             }
             .projects-grid {
                 grid-template-columns: 1fr;
@@ -913,7 +1092,7 @@
     </style>
 </head>
 <body>
-    <!-- Animated Character Guide -->
+    <!-- ENHANCED CHARACTER GUIDE -->
     <div class="character-guide" id="characterGuide">
         <div class="character">
             <div class="character-head">
@@ -929,7 +1108,7 @@
             <div class="character-leg left"></div>
             <div class="character-leg right"></div>
         </div>
-        <div class="speech-bubble" id="speechBubble">Welcome! Let me guide you!</div>
+        <div class="speech-bubble" id="speechBubble">Welcome! Let me guide you through Anubhav's amazing cybersecurity journey!</div>
     </div>
 
     <div class="bg-animation">
@@ -1083,7 +1262,7 @@
     <section id="projects" class="section animate-on-scroll">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-toolbox"></i>
                 </div>
@@ -1101,7 +1280,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/recon_scanner', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/recon_scanner', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-search"></i>
                 </div>
@@ -1119,7 +1298,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/siem-kernel-exploit-detection', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/siem-kernel-exploit-detection', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-shield-virus"></i>
                 </div>
@@ -1137,7 +1316,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-calculator"></i>
                 </div>
@@ -1155,7 +1334,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/AuthGuard', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/AuthGuard', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-user-shield"></i>
                 </div>
@@ -1173,7 +1352,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Jerry', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Jerry', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-robot"></i>
                 </div>
@@ -1191,7 +1370,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/web_detection', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/web_detection', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-globe"></i>
                 </div>
@@ -1209,7 +1388,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/password_strength_checker', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/password_strength_checker', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-key"></i>
                 </div>
@@ -1258,19 +1437,24 @@
     </section>
 
     <script>
-        // Character Guide System
-        class CharacterGuide {
+        // ENHANCED CHARACTER GUIDE SYSTEM
+        class EnhancedCharacterGuide {
             constructor() {
                 this.character = document.getElementById('characterGuide');
                 this.speechBubble = document.getElementById('speechBubble');
                 this.currentSection = 'home';
+                this.isUserInteracting = false;
+                this.personality = 'default';
+                
+                // Enhanced messages with context awareness
                 this.messages = {
-                    home: "Welcome! I'm your cyber guide! 🚀",
-                    about: "Learn about Anubhav's expertise! 🛡️",
-                    experience: "Check out this impressive journey! 📈",
-                    projects: "Amazing security projects ahead! 💻",
-                    contact: "Ready to connect? Let's talk! 📞"
+                    home: "Welcome! I'm your cyber guide! Ready to explore?",
+                    about: "Discover Anubhav's cybersecurity expertise!",
+                    experience: "Check out this impressive journey in security!",
+                    projects: "Amazing security projects and tools ahead!",
+                    contact: "Ready to connect? Let's secure the world together!"
                 };
+                
                 this.positions = {
                     home: { x: 100, y: 100 },
                     about: { x: 200, y: 300 },
@@ -1278,6 +1462,7 @@
                     projects: { x: 150, y: 400 },
                     contact: { x: 250, y: 150 }
                 };
+                
                 this.init();
             }
 
@@ -1294,14 +1479,27 @@
                 this.character.style.top = pos.y + 'px';
                 this.showMessage(this.messages[section]);
                 this.currentSection = section;
+                
+                // Add movement animation
+                this.character.classList.add('moving');
+                setTimeout(() => {
+                    this.character.classList.remove('moving');
+                }, 2000);
             }
 
-            showMessage(message) {
+            showMessage(message, mood = 'default') {
                 this.speechBubble.textContent = message;
-                this.speechBubble.classList.add('show');
+                this.speechBubble.className = 'speech-bubble show';
+                
+                if (mood !== 'default') {
+                    this.speechBubble.classList.add(mood);
+                    this.character.classList.add(mood);
+                }
+                
                 setTimeout(() => {
-                    this.speechBubble.classList.remove('show');
-                }, 3000);
+                    this.speechBubble.classList.remove('show', 'excited', 'thinking');
+                    this.character.classList.remove('excited', 'thinking');
+                }, 4000);
             }
 
             startAutoGuide() {
@@ -1309,8 +1507,10 @@
                 const sections = ['home', 'about', 'experience', 'projects', 'contact'];
                 
                 setInterval(() => {
-                    sectionIndex = (sectionIndex + 1) % sections.length;
-                    this.moveToSection(sections[sectionIndex]);
+                    if (!this.isUserInteracting) {
+                        sectionIndex = (sectionIndex + 1) % sections.length;
+                        this.moveToSection(sections[sectionIndex]);
+                    }
                 }, 8000);
             }
 
@@ -1320,7 +1520,7 @@
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             const sectionId = entry.target.id;
-                            if (this.positions[sectionId]) {
+                            if (this.positions[sectionId] && !this.isUserInteracting) {
                                 this.moveToSection(sectionId);
                             }
                         }
@@ -1333,13 +1533,13 @@
             setupInteractions() {
                 // Click interaction
                 this.character.addEventListener('click', () => {
+                    this.isUserInteracting = true;
                     this.character.style.pointerEvents = 'auto';
-                    this.character.style.transform = 'scale(1.2)';
-                    this.showMessage("Hi there! Click any section to explore! ✨");
+                    this.showMessage("Hi there! Click any section to explore!", 'excited');
+                    
                     setTimeout(() => {
-                        this.character.style.transform = 'scale(1)';
-                        this.character.style.pointerEvents = 'none';
-                    }, 500);
+                        this.isUserInteracting = false;
+                    }, 5000);
                 });
 
                 // Hover effects on navigation
@@ -1347,15 +1547,22 @@
                     link.addEventListener('mouseenter', () => {
                         const section = link.getAttribute('href').substring(1);
                         if (this.positions[section]) {
-                            this.showMessage(`Let's go to ${section}! 🎯`);
+                            this.showMessage(`Let's go to ${section}!`, 'thinking');
                         }
+                    });
+                });
+
+                // Project card interactions
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        this.showMessage("Cool project! Click to explore on GitHub!", 'excited');
                     });
                 });
             }
         }
 
-        // Initialize character guide
-        const characterGuide = new CharacterGuide();
+        // Initialize enhanced character guide
+        const characterGuide = new EnhancedCharacterGuide();
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -1381,7 +1588,7 @@
             });
         });
 
-        // Animate elements on scroll - IMPROVED
+        // Animate elements on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1396,7 +1603,6 @@
                     if (entry.target.classList.contains('timeline') || entry.target.id === 'experience') {
                         const timelineItems = document.querySelectorAll('.timeline-item');
                         timelineItems.forEach((item, index) => {
-                            // Add animation class to make them start invisible
                             item.classList.add('will-animate');
                             setTimeout(() => {
                                 item.classList.add('animate');
@@ -1634,6 +1840,139 @@
                 style.remove();
             }, 2000);
         }
+
+        // Add additional interactive features
+        // Skill card click effects
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            stat.addEventListener('click', function() {
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }, 200);
+            });
+        });
+
+        // Contact link hover effects with sound simulation
+        document.querySelectorAll('.contact-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                // Visual feedback
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+                
+                // Add a subtle glow effect
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.textShadow = '0 0 20px var(--primary-color)';
+                }
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.textShadow = 'none';
+                }
+            });
+        });
+
+        // Add dynamic background color changes based on section
+        const sectionColorMap = {
+            home: 'rgba(0, 212, 255, 0.05)',
+            about: 'rgba(102, 0, 255, 0.05)',
+            experience: 'rgba(0, 102, 255, 0.05)',
+            projects: 'rgba(255, 107, 107, 0.05)',
+            contact: 'rgba(0, 255, 127, 0.05)'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    const bgColor = sectionColorMap[sectionId];
+                    if (bgColor) {
+                        document.querySelector('.bg-animation').style.background = `
+                            radial-gradient(circle at 20% 80%, ${bgColor} 0%, transparent 50%),
+                            radial-gradient(circle at 80% 20%, ${bgColor} 0%, transparent 50%),
+                            var(--dark-bg)
+                        `;
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Add timeline item click interactions
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Create a pulse effect
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 212, 255, 0.4)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                }, 300);
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                // Prevent default tab behavior for custom navigation
+                e.preventDefault();
+                
+                const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+                const currentIndex = sections.indexOf(characterGuide.currentSection);
+                const nextIndex = (currentIndex + 1) % sections.length;
+                
+                characterGuide.moveToSection(sections[nextIndex]);
+                document.getElementById(sections[nextIndex]).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Performance optimization: Throttle scroll events
+        function throttle(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Throttled scroll handler
+        const throttledScrollHandler = throttle(() => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, 16); // 60fps
+
+        window.addEventListener('scroll', throttledScrollHandler);
+
+        // Add accessibility improvements
+        document.querySelectorAll('.project-card, .skill-item, .stat-item').forEach(element => {
+            element.setAttribute('tabindex', '0');
+            element.setAttribute('role', 'button');
+            
+            element.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    element.click();
+                }
+            });
+        });
+
+        // Final initialization message
+        console.log('🔒 Anubhav Mohandas Cybersecurity Portfolio Loaded Successfully! 🔒');
+        console.log('👋 Welcome to the interactive cybersecurity experience!');
+        console.log('🎮 Try the Konami Code: ↑↑↓↓←→←→ for a surprise!');
     </script>
 </body>
 </html>
