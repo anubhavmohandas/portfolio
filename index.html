@@ -10,9 +10,8 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-[SCRIPT_HASH]'; style-src 'self' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'">
     
-    <!-- Font Awesome with latest version and SRI integrity -->
+    <!-- Font Awesome -->
     <link 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
         rel="stylesheet"
@@ -326,6 +325,18 @@
         .btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Section Transitions */
+        .section-transition {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-transition.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Sections */
@@ -906,6 +917,16 @@
             animation: characterMoving 2s ease-in-out;
         }
 
+        /* Typing Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: var(--primary-color);
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
         /* Animations */
         @keyframes titleGlow {
             0% { filter: brightness(1); }
@@ -978,6 +999,42 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loader-text {
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         /* Responsive Design */
@@ -1076,37 +1133,6 @@
                 --card-bg: #000000;
             }
         }
-
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark-bg);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid var(--primary-color);
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        .loader-text {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
     </style>
 </head>
 <body>
@@ -1158,7 +1184,7 @@
     </nav>
 
     <main id="main-content">
-        <section id="home" class="hero" role="banner">
+        <section id="home" class="hero section-transition" role="banner">
             <div class="hero-content">
                 <h1 class="hero-title">Anubhav Mohandas</h1>
                 <p class="hero-subtitle">Cybersecurity Professional & Digital Forensics Specialist</p>
@@ -1175,7 +1201,7 @@
             </div>
         </section>
 
-        <section id="about" class="section animate-on-scroll">
+        <section id="about" class="section section-transition">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image" role="img" aria-label="Cybersecurity shield icon">
@@ -1259,7 +1285,7 @@
             </div>
         </section>
 
-        <section id="experience" class="section animate-on-scroll">
+        <section id="experience" class="section section-transition">
             <h2 class="section-title">Experience & Focus Areas</h2>
             <div class="timeline" role="region" aria-label="Professional timeline">
                 <div class="timeline-item" tabindex="0" role="article" aria-label="Current cybersecurity research focus">
@@ -1289,7 +1315,7 @@
             </div>
         </section>
 
-        <section id="projects" class="section animate-on-scroll">
+        <section id="projects" class="section section-transition">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card" tabindex="0" role="button" aria-label="Ultimate Digital Forensics Toolkit project" data-url="https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit">
@@ -1439,7 +1465,7 @@
             </div>
         </section>
 
-        <section id="contact" class="section animate-on-scroll">
+        <section id="contact" class="section section-transition">
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-content">
                 <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
@@ -1470,7 +1496,164 @@
     <script>
         'use strict';
         
-        // Secure Portfolio Application with Enhanced Security
+        // Enhanced Security Rate Limiter
+        class RateLimiter {
+            constructor() {
+                this.actions = new Map();
+                this.cleanup();
+            }
+
+            isAllowed(key, maxActions = 10, timeWindow = 1000) {
+                const now = Date.now();
+                const actionKey = String(key).substring(0, 100);
+                
+                if (!this.actions.has(actionKey)) {
+                    this.actions.set(actionKey, []);
+                }
+                
+                const timestamps = this.actions.get(actionKey);
+                
+                while (timestamps.length > 0 && now - timestamps[0] > timeWindow) {
+                    timestamps.shift();
+                }
+                
+                if (timestamps.length >= maxActions) {
+                    return false;
+                }
+                
+                timestamps.push(now);
+                return true;
+            }
+
+            cleanup() {
+                setInterval(() => {
+                    const now = Date.now();
+                    for (const [key, timestamps] of this.actions.entries()) {
+                        this.actions.set(key, timestamps.filter(time => now - time <= 60000));
+                        if (timestamps.length === 0) {
+                            this.actions.delete(key);
+                        }
+                    }
+                }, 60000);
+            }
+        }
+
+        // Enhanced Character Guide
+        class EnhancedCharacterGuide {
+            constructor(app, characterElement, speechElement) {
+                this.app = app;
+                this.character = characterElement;
+                this.speech = speechElement;
+                this.messages = [
+                    "Welcome to Anubhav's cybersecurity portfolio!",
+                    "Check out the amazing security tools below!",
+                    "Don't miss the digital forensics projects!",
+                    "Hover over the skills to learn more!",
+                    "Try the Konami code for a surprise!",
+                    "Click on projects to visit GitHub!",
+                    "Love the particle effects? They're interactive!"
+                ];
+                this.messageIndex = 0;
+                this.init();
+            }
+
+            init() {
+                this.setupInteractions();
+                this.startMessageRotation();
+                this.setupSectionTracking();
+            }
+
+            setupInteractions() {
+                if (!this.character || !this.speech) return;
+                
+                this.app.addEventListener(this.character, 'click', () => {
+                    this.showRandomMessage();
+                });
+
+                this.app.addEventListener(this.character, 'mouseenter', () => {
+                    this.character.classList.add('excited');
+                    this.showSpeechBubble();
+                });
+
+                this.app.addEventListener(this.character, 'mouseleave', () => {
+                    this.character.classList.remove('excited');
+                    this.hideSpeechBubble();
+                });
+            }
+
+            showRandomMessage() {
+                if (!this.speech) return;
+                
+                const message = this.messages[Math.floor(Math.random() * this.messages.length)];
+                this.speech.textContent = message;
+                this.speech.classList.add('excited');
+                
+                this.app.setManagedTimeout(() => {
+                    if (this.speech) {
+                        this.speech.classList.remove('excited');
+                    }
+                }, 1000);
+            }
+
+            showSpeechBubble() {
+                if (this.speech) {
+                    this.speech.classList.add('show');
+                }
+            }
+
+            hideSpeechBubble() {
+                if (this.speech) {
+                    this.speech.classList.remove('show');
+                }
+            }
+
+            startMessageRotation() {
+                this.app.setManagedInterval(() => {
+                    if (this.speech && !this.speech.classList.contains('show')) {
+                        const message = this.messages[this.messageIndex];
+                        this.speech.textContent = message;
+                        this.messageIndex = (this.messageIndex + 1) % this.messages.length;
+                    }
+                }, 8000);
+            }
+
+            setupSectionTracking() {
+                const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+                const sectionMessages = {
+                    'home': "Welcome! This is Anubhav's cybersecurity journey!",
+                    'about': "Learn about Anubhav's expertise and skills!",
+                    'experience': "Check out this professional timeline!",
+                    'projects': "Amazing security projects await!",
+                    'contact': "Ready to connect? Let's collaborate!"
+                };
+
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (!section) return;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && this.speech) {
+                                const message = sectionMessages[sectionId];
+                                if (message) {
+                                    this.speech.textContent = message;
+                                    this.speech.classList.add('thinking');
+                                    this.app.setManagedTimeout(() => {
+                                        if (this.speech) {
+                                            this.speech.classList.remove('thinking');
+                                        }
+                                    }, 2000);
+                                }
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    observer.observe(section);
+                });
+            }
+        }
+
+        // Secure Portfolio Application
         class SecurePortfolioApp {
             constructor() {
                 this.intervals = new Set();
@@ -1479,41 +1662,51 @@
                 this.isUserInteracting = false;
                 this.currentSection = 'home';
                 this.isDestroyed = false;
+                this.rateLimiter = new RateLimiter();
+                this.particles = [];
+                this.maxParticles = 30;
                 
-                // Enhanced input sanitization
                 this.sanitizeInput = (input) => {
                     if (typeof input !== 'string') return '';
                     return input
-                        .replace(/[<>'"&]/g, match => {
-                            const entities = { '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '&': '&amp;' };
+                        .replace(/[<>'"&`]/g, match => {
+                            const entities = { 
+                                '<': '&lt;', '>': '&gt;', '"': '&quot;', 
+                                "'": '&#39;', '&': '&amp;', '`': '&#96;' 
+                            };
                             return entities[match] || match;
                         })
+                        .replace(/javascript:/gi, '')
+                        .replace(/data:/gi, '')
+                        .replace(/vbscript:/gi, '')
                         .trim()
-                        .substring(0, 500); // Length limit
+                        .substring(0, 500);
                 };
                 
-                // Comprehensive error handling with context
                 this.handleError = (error, context, fallback = null) => {
                     if (this.isDestroyed) return;
-                    console.error(`Portfolio Security Error in ${context}:`, {
-                        error: error.message || error,
-                        stack: error.stack,
+                    
+                    const errorInfo = {
+                        message: error?.message || String(error),
+                        context: String(context).substring(0, 100),
                         timestamp: new Date().toISOString(),
-                        context
-                    });
+                        stack: error?.stack?.substring(0, 1000) || 'No stack trace'
+                    };
+                    
+                    console.error(`Portfolio Security Error:`, errorInfo);
+                    
                     if (fallback && typeof fallback === 'function') {
                         try {
                             fallback();
                         } catch (fallbackError) {
-                            console.error('Fallback function failed:', fallbackError);
+                            console.error('Fallback function failed:', fallbackError.message);
                         }
                     }
                 };
                 
-                // Bounds checking utility
                 this.boundCheck = (value, min = 0, max = Infinity) => {
                     const num = Number(value);
-                    if (isNaN(num)) return min;
+                    if (!Number.isFinite(num)) return min;
                     return Math.max(min, Math.min(max, num));
                 };
                 
@@ -1524,31 +1717,37 @@
                 try {
                     this.setupLoadingScreen();
                     this.setupNavigation();
-                    this.setupCharacterGuide();
                     this.setupScrollEffects();
                     this.setupAccessibility();
                     this.setupPerformanceOptimizations();
                     this.setupAnimations();
                     this.setupParticleSystem();
                     this.setupEasterEgg();
+                    this.setupTypingEffect();
+                    this.setupKeyboardNavigation();
+                    this.setupCharacterGuide();
                     
-                    // Cleanup on page unload
                     this.addEventListener(window, 'beforeunload', () => this.cleanup());
-                    
-                    // Periodic cleanup for memory management
-                    this.setManagedInterval(() => this.periodicCleanup(), 300000); // 5 minutes
+                    this.setManagedInterval(() => this.periodicCleanup(), 300000);
+                    this.initializeSectionTransitions();
                 } catch (error) {
                     this.handleError(error, 'initialization');
                 }
             }
 
-            // Enhanced memory-safe event listener management
             addEventListener(element, event, handler, options = {}) {
                 if (this.isDestroyed || !element) return null;
                 
                 try {
                     const key = `${element.constructor.name}_${event}_${Date.now()}_${Math.random()}`;
                     const wrappedHandler = (e) => {
+                        if (this.isDestroyed) return;
+                        
+                        if (!this.rateLimiter.isAllowed(`${event}_${key}`, 50, 1000)) {
+                            console.warn('Rate limit exceeded for event:', event);
+                            return;
+                        }
+                        
                         try {
                             handler(e);
                         } catch (error) {
@@ -1579,11 +1778,11 @@
                 }
             }
 
-            // Enhanced interval management with automatic cleanup
             setManagedInterval(callback, delay) {
                 if (this.isDestroyed) return null;
                 
                 try {
+                    const safeDelay = this.boundCheck(delay, 16, 600000);
                     const intervalId = setInterval(() => {
                         if (this.isDestroyed) {
                             this.clearManagedInterval(intervalId);
@@ -1594,7 +1793,7 @@
                         } catch (error) {
                             this.handleError(error, 'interval_callback');
                         }
-                    }, this.boundCheck(delay, 16, 600000)); // Min 16ms (60fps), max 10min
+                    }, safeDelay);
                     
                     this.intervals.add(intervalId);
                     return intervalId;
@@ -1611,11 +1810,11 @@
                 }
             }
 
-            // Enhanced timeout management
             setManagedTimeout(callback, delay) {
                 if (this.isDestroyed) return null;
                 
                 try {
+                    const safeDelay = this.boundCheck(delay, 0, 300000);
                     const timeoutId = setTimeout(() => {
                         this.timeouts.delete(timeoutId);
                         if (!this.isDestroyed) {
@@ -1625,7 +1824,7 @@
                                 this.handleError(error, 'timeout_callback');
                             }
                         }
-                    }, this.boundCheck(delay, 0, 300000)); // Max 5min timeout
+                    }, safeDelay);
                     
                     this.timeouts.add(timeoutId);
                     return timeoutId;
@@ -1642,40 +1841,45 @@
                 }
             }
 
-            // Comprehensive cleanup
             cleanup() {
                 this.isDestroyed = true;
                 
-                // Clear all intervals
                 this.intervals.forEach(id => clearInterval(id));
                 this.intervals.clear();
                 
-                // Clear all timeouts
                 this.timeouts.forEach(id => clearTimeout(id));
                 this.timeouts.clear();
                 
-                // Remove all event listeners
                 this.eventListeners.forEach((listener, key) => {
                     this.removeEventListener(key);
                 });
                 
-                // Clear any dynamic content
-                const particles = document.querySelectorAll('.particle');
-                particles.forEach(particle => particle.remove());
+                this.particles.forEach(particle => {
+                    if (particle && particle.parentNode) {
+                        particle.remove();
+                    }
+                });
+                this.particles = [];
             }
 
-            // Periodic cleanup for memory management
             periodicCleanup() {
+                if (this.isDestroyed) return;
+                
                 try {
-                    // Remove excess particles
-                    const particles = document.querySelectorAll('.particle');
-                    if (particles.length > 50) {
-                        for (let i = 50; i < particles.length; i++) {
-                            particles[i].remove();
+                    while (this.particles.length > this.maxParticles) {
+                        const oldParticle = this.particles.shift();
+                        if (oldParticle && oldParticle.parentNode) {
+                            oldParticle.remove();
                         }
                     }
                     
-                    // Force garbage collection hint
+                    this.particles = this.particles.filter(particle => {
+                        if (!particle || !particle.parentNode) {
+                            return false;
+                        }
+                        return true;
+                    });
+                    
                     if (window.gc) {
                         window.gc();
                     }
@@ -1690,10 +1894,14 @@
                     if (!loadingScreen) return;
                     
                     this.setManagedTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        this.setManagedTimeout(() => {
-                            loadingScreen.remove();
-                        }, 500);
+                        if (loadingScreen) {
+                            loadingScreen.style.opacity = '0';
+                            this.setManagedTimeout(() => {
+                                if (loadingScreen.parentNode) {
+                                    loadingScreen.remove();
+                                }
+                            }, 500);
+                        }
                     }, 2000);
                 } catch (error) {
                     this.handleError(error, 'setupLoadingScreen');
@@ -1702,7 +1910,6 @@
 
             setupNavigation() {
                 try {
-                    // Throttled scroll handler for performance
                     let scrollTimeout = null;
                     const handleScroll = () => {
                         if (this.isDestroyed || scrollTimeout) return;
@@ -1714,19 +1921,17 @@
                                 const shouldScroll = this.boundCheck(window.scrollY, 0) > 50;
                                 navbar.classList.toggle('scrolled', shouldScroll);
                             }
-                        }, 16); // 60fps
+                        }, 16);
                     };
 
                     this.addEventListener(window, 'scroll', handleScroll, { passive: true });
 
-                    // Smooth scrolling with enhanced validation
                     const navLinks = document.querySelectorAll('a[href^="#"]');
                     navLinks.forEach(anchor => {
                         this.addEventListener(anchor, 'click', (e) => {
                             e.preventDefault();
                             const targetId = this.sanitizeInput(anchor.getAttribute('href'));
                             
-                            // Enhanced target validation
                             if (!targetId.startsWith('#') || targetId.length < 2) return;
                             
                             const target = document.querySelector(targetId);
@@ -1737,7 +1942,6 @@
                                         block: 'start'
                                     });
                                 } catch (scrollError) {
-                                    // Fallback for older browsers
                                     target.scrollIntoView();
                                 }
                             }
@@ -1750,136 +1954,25 @@
 
             setupCharacterGuide() {
                 try {
+                    if (window.innerWidth < 1024) return;
+                    
                     const characterGuide = document.getElementById('characterGuide');
                     const speechBubble = document.getElementById('speechBubble');
                     
                     if (!characterGuide || !speechBubble) return;
                     
-                    // Only show on desktop to prevent mobile performance issues
-                    if (window.innerWidth < 1024) {
-                        characterGuide.style.display = 'none';
-                        return;
-                    }
-
-                    const messages = {
-                        home: "Welcome! I'm your cyber guide!",
-                        about: "Discover Anubhav's expertise!",
-                        experience: "Check out this impressive journey!",
-                        projects: "Amazing security projects ahead!",
-                        contact: "Ready to connect? Let's secure the world!"
-                    };
-                    
-                    // Enhanced position bounds checking
-                    const getValidPosition = (section) => {
-                        const basePositions = {
-                            home: { x: 100, y: 100 },
-                            about: { x: 200, y: 300 },
-                            experience: { x: 300, y: 200 },
-                            projects: { x: 150, y: 400 },
-                            contact: { x: 250, y: 150 }
-                        };
-                        
-                        const pos = basePositions[section];
-                        if (!pos) return { x: 100, y: 100 };
-                        
-                        return {
-                            x: this.boundCheck(pos.x, 0, window.innerWidth - 100),
-                            y: this.boundCheck(pos.y, 0, window.innerHeight - 150)
-                        };
-                    };
-
-                    const moveToSection = (section) => {
-                        try {
-                            const pos = getValidPosition(section);
-                            characterGuide.style.left = pos.x + 'px';
-                            characterGuide.style.top = pos.y + 'px';
-                            
-                            const message = this.sanitizeInput(messages[section] || 'Exploring...');
-                            if (speechBubble) {
-                                speechBubble.textContent = message;
-                                speechBubble.classList.add('show');
-                                
-                                this.setManagedTimeout(() => {
-                                    if (!this.isDestroyed) {
-                                        speechBubble.classList.remove('show');
-                                    }
-                                }, 3000);
-                            }
-                            
-                            characterGuide.classList.add('moving');
-                            this.setManagedTimeout(() => {
-                                if (!this.isDestroyed) {
-                                    characterGuide.classList.remove('moving');
-                                }
-                            }, 2000);
-                        } catch (error) {
-                            this.handleError(error, 'moveToSection');
-                        }
-                    };
-
-                    // Character interaction with enhanced security
-                    this.addEventListener(characterGuide, 'click', () => {
-                        this.isUserInteracting = true;
-                        speechBubble.textContent = "Hi there! Click any section to explore!";
-                        speechBubble.classList.add('show', 'excited');
-                        characterGuide.classList.add('excited');
-                        
-                        this.setManagedTimeout(() => {
-                            if (!this.isDestroyed) {
-                                this.isUserInteracting = false;
-                                speechBubble.classList.remove('show', 'excited');
-                                characterGuide.classList.remove('excited');
-                            }
-                        }, 4000);
-                    });
-
-                    // Keyboard interaction for character
-                    this.addEventListener(characterGuide, 'keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            characterGuide.click();
-                        }
-                    });
-
-                    // Section observer for character movement
-                    const sectionObserver = new IntersectionObserver((entries) => {
-                        if (this.isDestroyed) return;
-                        
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && !this.isUserInteracting) {
-                                const sectionId = this.sanitizeInput(entry.target.id);
-                                if (messages[sectionId]) {
-                                    moveToSection(sectionId);
-                                    this.currentSection = sectionId;
-                                }
-                            }
-                        });
-                    }, { threshold: 0.5 });
-
-                    document.querySelectorAll('section').forEach(section => {
-                        sectionObserver.observe(section);
-                    });
-
-                    // Auto-guide with controlled timing
-                    const startAutoGuide = () => {
-                        let sectionIndex = 0;
-                        const sections = Object.keys(messages);
-                        
-                        const autoGuideInterval = this.setManagedInterval(() => {
-                            if (!this.isUserInteracting && sections.length > 0) {
-                                sectionIndex = (sectionIndex + 1) % sections.length;
-                                moveToSection(sections[sectionIndex]);
-                            }
-                        }, 8000);
-                        
-                        return autoGuideInterval;
-                    };
-
-                    moveToSection('home');
-                    startAutoGuide();
+                    this.characterGuide = new EnhancedCharacterGuide(this, characterGuide, speechBubble);
                 } catch (error) {
                     this.handleError(error, 'setupCharacterGuide');
                 }
+            }
+
+            initializeSectionTransitions() {
+                document.querySelectorAll('.section-transition').forEach(section => {
+                    if (section.id === 'home') {
+                        section.classList.add('visible');
+                    }
+                });
             }
 
             setupScrollEffects() {
@@ -1894,15 +1987,14 @@
                         
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
-                                entry.target.classList.add('animated');
+                                entry.target.classList.add('visible');
                                 
-                                // Animate timeline items with staggered delay
                                 if (entry.target.id === 'experience') {
                                     const timelineItems = entry.target.querySelectorAll('.timeline-item');
                                     timelineItems.forEach((item, index) => {
                                         const delay = this.boundCheck(index * 200, 0, 5000);
                                         this.setManagedTimeout(() => {
-                                            if (!this.isDestroyed) {
+                                            if (!this.isDestroyed && item) {
                                                 item.classList.add('animate');
                                             }
                                         }, delay);
@@ -1912,8 +2004,8 @@
                         });
                     }, observerOptions);
 
-                    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                        scrollObserver.observe(el);
+                    document.querySelectorAll('.section-transition').forEach(el => {
+                        if (el) scrollObserver.observe(el);
                     });
                 } catch (error) {
                     this.handleError(error, 'setupScrollEffects');
@@ -1925,12 +2017,12 @@
                     const interactiveElements = document.querySelectorAll('.project-card, .skill-item, .stat-item, .timeline-item');
                     
                     interactiveElements.forEach(element => {
-                        // Ensure proper accessibility attributes
+                        if (!element) return;
+                        
                         if (!element.hasAttribute('tabindex')) {
                             element.setAttribute('tabindex', '0');
                         }
                         
-                        // Enhanced keyboard activation
                         this.addEventListener(element, 'keydown', (e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                                 e.preventDefault();
@@ -1939,19 +2031,20 @@
                         });
                     });
 
-                    // Enhanced project card navigation with validation
                     document.querySelectorAll('.project-card').forEach(card => {
+                        if (!card) return;
+                        
                         this.addEventListener(card, 'click', () => {
+                            if (!this.rateLimiter.isAllowed('project_card_click', 5, 2000)) return;
+                            
                             try {
-                                const url = this.sanitizeInput(card.getAttribute('data-url'));
+                                const url = this.sanitizeInput(card.getAttribute('data-url') || '');
                                 
-                                // Enhanced URL validation
                                 if (url && this.isValidGitHubUrl(url)) {
-                                    // Add click animation
                                     card.style.transform = 'scale(0.98)';
                                     this.setManagedTimeout(() => {
-                                        if (!this.isDestroyed) {
-                                            card.style.transform = 'scale(1)';
+                                        if (!this.isDestroyed && card) {
+                                            card.style.transform = '';
                                             window.open(url, '_blank', 'noopener,noreferrer');
                                         }
                                     }, 150);
@@ -1966,13 +2059,14 @@
                 }
             }
 
-            // Enhanced URL validation for security
             isValidGitHubUrl(url) {
                 try {
                     const validUrl = new URL(url);
                     return validUrl.hostname === 'github.com' && 
                            validUrl.pathname.startsWith('/anubhavmohandas/') &&
-                           validUrl.protocol === 'https:';
+                           validUrl.protocol === 'https:' &&
+                           !validUrl.pathname.includes('..') &&
+                           validUrl.pathname.length < 200;
                 } catch {
                     return false;
                 }
@@ -1980,7 +2074,6 @@
 
             setupPerformanceOptimizations() {
                 try {
-                    // Enhanced throttle function with bounds checking
                     const throttle = (func, wait) => {
                         let timeout;
                         return (...args) => {
@@ -2000,20 +2093,17 @@
                         };
                     };
 
-                    // Parallax effect with performance optimization
                     const handleParallax = throttle(() => {
                         const scrolled = this.boundCheck(window.pageYOffset, 0);
                         const heroContent = document.querySelector('.hero-content');
-                        const particles = document.querySelectorAll('.particle');
                         
                         if (heroContent && scrolled < window.innerHeight) {
                             const transform = this.boundCheck(scrolled * 0.3, -200, 200);
                             heroContent.style.transform = `translateY(${transform}px)`;
                         }
 
-                        // Move particles based on scroll with performance limits
-                        particles.forEach((particle, index) => {
-                            if (index < 20) { // Limit to first 20 particles for performance
+                        this.particles.slice(0, 20).forEach((particle, index) => {
+                            if (particle && particle.parentNode) {
                                 const speed = this.boundCheck((index % 3 + 1) * 0.1, 0, 0.5);
                                 const transform = this.boundCheck(scrolled * speed, -500, 500);
                                 particle.style.transform = `translateY(${transform}px)`;
@@ -2023,7 +2113,6 @@
 
                     this.addEventListener(window, 'scroll', handleParallax, { passive: true });
 
-                    // Viewport-based optimizations
                     const handleResize = throttle(() => {
                         if (window.innerWidth < 1024) {
                             const characterGuide = document.getElementById('characterGuide');
@@ -2041,8 +2130,9 @@
 
             setupAnimations() {
                 try {
-                    // Enhanced hover effects for project cards
                     document.querySelectorAll('.project-card').forEach(card => {
+                        if (!card) return;
+                        
                         this.addEventListener(card, 'mouseenter', () => {
                             card.style.transform = 'translateY(-15px) rotateX(5deg) rotateY(2deg)';
                             card.style.boxShadow = '0 25px 50px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.2)';
@@ -2050,12 +2140,13 @@
                         
                         this.addEventListener(card, 'mouseleave', () => {
                             card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
-                            card.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                            card.style.boxShadow = '';
                         });
                     });
 
-                    // Enhanced skill item interactions
                     document.querySelectorAll('.skill-item').forEach(skill => {
+                        if (!skill) return;
+                        
                         this.addEventListener(skill, 'mouseenter', () => {
                             const icon = skill.querySelector('i');
                             if (icon) {
@@ -2073,20 +2164,24 @@
                         });
                     });
 
-                    // Enhanced stat item interactions
                     document.querySelectorAll('.stat-item').forEach(stat => {
+                        if (!stat) return;
+                        
                         this.addEventListener(stat, 'click', () => {
+                            if (!this.rateLimiter.isAllowed('stat_click', 3, 1000)) return;
+                            
                             stat.style.transform = 'translateY(-10px) scale(1.05)';
                             this.setManagedTimeout(() => {
-                                if (!this.isDestroyed) {
-                                    stat.style.transform = 'translateY(0) scale(1)';
+                                if (!this.isDestroyed && stat) {
+                                    stat.style.transform = '';
                                 }
                             }, 200);
                         });
                     });
 
-                    // Enhanced contact link interactions
                     document.querySelectorAll('.contact-link').forEach(link => {
+                        if (!link) return;
+                        
                         this.addEventListener(link, 'mouseenter', () => {
                             link.style.transform = 'translateY(-5px) scale(1.05)';
                             const icon = link.querySelector('i');
@@ -2096,7 +2191,7 @@
                         });
                         
                         this.addEventListener(link, 'mouseleave', () => {
-                            link.style.transform = 'translateY(0) scale(1)';
+                            link.style.transform = '';
                             const icon = link.querySelector('i');
                             if (icon) {
                                 icon.style.textShadow = 'none';
@@ -2104,16 +2199,19 @@
                         });
                     });
 
-                    // Timeline item interactions
                     document.querySelectorAll('.timeline-item').forEach(item => {
+                        if (!item) return;
+                        
                         this.addEventListener(item, 'click', () => {
+                            if (!this.rateLimiter.isAllowed('timeline_click', 5, 1000)) return;
+                            
                             item.style.transform = 'scale(1.02)';
                             item.style.boxShadow = '0 20px 60px rgba(0, 212, 255, 0.4)';
                             
                             this.setManagedTimeout(() => {
-                                if (!this.isDestroyed) {
-                                    item.style.transform = 'scale(1)';
-                                    item.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                                if (!this.isDestroyed && item) {
+                                    item.style.transform = '';
+                                    item.style.boxShadow = '';
                                 }
                             }, 300);
                         });
@@ -2128,10 +2226,11 @@
                     const particlesContainer = document.querySelector('.floating-particles');
                     if (!particlesContainer) return;
                     
-                    const particleCount = this.boundCheck(Math.min(30, Math.floor(window.innerWidth / 50)), 10, 50);
-                    const particles = [];
+                    const particleCount = this.boundCheck(Math.min(30, Math.floor(window.innerWidth / 50)), 10, 30);
 
                     const createParticle = () => {
+                        if (this.particles.length >= this.maxParticles) return null;
+                        
                         const particle = document.createElement('div');
                         particle.classList.add('particle');
                         
@@ -2141,29 +2240,30 @@
                         const animationDuration = this.boundCheck(Math.random() * 4 + 4, 4, 8);
                         const opacity = this.boundCheck(Math.random() * 0.6 + 0.2, 0.1, 0.8);
                         
-                        particle.style.width = `${size}px`;
-                        particle.style.height = `${size}px`;
-                        particle.style.left = `${startX}px`;
-                        particle.style.top = `${startY}px`;
-                        particle.style.animationDuration = `${animationDuration}s`;
-                        particle.style.animationDelay = `${Math.random() * 2}s`;
-                        particle.style.opacity = opacity;
+                        particle.style.cssText = `
+                            width: ${size}px;
+                            height: ${size}px;
+                            left: ${startX}px;
+                            top: ${startY}px;
+                            animation-duration: ${animationDuration}s;
+                            animation-delay: ${Math.random() * 2}s;
+                            opacity: ${opacity};
+                        `;
                         
                         particlesContainer.appendChild(particle);
-                        particles.push(particle);
-                        
+                        this.particles.push(particle);
                         return particle;
                     };
 
-                    // Create initial particles
                     for (let i = 0; i < particleCount; i++) {
                         createParticle();
                     }
 
-                    // Particle movement with bounds checking
                     const moveParticles = () => {
-                        particles.forEach(particle => {
-                            if (!particle.parentNode) return;
+                        if (this.isDestroyed) return;
+                        
+                        this.particles.forEach(particle => {
+                            if (!particle || !particle.parentNode) return;
                             
                             const newX = this.boundCheck(Math.random() * window.innerWidth, 0, window.innerWidth - 10);
                             const newY = this.boundCheck(Math.random() * window.innerHeight, 0, window.innerHeight - 10);
@@ -2175,32 +2275,18 @@
 
                     this.setManagedInterval(moveParticles, 6000);
 
-                    // Mouse trail effect with performance optimization
-                    let mouseTrail = [];
                     let trailTimeout = null;
                     
                     this.addEventListener(document, 'mousemove', (e) => {
                         if (trailTimeout || this.isDestroyed) return;
+                        if (!this.rateLimiter.isAllowed('mouse_trail', 20, 1000)) return;
                         
                         trailTimeout = this.setManagedTimeout(() => {
-                            mouseTrail.push({ 
-                                x: this.boundCheck(e.clientX, 0, window.innerWidth), 
-                                y: this.boundCheck(e.clientY, 0, window.innerHeight), 
-                                time: Date.now() 
-                            });
-                            
-                            // Limit trail length for memory management
-                            if (mouseTrail.length > 10) {
-                                mouseTrail.shift();
-                            }
-
-                            // Create trail particles occasionally with rate limiting
-                            if (Math.random() < 0.05) { // Reduced frequency for performance
+                            if (Math.random() < 0.03 && this.particles.length < this.maxParticles) {
                                 this.createTrailParticle(e.clientX, e.clientY);
                             }
-                            
                             trailTimeout = null;
-                        }, 50);
+                        }, 100);
                     }, { passive: true });
                 } catch (error) {
                     this.handleError(error, 'setupParticleSystem');
@@ -2209,9 +2295,11 @@
 
             createTrailParticle(x, y) {
                 try {
+                    if (this.particles.length >= this.maxParticles) return;
+                    
                     const particle = document.createElement('div');
-                    const safeX = this.boundCheck(x, 0, window.innerWidth);
-                    const safeY = this.boundCheck(y, 0, window.innerHeight);
+                    const safeX = this.boundCheck(x, 0, window.innerWidth - 10);
+                    const safeY = this.boundCheck(y, 0, window.innerHeight - 10);
                     
                     particle.style.cssText = `
                         position: fixed;
@@ -2228,15 +2316,22 @@
                     `;
                     
                     document.body.appendChild(particle);
+                    this.particles.push(particle);
                     
                     requestAnimationFrame(() => {
-                        particle.style.transform = 'scale(0) translateY(-50px)';
-                        particle.style.opacity = '0';
+                        if (particle) {
+                            particle.style.transform = 'scale(0) translateY(-50px)';
+                            particle.style.opacity = '0';
+                        }
                     });
                     
                     this.setManagedTimeout(() => {
-                        if (particle.parentNode) {
+                        if (particle && particle.parentNode) {
                             particle.remove();
+                            const index = this.particles.indexOf(particle);
+                            if (index > -1) {
+                                this.particles.splice(index, 1);
+                            }
                         }
                     }, 1000);
                 } catch (error) {
@@ -2250,8 +2345,8 @@
                     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
                     
                     this.addEventListener(document, 'keydown', (e) => {
-                        // Only track arrow keys for security
                         if (!e.code.startsWith('Arrow')) return;
+                        if (!this.rateLimiter.isAllowed('konami_input', 20, 5000)) return;
                         
                         konamiCode.push(e.code);
                         if (konamiCode.length > konamiSequence.length) {
@@ -2300,7 +2395,6 @@
                 }
             }
 
-            // Enhanced typing effect with security improvements
             setupTypingEffect() {
                 try {
                     const typeWriter = (element, text, speed = 100) => {
@@ -2309,361 +2403,99 @@
                         const sanitizedText = this.sanitizeInput(text);
                         let i = 0;
                         element.textContent = '';
-                        element.style.borderRight = '3px solid var(--primary-color)';
+                        
+                        const cursor = document.createElement('span');
+                        cursor.className = 'typing-cursor';
+                        cursor.innerHTML = '&nbsp;';
+                        element.appendChild(cursor);
                         
                         const type = () => {
                             if (this.isDestroyed || i >= sanitizedText.length) {
-                                element.style.borderRight = 'none';
+                                if (cursor && cursor.parentNode) {
+                                    cursor.remove();
+                                }
                                 return;
                             }
                             
-                            element.textContent += sanitizedText.charAt(i);
+                            const char = sanitizedText.charAt(i);
+                            const textNode = document.createTextNode(char);
+                            element.insertBefore(textNode, cursor);
                             i++;
-                            this.setManagedTimeout(type, this.boundCheck(speed, 50, 200));
+                            
+                            const safeSpeed = this.boundCheck(speed, 50, 200);
+                            this.setManagedTimeout(type, safeSpeed);
                         };
                         
                         type();
                     };
 
-                    this.setManagedTimeout(() => {
-                        const heroTitle = document.querySelector('.hero-title');
-                        if (heroTitle) {
-                            typeWriter(heroTitle, 'Anubhav Mohandas', 120);
-                        }
-                    }, 500);
+                    const heroTitle = document.querySelector('.hero-title');
+                    if (heroTitle) {
+                        typeWriter(heroTitle, 'Anubhav Mohandas', 150);
+                    }
                 } catch (error) {
                     this.handleError(error, 'setupTypingEffect');
                 }
             }
 
-            // Enhanced keyboard navigation
             setupKeyboardNavigation() {
                 try {
                     this.addEventListener(document, 'keydown', (e) => {
-                        // Tab navigation through sections
-                        if (e.key === 'Tab' && e.altKey) {
-                            e.preventDefault();
-                            
-                            const sections = ['home', 'about', 'experience', 'projects', 'contact'];
-                            const currentIndex = sections.indexOf(this.currentSection);
-                            const nextIndex = (currentIndex + 1) % sections.length;
-                            const nextSection = sections[nextIndex];
-                            
-                            const target = document.getElementById(nextSection);
-                            if (target) {
-                                target.scrollIntoView({ behavior: 'smooth' });
-                                this.currentSection = nextSection;
-                                
-                                // Update character guide if visible
-                                const characterGuide = document.getElementById('characterGuide');
-                                if (characterGuide && window.innerWidth >= 1024) {
-                                    // Trigger character movement would go here
-                                }
+                        if (e.key === 'Tab') {
+                            document.body.classList.add('keyboard-navigation');
+                        }
+                        
+                        if (e.key === 'Escape') {
+                            const focusedElement = document.activeElement;
+                            if (focusedElement && focusedElement.blur) {
+                                focusedElement.blur();
                             }
                         }
+                    });
+
+                    this.addEventListener(document, 'mousedown', () => {
+                        document.body.classList.remove('keyboard-navigation');
                     });
                 } catch (error) {
                     this.handleError(error, 'setupKeyboardNavigation');
                 }
             }
-
-            // Dynamic background color changes with validation
-            setupDynamicBackground() {
-                try {
-                    const sectionColorMap = {
-                        home: 'rgba(0, 212, 255, 0.05)',
-                        about: 'rgba(102, 0, 255, 0.05)',
-                        experience: 'rgba(0, 102, 255, 0.05)',
-                        projects: 'rgba(255, 107, 107, 0.05)',
-                        contact: 'rgba(0, 255, 127, 0.05)'
-                    };
-
-                    const sectionObserver = new IntersectionObserver((entries) => {
-                        if (this.isDestroyed) return;
-                        
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const sectionId = this.sanitizeInput(entry.target.id);
-                                const bgColor = sectionColorMap[sectionId];
-                                const bgAnimation = document.querySelector('.bg-animation');
-                                
-                                if (bgColor && bgAnimation) {
-                                    bgAnimation.style.background = `
-                                        radial-gradient(circle at 20% 80%, ${bgColor} 0%, transparent 50%),
-                                        radial-gradient(circle at 80% 20%, ${bgColor} 0%, transparent 50%),
-                                        var(--dark-bg)
-                                    `;
-                                }
-                            }
-                        });
-                    }, { threshold: 0.3 });
-
-                    document.querySelectorAll('section').forEach(section => {
-                        sectionObserver.observe(section);
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupDynamicBackground');
-                }
-            }
         }
 
-        // Enhanced Character Guide Class
-        class EnhancedCharacterGuide {
-            constructor(app) {
-                this.app = app;
-                this.character = document.getElementById('characterGuide');
-                this.speechBubble = document.getElementById('speechBubble');
-                this.currentSection = 'home';
-                this.isUserInteracting = false;
-                this.personality = 'default';
-                this.isDestroyed = false;
+        // Initialize application with error handling
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                new SecurePortfolioApp();
+            } catch (error) {
+                console.error('Failed to initialize portfolio application:', error);
                 
-                if (!this.character || !this.speechBubble) return;
-                
-                this.messages = {
-                    home: "Welcome! I'm your cyber guide! Ready to explore?",
-                    about: "Discover Anubhav's cybersecurity expertise!",
-                    experience: "Check out this impressive journey in security!",
-                    projects: "Amazing security projects and tools ahead!",
-                    contact: "Ready to connect? Let's secure the world together!"
-                };
-                
-                this.positions = {
-                    home: { x: 100, y: 100 },
-                    about: { x: 200, y: 300 },
-                    experience: { x: 300, y: 200 },
-                    projects: { x: 150, y: 400 },
-                    contact: { x: 250, y: 150 }
-                };
-                
-                this.init();
-            }
-
-            init() {
-                try {
-                    this.moveToSection('home');
-                    this.startAutoGuide();
-                    this.setupSectionObserver();
-                    this.setupInteractions();
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_init');
-                    }
-                }
-            }
-
-            moveToSection(section) {
-                try {
-                    if (this.isDestroyed) return;
-                    
-                    const pos = this.positions[section];
-                    if (!pos) return;
-                    
-                    // Enhanced bounds checking
-                    const safeX = this.app.boundCheck(pos.x, 0, window.innerWidth - 100);
-                    const safeY = this.app.boundCheck(pos.y, 0, window.innerHeight - 150);
-                    
-                    this.character.style.left = safeX + 'px';
-                    this.character.style.top = safeY + 'px';
-                    
-                    const message = this.app.sanitizeInput(this.messages[section] || 'Exploring...');
-                    this.speechBubble.textContent = message;
-                    this.speechBubble.classList.add('show');
-                    
-                    // Add movement animation
-                    this.character.classList.add('moving');
-                    
-                    this.app.setManagedTimeout(() => {
-                        if (!this.isDestroyed) {
-                            this.character.classList.remove('moving');
-                            this.speechBubble.classList.remove('show');
-                        }
-                    }, 3000);
-                    
-                    this.currentSection = section;
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_moveToSection');
-                    }
-                }
-            }
-
-            showMessage(message, mood = 'default') {
-                try {
-                    if (this.isDestroyed) return;
-                    
-                    const sanitizedMessage = this.app.sanitizeInput(message);
-                    this.speechBubble.textContent = sanitizedMessage;
-                    this.speechBubble.className = `speech-bubble show ${mood}`;
-                    
-                    if (mood !== 'default') {
-                        this.character.classList.add(mood);
-                    }
-                    
-                    this.app.setManagedTimeout(() => {
-                        if (!this.isDestroyed) {
-                            this.speechBubble.classList.remove('show', 'excited', 'thinking');
-                            this.character.classList.remove('excited', 'thinking');
-                        }
-                    }, 4000);
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_showMessage');
-                    }
-                }
-            }
-
-            startAutoGuide() {
-                try {
-                    let sectionIndex = 0;
-                    const sections = Object.keys(this.positions);
-                    
-                    this.app.setManagedInterval(() => {
-                        if (!this.isUserInteracting && !this.isDestroyed && sections.length > 0) {
-                            sectionIndex = (sectionIndex + 1) % sections.length;
-                            this.moveToSection(sections[sectionIndex]);
-                        }
-                    }, 8000);
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_startAutoGuide');
-                    }
-                }
-            }
-
-            setupSectionObserver() {
-                try {
-                    const sections = document.querySelectorAll('section');
-                    const observer = new IntersectionObserver((entries) => {
-                        if (this.isDestroyed) return;
-                        
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && !this.isUserInteracting) {
-                                const sectionId = this.app.sanitizeInput(entry.target.id);
-                                if (this.positions[sectionId]) {
-                                    this.moveToSection(sectionId);
-                                }
+                // Fallback: Remove loading screen if initialization fails
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            if (loadingScreen.parentNode) {
+                                loadingScreen.remove();
                             }
-                        });
-                    }, { threshold: 0.5 });
-
-                    sections.forEach(section => observer.observe(section));
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_setupSectionObserver');
-                    }
+                        }, 500);
+                    }, 1000);
                 }
             }
+        });
 
-            setupInteractions() {
-                try {
-                    // Click interaction with enhanced security
-                    this.app.addEventListener(this.character, 'click', () => {
-                        this.isUserInteracting = true;
-                        this.showMessage("Hi there! Click any section to explore!", 'excited');
-                        
-                        this.app.setManagedTimeout(() => {
-                            if (!this.isDestroyed) {
-                                this.isUserInteracting = false;
-                            }
-                        }, 5000);
+        // Service Worker Registration for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
                     });
-
-                    // Navigation hover effects
-                    document.querySelectorAll('.nav-links a').forEach(link => {
-                        this.app.addEventListener(link, 'mouseenter', () => {
-                            const href = link.getAttribute('href');
-                            if (href && href.startsWith('#')) {
-                                const section = this.app.sanitizeInput(href.substring(1));
-                                if (this.positions[section]) {
-                                    this.showMessage(`Let's go to ${section}!`, 'thinking');
-                                }
-                            }
-                        });
-                    });
-
-                    // Project card interactions
-                    document.querySelectorAll('.project-card').forEach(card => {
-                        this.app.addEventListener(card, 'mouseenter', () => {
-                            this.showMessage("Cool project! Click to explore on GitHub!", 'excited');
-                        });
-                    });
-                } catch (error) {
-                    if (this.app) {
-                        this.app.handleError(error, 'CharacterGuide_setupInteractions');
-                    }
-                }
-            }
-
-            destroy() {
-                this.isDestroyed = true;
-            }
-        }
-
-        // Initialize the secure application
-        let portfolioApp = null;
-        let characterGuide = null;
-
-        try {
-            // Wait for DOM to be fully loaded
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initializeApp);
-            } else {
-                initializeApp();
-            }
-
-            function initializeApp() {
-                try {
-                    portfolioApp = new SecurePortfolioApp();
-                    
-                    // Only initialize character guide on desktop
-                    if (window.innerWidth >= 1024) {
-                        characterGuide = new EnhancedCharacterGuide(portfolioApp);
-                    }
-                    
-                    // Setup typing effect
-                    portfolioApp.setupTypingEffect();
-                    portfolioApp.setupKeyboardNavigation();
-                    portfolioApp.setupDynamicBackground();
-                    
-                    console.log('Cybersecurity Portfolio Loaded Successfully!');
-                    console.log('Welcome to the interactive cybersecurity experience!');
-                    console.log('Try the Konami Code: ↑↑↓↓←→←→ for a surprise!');
-                } catch (error) {
-                    console.error('Failed to initialize portfolio:', error);
-                }
-            }
-            
-        } catch (globalError) {
-            console.error('Critical initialization error:', globalError);
-        }
-
-        // Global error handler
-        window.addEventListener('error', (event) => {
-            console.error('Global error caught:', {
-                message: event.message,
-                filename: event.filename,
-                lineno: event.lineno,
-                colno: event.colno,
-                error: event.error
             });
-        });
-
-        // Unhandled promise rejection handler
-        window.addEventListener('unhandledrejection', (event) => {
-            console.error('Unhandled promise rejection:', event.reason);
-        });
-
-        // Page visibility handling for performance
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Pause animations when tab is not visible
-                document.body.style.animationPlayState = 'paused';
-            } else {
-                document.body.style.animationPlayState = 'running';
-            }
-        });
-
+        }
     </script>
 </body>
 </html>
