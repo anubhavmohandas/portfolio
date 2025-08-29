@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anubhav Mohandas - Cybersecurity Professional</title>
-
+    
     <!-- Security Headers -->
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome 7.0.0 - Latest Version -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
         * {
@@ -44,6 +45,32 @@
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.15s ease-out;
+        }
+
+        .mouse-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 0 15px var(--primary-color);
         }
 
         /* Animated Background */
@@ -54,25 +81,22 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(102, 0, 255, 0.1) 0%, transparent 50%),
-                var(--dark-bg);
+            background: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(102, 0, 255, 0.1) 0%, transparent 50%),
+                        var(--dark-bg);
             animation: backgroundShift 20s ease-in-out infinite;
         }
 
         @keyframes backgroundShift {
-            0%, 100% { 
-                background: 
-                    radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(102, 0, 255, 0.1) 0%, transparent 50%),
-                    var(--dark-bg);
+            0%, 100% {
+                background: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 20%, rgba(102, 0, 255, 0.1) 0%, transparent 50%),
+                           var(--dark-bg);
             }
             50% {
-                background: 
-                    radial-gradient(circle at 80% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 30% 70%, rgba(0, 212, 255, 0.12) 0%, transparent 50%),
-                    var(--dark-bg);
+                background: radial-gradient(circle at 80% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
+                           radial-gradient(circle at 30% 70%, rgba(0, 212, 255, 0.12) 0%, transparent 50%),
+                           var(--dark-bg);
             }
         }
 
@@ -112,11 +136,19 @@
             background-clip: text;
             cursor: pointer;
             transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .logo:hover {
             transform: scale(1.05);
             filter: brightness(1.2);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -133,12 +165,24 @@
             font-weight: 500;
             transition: var(--transition-smooth);
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
             transform: translateY(-2px);
             background: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-links a i {
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover i {
+            transform: rotate(360deg);
         }
 
         /* Hero Section */
@@ -157,6 +201,27 @@
             animation: fadeInUp 1s ease-out;
         }
 
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        .hero-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .hero-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+            color: #fff;
+            text-shadow: 0 0 20px var(--glow-color);
+        }
+
         .hero-title {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 1rem;
@@ -169,14 +234,8 @@
         }
 
         @keyframes titleGlow {
-            0% { 
-                text-shadow: 0 0 20px var(--glow-color);
-                filter: brightness(1);
-            }
-            100% { 
-                text-shadow: 0 0 40px var(--glow-color);
-                filter: brightness(1.2);
-            }
+            0% { text-shadow: 0 0 20px var(--glow-color); filter: brightness(1); }
+            100% { text-shadow: 0 0 40px var(--glow-color); filter: brightness(1.2); }
         }
 
         .hero-subtitle {
@@ -184,6 +243,10 @@
             color: var(--primary-color);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease-out 0.2s both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
         }
 
         .hero-location {
@@ -191,6 +254,10 @@
             color: var(--text-secondary);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.3s both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
         }
 
         .hero-description {
@@ -220,6 +287,18 @@
             overflow: hidden;
             font-size: 1.1rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .btn i {
+            font-size: 1.3rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover i {
+            transform: scale(1.2) rotate(15deg);
         }
 
         .btn-primary {
@@ -237,6 +316,23 @@
         .btn:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         /* Sections */
@@ -257,6 +353,20 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-title i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            transition: var(--transition-smooth);
+        }
+
+        .section-title:hover i {
+            transform: scale(1.2) rotate(360deg);
         }
 
         .section-title::after {
@@ -309,7 +419,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -322,6 +432,10 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: var(--transition-smooth);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .stat-item:hover {
@@ -330,11 +444,22 @@
             border-color: var(--primary-color);
         }
 
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: scale(1.3) rotate(360deg);
+            color: #fff;
+        }
+
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
         }
 
         .stat-label {
@@ -370,7 +495,16 @@
             font-size: 1.3rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+        }
+
+        .tool-category h3 i {
+            font-size: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .tool-category:hover h3 i {
+            transform: scale(1.2) rotate(360deg);
         }
 
         .tool-item {
@@ -399,7 +533,7 @@
         }
 
         .tool-item:hover i {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(15deg);
             color: #fff;
         }
 
@@ -484,12 +618,32 @@
             font-weight: bold;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-date i {
+            font-size: 1.2rem;
         }
 
         .timeline-title {
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .timeline-title i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-item:hover .timeline-title i {
+            transform: scale(1.3) rotate(360deg);
         }
 
         .timeline-company {
@@ -517,10 +671,11 @@
             transition: var(--transition-smooth);
             border: 1px solid rgba(0, 212, 255, 0.2);
             cursor: pointer;
+            position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) rotateX(5deg);
             box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
             border-color: var(--primary-color);
         }
@@ -535,7 +690,7 @@
         }
 
         .project-card:hover .project-icon {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(360deg);
             color: #fff;
         }
 
@@ -547,6 +702,19 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .project-title i {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover .project-title i {
+            transform: scale(1.3) rotate(15deg);
         }
 
         .project-description {
@@ -568,11 +736,15 @@
             border-radius: 25px;
             font-size: 0.9rem;
             transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .tech-tag:hover {
             background: var(--primary-color);
             color: var(--dark-bg);
+            transform: scale(1.1);
         }
 
         /* Contact Section */
@@ -601,6 +773,8 @@
             border-radius: var(--border-radius-medium);
             transition: var(--transition-smooth);
             border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-link:hover {
@@ -612,6 +786,12 @@
         .contact-link i {
             font-size: 1.8rem;
             color: var(--primary-color);
+            transition: var(--transition-smooth);
+        }
+
+        .contact-link:hover i {
+            transform: scale(1.3) rotate(360deg);
+            color: #fff;
         }
 
         /* Floating Particles */
@@ -631,8 +811,14 @@
         }
 
         @keyframes floatParticle {
-            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
-            50% { transform: translateY(-40px) translateX(20px); opacity: 0.8; }
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px); 
+                opacity: 0.4; 
+            }
+            50% { 
+                transform: translateY(-40px) translateX(20px); 
+                opacity: 0.8; 
+            }
         }
 
         /* CHARACTER GUIDE */
@@ -699,8 +885,13 @@
             animation: eyeBlink 5s infinite;
         }
 
-        .eye.left { left: 2px; }
-        .eye.right { right: 2px; }
+        .eye.left {
+            left: 2px;
+        }
+
+        .eye.right {
+            right: 2px;
+        }
 
         .character-smile {
             position: absolute;
@@ -815,6 +1006,32 @@
             50% { transform: translateY(-8px); }
         }
 
+        /* Rainbow Mode for Konami Code */
+        .rainbow-mode {
+            animation: rainbowCycle 1s linear infinite !important;
+        }
+
+        @keyframes rainbowCycle {
+            0% { filter: hue-rotate(0deg) brightness(1.2); }
+            100% { filter: hue-rotate(360deg) brightness(1.2); }
+        }
+
+        .rainbow-mode .character-body,
+        .rainbow-mode .character-arm,
+        .rainbow-mode .character-leg {
+            background: linear-gradient(45deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, 
+                #0000ff, #4b0082, #9400d3) !important;
+            background-size: 400% 400%;
+            animation: rainbowGradient 0.8s ease infinite;
+        }
+
+        @keyframes rainbowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* Animation keyframes */
         @keyframes fadeInUp {
             from {
@@ -832,78 +1049,84 @@
             .character-guide {
                 display: none;
             }
-            
             .about-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 3rem;
             }
+            body {
+                cursor: auto;
+            }
+            .cursor-glow, .mouse-trail {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
-            .hero-title { 
+            .hero-title {
                 font-size: clamp(2rem, 8vw, 3rem);
             }
-            
+            .hero-icons {
+                gap: 1rem;
+            }
+            .hero-icon {
+                font-size: 2rem;
+            }
             .about-image {
                 width: 250px;
                 height: 250px;
                 font-size: 6rem;
             }
-            
-            .timeline-item { 
-                width: 100%; 
-                left: 0 !important; 
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
                 margin-left: 0;
                 padding: 1.5rem 2rem;
             }
-            
-            .timeline::after { 
-                left: 20px; 
+            .timeline::after {
+                left: 20px;
             }
-            
             .timeline-item::after {
                 left: -30px !important;
                 right: auto !important;
             }
-            
-            .nav-links { 
-                display: none; 
+            .nav-links {
+                display: none;
             }
-            
             .nav-container {
                 justify-content: center;
             }
-            
-            .cta-buttons { 
-                flex-direction: column; 
-                align-items: center; 
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
                 gap: 1rem;
             }
-            
-            .contact-links { 
-                flex-direction: column; 
-                align-items: center; 
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
                 gap: 1rem;
             }
-            
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-            
             .section {
                 padding: 4rem 0;
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    
     <!-- CHARACTER GUIDE -->
     <div class="character-guide" id="characterGuide">
         <div class="character">
@@ -929,37 +1152,60 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">Anubhav Mohandas</div>
+            <div class="logo">
+                <i class="fas fa-user-secret"></i>
+                Anubhav Mohandas
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#tools"><i class="fas fa-tools"></i> Tools</a></li>
+                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
+            <div class="hero-icons">
+                <i class="fas fa-user-secret hero-icon"></i>
+                <i class="fas fa-shield-alt hero-icon"></i>
+                <i class="fas fa-globe-americas hero-icon"></i>
+            </div>
             <h1 class="hero-title">Anubhav Mohandas</h1>
-            <p class="hero-subtitle">Cybersecurity Professional & Digital Forensics Specialist</p>
-            <p class="hero-location">🌍 Making the Digital World Safer</p>
+            <p class="hero-subtitle">
+                <i class="fas fa-shield-virus"></i>
+                Cybersecurity Professional & Digital Forensics Specialist
+            </p>
+            <p class="hero-location">
+                <i class="fas fa-map-marker-alt"></i>
+                Making the Digital World Safer
+            </p>
             <p class="hero-description">
                 Passionate about making the digital world safer through cyber forensics research, 
                 threat analysis, and innovative security solutions. Driven by curiosity and committed 
                 to excellence in cybersecurity.
             </p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-laptop-code"></i>
+                    View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-handshake"></i>
+                    Get In Touch
+                </a>
             </div>
         </div>
     </section>
 
     <section id="about" class="section">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">
+            <i class="fas fa-user-graduate"></i>
+            About Me
+        </h2>
         <div class="about-content">
             <div class="about-image">
                 <i class="fas fa-shield-alt"></i>
@@ -967,28 +1213,31 @@
             <div>
                 <p class="about-text">
                     I'm a passionate cybersecurity professional specializing in cyber forensics and digital investigations. 
-                    My journey in cybersecurity is driven by curiosity and a commitment to making the digital world safer.
+                    My journey in cybersecurity is driven by curiosity and a commitment to making the digital world safer. 
                     I focus on cyber forensics research, investigative methodologies, and developing innovative security tools.
                 </p>
                 <p class="about-text">
-                    When I'm not diving deep into code or analyzing security threats, I love traveling and exploring 
-                    new places. I'm always learning and staying updated with the latest cybersecurity trends and techniques.
+                    When I'm not diving deep into code or analyzing security threats, I love traveling and exploring new places. 
+                    I'm always learning and staying updated with the latest cybersecurity trends and techniques.
                 </p>
-                
                 <div class="stats-grid">
                     <div class="stat-item">
+                        <i class="fas fa-clock stat-icon"></i>
                         <div class="stat-number">5+</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-item">
+                        <i class="fas fa-tools stat-icon"></i>
                         <div class="stat-number">50+</div>
                         <div class="stat-label">Security Tools</div>
                     </div>
                     <div class="stat-item">
+                        <i class="fas fa-search-plus stat-icon"></i>
                         <div class="stat-number">100+</div>
                         <div class="stat-label">Cases Analyzed</div>
                     </div>
                     <div class="stat-item">
+                        <i class="fas fa-shield-virus stat-icon"></i>
                         <div class="stat-number">24/7</div>
                         <div class="stat-label">Security Focus</div>
                     </div>
@@ -998,7 +1247,10 @@
     </section>
 
     <section id="tools" class="section">
-        <h2 class="section-title">Tools & Technologies</h2>
+        <h2 class="section-title">
+            <i class="fas fa-toolbox"></i>
+            Tools & Technologies
+        </h2>
         <div class="tools-grid">
             <div class="tool-category">
                 <h3><i class="fas fa-terminal"></i> Operating Systems & Platforms</h3>
@@ -1026,7 +1278,7 @@
             </div>
 
             <div class="tool-category">
-                <h3><i class="fas fa-search"></i> Digital Forensics Tools</h3>
+                <h3><i class="fas fa-magnifying-glass"></i> Digital Forensics Tools</h3>
                 <div class="tool-item">
                     <i class="fas fa-microscope"></i>
                     <div>
@@ -1035,14 +1287,14 @@
                     </div>
                 </div>
                 <div class="tool-item">
-                    <i class="fas fa-toolbox"></i>
+                    <i class="fas fa-hammer"></i>
                     <div>
                         <div class="tool-name">FTK (Forensic Toolkit)</div>
                         <div class="tool-description">Computer forensics software</div>
                     </div>
                 </div>
                 <div class="tool-item">
-                    <i class="fas fa-hdd"></i>
+                    <i class="fas fa-hard-drive"></i>
                     <div>
                         <div class="tool-name">EnCase</div>
                         <div class="tool-description">Digital investigation suite</div>
@@ -1078,7 +1330,7 @@
             <div class="tool-category">
                 <h3><i class="fas fa-eye"></i> Network Analysis</h3>
                 <div class="tool-item">
-                    <i class="fas fa-shark"></i>
+                    <i class="fas fa-fish"></i>
                     <div>
                         <div class="tool-name">Wireshark</div>
                         <div class="tool-description">Network protocol analyzer</div>
@@ -1153,179 +1405,258 @@
     </section>
 
     <section id="experience" class="section">
-        <h2 class="section-title">Experience & Focus Areas</h2>
+        <h2 class="section-title">
+            <i class="fas fa-timeline"></i>
+            Experience & Focus Areas
+        </h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-date">Current Focus</div>
-                <h3 class="timeline-title">Cyber Forensics Research</h3>
+                <div class="timeline-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Current Focus
+                </div>
+                <h3 class="timeline-title">
+                    <i class="fas fa-search"></i>
+                    Cyber Forensics Research
+                </h3>
                 <p class="timeline-company">Digital Investigations & Security Research</p>
-                <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis. Actively researching new techniques in digital evidence collection and analysis.</p>
+                <p class="timeline-description">
+                    Focusing on advanced cyber forensics research and developing innovative investigative 
+                    methodologies to enhance digital crime detection and analysis. Actively researching 
+                    new techniques in digital evidence collection and analysis.
+                </p>
             </div>
+
             <div class="timeline-item">
-                <div class="timeline-date">Active Development</div>
-                <h3 class="timeline-title">Security Tool Development</h3>
+                <div class="timeline-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Active Development
+                </div>
+                <h3 class="timeline-title">
+                    <i class="fas fa-wrench"></i>
+                    Security Tool Development
+                </h3>
                 <p class="timeline-company">Open Source Projects</p>
-                <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities. Contributing to the cybersecurity community through practical tools and research.</p>
+                <p class="timeline-description">
+                    Created recon_scanner and other security utilities to assist cybersecurity professionals 
+                    in reconnaissance and threat assessment activities. Contributing to the cybersecurity 
+                    community through practical tools and research.
+                </p>
             </div>
+
             <div class="timeline-item">
-                <div class="timeline-date">Specialization</div>
-                <h3 class="timeline-title">Digital Forensics & Threat Analysis</h3>
+                <div class="timeline-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Specialization
+                </div>
+                <h3 class="timeline-title">
+                    <i class="fas fa-shield-check"></i>
+                    Digital Forensics & Threat Analysis
+                </h3>
                 <p class="timeline-company">Cybersecurity Research</p>
-                <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and investigative methodologies. Always staying updated with the latest cybersecurity trends and techniques to enhance security posture.</p>
+                <p class="timeline-description">
+                    Specializing in comprehensive threat analysis, security reconnaissance, and investigative 
+                    methodologies. Always staying updated with the latest cybersecurity trends and techniques 
+                    to enhance security posture.
+                </p>
             </div>
+
             <div class="timeline-item">
-                <div class="timeline-date">Personal Interest</div>
-                <h3 class="timeline-title">Continuous Learning & Travel</h3>
+                <div class="timeline-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Personal Interest
+                </div>
+                <h3 class="timeline-title">
+                    <i class="fas fa-plane"></i>
+                    Continuous Learning & Travel
+                </h3>
                 <p class="timeline-company">Professional Development</p>
-                <p class="timeline-description">Love traveling and exploring new places when not diving deep into code or analyzing security threats. Always learning and sharing knowledge with the cybersecurity community.</p>
+                <p class="timeline-description">
+                    Love traveling and exploring new places when not diving deep into code or analyzing 
+                    security threats. Always learning and sharing knowledge with the cybersecurity community.
+                </p>
             </div>
         </div>
     </section>
 
     <section id="projects" class="section">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">
+            <i class="fas fa-rocket"></i>
+            Featured Projects
+        </h2>
         <div class="projects-grid">
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-toolbox"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Ultimate Digital Forensics Toolkit</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-kit-medical"></i>
+                        Ultimate Digital Forensics Toolkit
+                    </h3>
                     <p class="project-description">
-                        Comprehensive all-in-one digital forensics toolkit featuring multiple investigation tools, 
-                        evidence collection utilities, and analysis capabilities for cybersecurity professionals.
+                        Comprehensive all-in-one digital forensics toolkit featuring multiple investigation 
+                        tools, evidence collection utilities, and analysis capabilities for cybersecurity professionals.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Digital Forensics</span>
-                        <span class="tech-tag">Investigation</span>
-                        <span class="tech-tag">Evidence Analysis</span>
-                        <span class="tech-tag">All-in-One</span>
+                        <span class="tech-tag"><i class="fas fa-fingerprint"></i> Digital Forensics</span>
+                        <span class="tech-tag"><i class="fas fa-search"></i> Investigation</span>
+                        <span class="tech-tag"><i class="fas fa-chart-bar"></i> Evidence Analysis</span>
+                        <span class="tech-tag"><i class="fas fa-layer-group"></i> All-in-One</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/recon_scanner', '_blank')">
                 <div class="project-icon">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-radar"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Recon Scanner</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-binoculars"></i>
+                        Recon Scanner
+                    </h3>
                     <p class="project-description">
-                        Advanced reconnaissance tool designed for cybersecurity professionals to perform comprehensive 
-                        security assessments and automated reconnaissance on target domains.
+                        Advanced reconnaissance tool designed for cybersecurity professionals to perform 
+                        comprehensive security assessments and automated reconnaissance on target domains.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Network Security</span>
-                        <span class="tech-tag">Reconnaissance</span>
-                        <span class="tech-tag">OSINT</span>
+                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-tag"><i class="fas fa-network-wired"></i> Network Security</span>
+                        <span class="tech-tag"><i class="fas fa-search-location"></i> Reconnaissance</span>
+                        <span class="tech-tag"><i class="fas fa-spy"></i> OSINT</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/siem-kernel-exploit-detection', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-shield-virus"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">SIEM Kernel Exploit Detection</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-eye-slash"></i>
+                        SIEM Kernel Exploit Detection
+                    </h3>
                     <p class="project-description">
                         Security Information and Event Management system specialized in detecting kernel-level 
                         exploits and advanced persistent threats through comprehensive monitoring.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">SIEM</span>
-                        <span class="tech-tag">Exploit Detection</span>
-                        <span class="tech-tag">Kernel Security</span>
-                        <span class="tech-tag">Threat Monitoring</span>
+                        <span class="tech-tag"><i class="fas fa-chart-network"></i> SIEM</span>
+                        <span class="tech-tag"><i class="fas fa-bug"></i> Exploit Detection</span>
+                        <span class="tech-tag"><i class="fas fa-microchip"></i> Kernel Security</span>
+                        <span class="tech-tag"><i class="fas fa-heartbeat"></i> Threat Monitoring</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-calculator"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Enhanced CVSS Calculator</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Enhanced CVSS Calculator
+                    </h3>
                     <p class="project-description">
                         Advanced Common Vulnerability Scoring System calculator with enhanced features for 
                         accurate vulnerability assessment and risk prioritization.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">CVSS</span>
-                        <span class="tech-tag">Vulnerability Assessment</span>
-                        <span class="tech-tag">Risk Management</span>
-                        <span class="tech-tag">Security Metrics</span>
+                        <span class="tech-tag"><i class="fas fa-exclamation-triangle"></i> CVSS</span>
+                        <span class="tech-tag"><i class="fas fa-clipboard-check"></i> Vulnerability Assessment</span>
+                        <span class="tech-tag"><i class="fas fa-balance-scale"></i> Risk Management</span>
+                        <span class="tech-tag"><i class="fas fa-ruler"></i> Security Metrics</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/AuthGuard', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-user-shield"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">AuthGuard</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-lock"></i>
+                        AuthGuard
+                    </h3>
                     <p class="project-description">
                         Robust authentication and authorization security system designed to protect applications 
                         from unauthorized access and authentication bypass attacks.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Authentication</span>
-                        <span class="tech-tag">Authorization</span>
-                        <span class="tech-tag">Access Control</span>
-                        <span class="tech-tag">Security</span>
+                        <span class="tech-tag"><i class="fas fa-key"></i> Authentication</span>
+                        <span class="tech-tag"><i class="fas fa-user-check"></i> Authorization</span>
+                        <span class="tech-tag"><i class="fas fa-door-closed"></i> Access Control</span>
+                        <span class="tech-tag"><i class="fas fa-shield-check"></i> Security</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Jerry', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-robot"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Jerry - Personalized Virtual AI</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-brain"></i>
+                        Jerry - Personalized Virtual AI
+                    </h3>
                     <p class="project-description">
                         Advanced personalized virtual AI assistant designed to provide intelligent automation 
                         and personalized interactions for enhanced user experience.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">AI Assistant</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Automation</span>
-                        <span class="tech-tag">Personalization</span>
+                        <span class="tech-tag"><i class="fas fa-robot"></i> AI Assistant</span>
+                        <span class="tech-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+                        <span class="tech-tag"><i class="fas fa-cogs"></i> Automation</span>
+                        <span class="tech-tag"><i class="fas fa-user-cog"></i> Personalization</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/web_detection', '_blank')">
                 <div class="project-icon">
-                    <i class="fas fa-globe"></i>
+                    <i class="fas fa-globe-americas"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Web Detection System</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-spider"></i>
+                        Web Detection System
+                    </h3>
                     <p class="project-description">
                         Advanced web-based detection system for identifying security threats, malicious activities, 
                         and anomalous behavior in web applications and networks.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Web Security</span>
-                        <span class="tech-tag">Threat Detection</span>
-                        <span class="tech-tag">Anomaly Detection</span>
-                        <span class="tech-tag">Monitoring</span>
+                        <span class="tech-tag"><i class="fas fa-globe"></i> Web Security</span>
+                        <span class="tech-tag"><i class="fas fa-crosshairs"></i> Threat Detection</span>
+                        <span class="tech-tag"><i class="fas fa-exclamation-circle"></i> Anomaly Detection</span>
+                        <span class="tech-tag"><i class="fas fa-eye"></i> Monitoring</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/password_strength_checker', '_blank')">
                 <div class="project-icon">
                     <i class="fas fa-key"></i>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Password Strength Checker</h3>
+                    <h3 class="project-title">
+                        <i class="fas fa-shield-keyhole"></i>
+                        Password Strength Checker
+                    </h3>
                     <p class="project-description">
                         Comprehensive password strength evaluation tool that analyzes password security, 
                         provides recommendations, and helps enforce strong password policies.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Password Security</span>
-                        <span class="tech-tag">Security Assessment</span>
-                        <span class="tech-tag">Policy Enforcement</span>
-                        <span class="tech-tag">Authentication</span>
+                        <span class="tech-tag"><i class="fas fa-lock"></i> Password Security</span>
+                        <span class="tech-tag"><i class="fas fa-clipboard-check"></i> Security Assessment</span>
+                        <span class="tech-tag"><i class="fas fa-gavel"></i> Policy Enforcement</span>
+                        <span class="tech-tag"><i class="fas fa-fingerprint"></i> Authentication</span>
                     </div>
                 </div>
             </div>
@@ -1333,7 +1664,10 @@
     </section>
 
     <section id="contact" class="section">
-        <h2 class="section-title">Let's Connect</h2>
+        <h2 class="section-title">
+            <i class="fas fa-handshake"></i>
+            Let's Connect
+        </h2>
         <div class="contact-content">
             <p class="about-text">
                 Open for collaboration on cybersecurity projects. Let's secure the digital world together!
@@ -1343,7 +1677,7 @@
                     <i class="fab fa-github"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link" target="_blank">
+                <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link"  target="_blank">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
                 </a>
@@ -1360,6 +1694,73 @@
     </section>
 
     <script>
+        // Custom Cursor System
+        class CustomCursor {
+            constructor() {
+                this.cursor = document.getElementById('cursorGlow');
+                this.trails = [];
+                this.trailCount = 8;
+                this.init();
+            }
+
+            init() {
+                if (window.innerWidth <= 768) return; // Disable on mobile
+
+                this.createTrails();
+                this.bindEvents();
+            }
+
+            createTrails() {
+                for (let i = 0; i < this.trailCount; i++) {
+                    const trail = document.createElement('div');
+                    trail.classList.add('mouse-trail');
+                    trail.style.opacity = (1 - i / this.trailCount) * 0.8;
+                    trail.style.transform = 'scale(' + (1 - i / this.trailCount) + ')';
+                    document.body.appendChild(trail);
+                    this.trails.push({
+                        element: trail,
+                        x: 0,
+                        y: 0
+                    });
+                }
+            }
+
+            bindEvents() {
+                let mouseX = 0, mouseY = 0;
+                
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    
+                    this.cursor.style.left = mouseX + 'px';
+                    this.cursor.style.top = mouseY + 'px';
+                });
+
+                this.animateTrails(mouseX, mouseY);
+            }
+
+            animateTrails(mouseX, mouseY) {
+                const animate = () => {
+                    let x = mouseX;
+                    let y = mouseY;
+
+                    this.trails.forEach((trail, index) => {
+                        trail.x += (x - trail.x) * 0.3;
+                        trail.y += (y - trail.y) * 0.3;
+                        
+                        trail.element.style.left = trail.x + 'px';
+                        trail.element.style.top = trail.y + 'px';
+                        
+                        x = trail.x;
+                        y = trail.y;
+                    });
+
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            }
+        }
+
         // Enhanced Character Guide System
         class EnhancedCharacterGuide {
             constructor() {
@@ -1367,6 +1768,8 @@
                 this.speechBubble = document.getElementById('speechBubble');
                 this.currentSection = 'home';
                 this.isUserInteracting = false;
+                this.konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up Up Down Down Left Right Left Right B A
+                this.konamiIndex = 0;
                 
                 this.messages = {
                     home: "Welcome! I'm your cyber guide! Ready to explore?",
@@ -1384,6 +1787,12 @@
                 this.startAutoGuide();
                 this.setupSectionObserver();
                 this.setupInteractions();
+                this.setupKonamiCode();
+                
+                // Show initial welcome message
+                setTimeout(() => {
+                    this.showMessage(this.messages.home);
+                }, 1000);
             }
 
             showMessage(message) {
@@ -1404,7 +1813,7 @@
                         sectionIndex = (sectionIndex + 1) % sections.length;
                         this.showMessage(this.messages[sections[sectionIndex]]);
                     }
-                }, 8000);
+                }, 12000);
             }
 
             setupSectionObserver() {
@@ -1415,11 +1824,13 @@
                             const sectionId = entry.target.id;
                             if (this.messages[sectionId] && !this.isUserInteracting) {
                                 this.currentSection = sectionId;
-                                this.showMessage(this.messages[sectionId]);
+                                setTimeout(() => {
+                                    this.showMessage(this.messages[sectionId]);
+                                }, 500);
                             }
                         }
                     });
-                }, { threshold: 0.5 });
+                }, { threshold: 0.3 });
 
                 sections.forEach(section => observer.observe(section));
             }
@@ -1427,30 +1838,99 @@
             setupInteractions() {
                 this.character.addEventListener('click', () => {
                     this.isUserInteracting = true;
-                    this.showMessage("Hi there! Click any section to explore!");
+                    this.showMessage("Hi there! Click any section to explore Anubhav's cybersecurity world!");
                     
+                    // Reset interaction flag after 8 seconds
                     setTimeout(() => {
                         this.isUserInteracting = false;
-                    }, 5000);
+                    }, 8000);
                 });
 
                 // Project card interactions
                 document.querySelectorAll('.project-card').forEach(card => {
                     card.addEventListener('mouseenter', () => {
-                        this.showMessage("Cool project! Click to explore on GitHub!");
+                        if (!this.isUserInteracting) {
+                            this.showMessage("Cool cybersecurity project! Click to explore on GitHub!");
+                        }
                     });
                 });
 
                 // Tool interactions
                 document.querySelectorAll('.tool-item').forEach(tool => {
                     tool.addEventListener('mouseenter', () => {
-                        this.showMessage("Professional security tool in action!");
+                        if (!this.isUserInteracting) {
+                            const toolName = tool.querySelector('.tool-name').textContent;
+                            this.showMessage(`${toolName} - A powerful security tool!`);
+                        }
+                    });
+                });
+
+                // Stats interactions
+                document.querySelectorAll('.stat-item').forEach(stat => {
+                    stat.addEventListener('mouseenter', () => {
+                        if (!this.isUserInteracting) {
+                            this.showMessage("Impressive cybersecurity stats!");
+                        }
                     });
                 });
             }
+
+            setupKonamiCode() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.keyCode === this.konamiCode[this.konamiIndex]) {
+                        this.konamiIndex++;
+                        if (this.konamiIndex === this.konamiCode.length) {
+                            this.activateRainbowMode();
+                            this.konamiIndex = 0;
+                        }
+                    } else {
+                        this.konamiIndex = 0;
+                    }
+                });
+            }
+
+            activateRainbowMode() {
+                document.body.classList.add('rainbow-mode');
+                this.showMessage("🌈 RAINBOW CYBER MODE ACTIVATED! 🌈");
+                
+                setTimeout(() => {
+                    document.body.classList.remove('rainbow-mode');
+                    this.showMessage("Back to normal cyber mode!");
+                }, 10000);
+            }
         }
 
-        // Initialize enhanced character guide
+        // Ripple effect for buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add('ripple');
+
+            const existingRipple = button.getElementsByClassName('ripple')[0];
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            button.appendChild(circle);
+        }
+
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', createRipple);
+        });
+
+        // Initialize custom cursor (only on desktop)
+        if (window.innerWidth > 768) {
+            const customCursor = new CustomCursor();
+        }
+
+        // Initialize enhanced character guide (only on desktop)
         if (window.innerWidth > 768) {
             const characterGuide = new EnhancedCharacterGuide();
         }
@@ -1479,10 +1959,34 @@
             });
         });
 
+        // Enhanced scroll animations
+        const observeElements = () => {
+            const elements = document.querySelectorAll('.timeline-item, .project-card, .tool-category, .stat-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+        };
+
+        // Initialize scroll animations
+        setTimeout(observeElements, 100);
+
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.querySelector('.floating-particles');
-            const particleCount = 20;
+            const particleCount = 25;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1494,6 +1998,7 @@
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 particle.style.animationDelay = `${Math.random() * 8}s`;
+                particle.style.animationDuration = `${Math.random() * 4 + 6}s`;
                 
                 particlesContainer.appendChild(particle);
             }
@@ -1502,21 +2007,138 @@
         // Initialize particles
         createParticles();
 
-        // Enhanced hover effects for project cards
+        // Enhanced project card interactions
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-15px) rotateX(5deg)';
-                this.style.boxShadow = '0 25px 50px rgba(0, 212, 255, 0.4)';
+                this.style.boxShadow = '0 25px 60px rgba(0, 212, 255, 0.3)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) rotateX(0deg)';
-                this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                this.style.boxShadow = '';
+            });
+
+            // Add click sound effect (visual feedback)
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
             });
         });
 
-        console.log('🔒 Anubhav Mohandas Cybersecurity Portfolio Loaded Successfully! 🔒');
-        console.log('👋 Welcome to the interactive cybersecurity experience!');
+        // Enhanced tool item interactions
+        document.querySelectorAll('.tool-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) translateX(8px)';
+                this.style.background = 'rgba(0, 212, 255, 0.25)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateX(0)';
+                this.style.background = 'rgba(0, 212, 255, 0.1)';
+            });
+        });
+
+        // Logo click effect
+        document.querySelector('.logo').addEventListener('click', () => {
+            document.querySelector('#home').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced hero icon interactions
+        document.querySelectorAll('.hero-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.3) rotate(360deg)';
+                this.style.textShadow = '0 0 30px var(--glow-color)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+                this.style.textShadow = '';
+            });
+        });
+
+        // Performance optimization
+        const throttle = (func, limit) => {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        };
+
+        // Optimized scroll handler
+        const handleScroll = throttle(() => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, 16);
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Contact link interactions
+        document.querySelectorAll('.contact-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Console easter egg
+        console.log('%c🔒 Anubhav Mohandas Cybersecurity Portfolio 🔒', 'color: #00d4ff; font-size: 20px; font-weight: bold;');
+        console.log('%c👋 Welcome to the interactive cybersecurity experience!', 'color: #0066ff; font-size: 14px;');
+        console.log('%c🎮 Try the Konami Code: ↑↑↓↓←→←→BA', 'color: #6600ff; font-size: 12px;');
+        console.log('%c🛡️ Portfolio loaded successfully!', 'color: #00ff88; font-size: 12px;');
+
+        // Add dynamic year to copyright if exists
+        const currentYear = new Date().getFullYear();
+        
+        // Accessibility enhancements
+        document.querySelectorAll('.btn, .project-card, .tool-item, .contact-link').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.style.outline = '2px solid var(--primary-color)';
+                this.style.outlineOffset = '4px';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.outline = 'none';
+                this.style.outlineOffset = '0';
+            });
+        });
+
+        // Preload animations
+        const preloadAnimations = () => {
+            document.querySelectorAll('.hero-content > *').forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        };
+
+        preloadAnimations();
     </script>
 </body>
 </html>
+
