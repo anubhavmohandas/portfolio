@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anubhav Mohandas - Cybersecurity Professional</title>
 
-    <!-- Enhanced Security Headers -->
+    <!-- Security Headers -->
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     
-    <!-- Font Awesome -->
-    <link 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
-        rel="stylesheet"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -32,11 +26,10 @@
             --dark-bg: #0a0a0a;
             --card-bg: #1a1a1a;
             --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
+            --text-secondary: #b0b0b0;
             --accent-gradient: linear-gradient(135deg, #00d4ff, #0066ff, #6600ff);
             --glow-color: rgba(0, 212, 255, 0.5);
             --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --border-radius-small: 8px;
             --border-radius-medium: 15px;
             --border-radius-large: 20px;
         }
@@ -46,14 +39,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             background: var(--dark-bg);
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* Enhanced Animated Background */
+        /* Animated Background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -68,23 +61,6 @@
             animation: backgroundShift 20s ease-in-out infinite;
         }
 
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--primary-color);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 6s ease-in-out infinite;
-        }
-
         @keyframes backgroundShift {
             0%, 100% { 
                 background: 
@@ -92,53 +68,12 @@
                     radial-gradient(circle at 80% 20%, rgba(102, 0, 255, 0.1) 0%, transparent 50%),
                     var(--dark-bg);
             }
-            25% {
+            50% {
                 background: 
                     radial-gradient(circle at 80% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
                     radial-gradient(circle at 30% 70%, rgba(0, 212, 255, 0.12) 0%, transparent 50%),
                     var(--dark-bg);
             }
-            50% {
-                background: 
-                    radial-gradient(circle at 40% 20%, rgba(102, 0, 255, 0.12) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 80%, rgba(0, 255, 127, 0.08) 0%, transparent 50%),
-                    var(--dark-bg);
-            }
-            75% {
-                background: 
-                    radial-gradient(circle at 10% 40%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 90% 60%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                    var(--dark-bg);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg); 
-                opacity: 0.6; 
-            }
-            50% { 
-                transform: translateY(-20px) rotate(180deg); 
-                opacity: 1; 
-            }
-        }
-
-        /* Skip Link for Accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-color);
-            color: var(--dark-bg);
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 10000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 6px;
         }
 
         /* Navigation */
@@ -150,15 +85,13 @@
             backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 0.8rem 0;
-            transition: all 0.4s ease;
+            transition: var(--transition-smooth);
             border-bottom: 1px solid rgba(0, 212, 255, 0.15);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         nav.scrolled {
             background: rgba(5, 5, 5, 0.98);
             box-shadow: 0 4px 30px rgba(0, 212, 255, 0.25);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.4);
         }
 
         .nav-container {
@@ -168,19 +101,17 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            height: 60px;
         }
 
         .logo {
             font-size: 1.6rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #00d4ff 0%, #0066ff 50%, #6600ff 100%);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
+            transition: var(--transition-smooth);
         }
 
         .logo:hover {
@@ -192,46 +123,22 @@
             display: flex;
             list-style: none;
             gap: 0.5rem;
-            align-items: center;
         }
 
         .nav-links a {
             color: var(--text-primary);
             text-decoration: none;
-            position: relative;
             padding: 0.7rem 1.2rem;
             border-radius: 12px;
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: all 0.4s ease;
-            transform: translateX(-50%);
-            border-radius: 2px;
+            transition: var(--transition-smooth);
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
-            border-color: rgba(0, 212, 255, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .nav-links a:hover::after {
-            width: calc(100% - 16px);
-        }
-
-        .nav-links a:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 3px;
+            transform: translateY(-2px);
+            background: rgba(0, 212, 255, 0.1);
         }
 
         /* Hero Section */
@@ -257,8 +164,19 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
             animation: titleGlow 4s ease-in-out infinite alternate;
+            font-weight: 700;
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                text-shadow: 0 0 20px var(--glow-color);
+                filter: brightness(1);
+            }
+            100% { 
+                text-shadow: 0 0 40px var(--glow-color);
+                filter: brightness(1.2);
+            }
         }
 
         .hero-subtitle {
@@ -301,13 +219,7 @@
             position: relative;
             overflow: hidden;
             font-size: 1.1rem;
-            display: inline-block;
             cursor: pointer;
-        }
-
-        .btn:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 4px;
         }
 
         .btn-primary {
@@ -323,28 +235,17 @@
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-        }
-
-        /* Section Transitions */
-        .section-transition {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .section-transition.visible {
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6);
         }
 
         /* Sections */
         .section {
-            padding: 6rem 2rem;
+            padding: 6rem 0;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         .section-title {
@@ -379,24 +280,24 @@
         }
 
         .about-image {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             border-radius: 50%;
             background: var(--accent-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
+            font-size: 10rem;
             color: white;
             margin: 0 auto;
             animation: imageFloat 4s ease-in-out infinite;
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
-            transition: var(--transition-smooth);
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.6);
         }
 
-        .about-image:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 60px rgba(0, 212, 255, 0.8);
+        @keyframes imageFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         .about-text {
@@ -423,16 +324,10 @@
             cursor: pointer;
         }
 
-        .stat-item:hover,
-        .stat-item:focus-visible {
-            transform: translateY(-5px);
+        .stat-item:hover {
+            transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
             border-color: var(--primary-color);
-        }
-
-        .stat-item:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
         }
 
         .stat-number {
@@ -447,15 +342,15 @@
             color: var(--text-secondary);
         }
 
-        /* Skills */
-        .skills-container {
+        /* Tools Section */
+        .tools-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .skills-category {
+        .tool-category {
             background: var(--card-bg);
             padding: 2rem;
             border-radius: var(--border-radius-large);
@@ -463,56 +358,60 @@
             transition: var(--transition-smooth);
         }
 
-        .skills-category:hover {
-            transform: translateY(-5px);
+        .tool-category:hover {
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
             border-color: var(--primary-color);
         }
 
-        .skills-category h3 {
+        .tool-category h3 {
             color: var(--primary-color);
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-item {
+        .tool-item {
             background: rgba(0, 212, 255, 0.1);
             padding: 1rem;
             border-radius: 12px;
-            text-align: center;
+            margin-bottom: 1rem;
             transition: var(--transition-smooth);
             border: 1px solid rgba(0, 212, 255, 0.3);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .skill-item:hover,
-        .skill-item:focus-visible {
+        .tool-item:hover {
             transform: scale(1.05);
             background: rgba(0, 212, 255, 0.2);
             box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
         }
 
-        .skill-item:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        .skill-item i {
-            font-size: 2rem;
+        .tool-item i {
+            font-size: 1.5rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
             transition: var(--transition-smooth);
         }
 
-        .skill-item:hover i {
+        .tool-item:hover i {
             transform: scale(1.2);
             color: #fff;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .tool-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
         }
 
         /* Experience Timeline */
@@ -535,7 +434,7 @@
         }
 
         .timeline-item {
-            padding: 2rem;
+            padding: 2rem 3rem;
             position: relative;
             background: var(--card-bg);
             border-radius: var(--border-radius-large);
@@ -544,13 +443,6 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
             transition: var(--transition-smooth);
             cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .timeline-item:nth-child(odd) {
@@ -564,34 +456,27 @@
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: var(--primary-color);
             border: 4px solid var(--dark-bg);
             top: 50%;
             border-radius: 50%;
             z-index: 1;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
         }
 
         .timeline-item:nth-child(odd)::after {
-            right: -50px;
+            right: -65px;
         }
 
         .timeline-item:nth-child(even)::after {
-            left: -50px;
+            left: -65px;
         }
 
-        .timeline-item:hover,
-        .timeline-item:focus-visible {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        .timeline-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
             border-color: var(--primary-color);
-        }
-
-        .timeline-item:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 4px;
         }
 
         .timeline-date {
@@ -618,7 +503,7 @@
             line-height: 1.6;
         }
 
-        /* Projects */
+        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -634,16 +519,10 @@
             cursor: pointer;
         }
 
-        .project-card:hover,
-        .project-card:focus-visible {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
             border-color: var(--primary-color);
-        }
-
-        .project-card:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 4px;
         }
 
         .project-icon {
@@ -656,7 +535,7 @@
         }
 
         .project-card:hover .project-icon {
-            transform: scale(1.1);
+            transform: scale(1.2);
             color: #fff;
         }
 
@@ -689,13 +568,11 @@
             border-radius: 25px;
             font-size: 0.9rem;
             transition: var(--transition-smooth);
-            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .tech-tag:hover {
             background: var(--primary-color);
             color: var(--dark-bg);
-            transform: scale(1.05);
         }
 
         /* Contact Section */
@@ -726,39 +603,49 @@
             border: 1px solid rgba(0, 212, 255, 0.2);
         }
 
-        .contact-link:hover,
-        .contact-link:focus-visible {
-            transform: translateY(-5px);
+        .contact-link:hover {
+            transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
             border-color: var(--primary-color);
-        }
-
-        .contact-link:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 4px;
         }
 
         .contact-link i {
             font-size: 1.8rem;
             color: var(--primary-color);
-            transition: var(--transition-smooth);
         }
 
-        .contact-link:hover i {
-            transform: scale(1.2);
+        /* Floating Particles */
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        /* Character Guide */
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: floatParticle 8s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+            50% { transform: translateY(-40px) translateX(20px); opacity: 0.8; }
+        }
+
+        /* CHARACTER GUIDE */
         .character-guide {
             position: fixed;
-            width: 80px;
-            height: 120px;
+            bottom: 30px;
+            right: 30px;
+            width: 90px;
+            height: 110px;
             z-index: 1500;
             cursor: pointer;
             transition: var(--transition-smooth);
-            animation: characterFloat 3s ease-in-out infinite;
-            left: 100px;
-            top: 100px;
+            animation: characterIdle 3s ease-in-out infinite;
         }
 
         .character {
@@ -767,41 +654,46 @@
             height: 100%;
         }
 
+        .character-guide:hover .character {
+            transform: scale(1.15);
+        }
+
         .character-body {
             position: absolute;
-            width: 40px;
-            height: 50px;
+            width: 45px;
+            height: 55px;
             background: var(--accent-gradient);
-            border-radius: 20px;
-            top: 35px;
-            left: 20px;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            border-radius: 25px 25px 18px 18px;
+            top: 28px;
+            left: 22px;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+            animation: bodyBreathe 3s ease-in-out infinite;
         }
 
         .character-head {
             position: absolute;
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffffff, #f8f8f8);
             border-radius: 50%;
             top: 5px;
-            left: 22px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            left: 25px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
             border: 2px solid rgba(0, 212, 255, 0.3);
         }
 
         .character-eyes {
             position: absolute;
-            top: 12px;
-            left: 8px;
-            width: 18px;
-            height: 8px;
+            top: 14px;
+            left: 10px;
+            width: 20px;
+            height: 10px;
         }
 
         .eye {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background: #333;
             border-radius: 50%;
             animation: eyeBlink 5s infinite;
@@ -812,68 +704,68 @@
 
         .character-smile {
             position: absolute;
-            top: 22px;
-            left: 11px;
-            width: 12px;
-            height: 6px;
+            top: 25px;
+            left: 13px;
+            width: 14px;
+            height: 7px;
             border: 2px solid #333;
             border-top: none;
-            border-radius: 0 0 12px 12px;
+            border-radius: 0 0 14px 14px;
         }
 
         .character-arm {
             position: absolute;
-            width: 15px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 10px;
-            top: 45px;
+            width: 18px;
+            height: 5px;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            border-radius: 12px;
+            top: 40px;
         }
 
         .character-arm.left {
-            left: 8px;
-            animation: armWave 2s ease-in-out infinite;
+            left: 10px;
+            animation: armWave 3s ease-in-out infinite;
         }
 
         .character-arm.right {
-            right: 8px;
-            animation: armWave 2s ease-in-out infinite 1s;
+            right: 10px;
+            animation: armWave 3s ease-in-out infinite 1.5s;
         }
 
         .character-leg {
             position: absolute;
-            width: 6px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 6px;
-            top: 80px;
+            width: 8px;
+            height: 25px;
+            background: linear-gradient(180deg, #00d4ff, #0066ff);
+            border-radius: 4px;
+            bottom: 2px;
         }
 
         .character-leg.left {
-            left: 28px;
-            animation: legMove 3s ease-in-out infinite;
+            left: 30px;
+            animation: legWalk 1.2s ease-in-out infinite;
         }
 
         .character-leg.right {
-            right: 28px;
-            animation: legMove 3s ease-in-out infinite 0.5s;
+            right: 30px;
+            animation: legWalk 1.2s ease-in-out infinite 0.6s;
         }
 
         .speech-bubble {
             position: absolute;
-            bottom: 130px;
-            left: -60px;
+            bottom: 120px;
+            left: -80px;
             background: rgba(26, 26, 26, 0.95);
             color: var(--text-primary);
-            padding: 12px 16px;
-            border-radius: 20px;
+            padding: 15px 20px;
+            border-radius: 25px;
             border: 2px solid var(--primary-color);
-            font-size: 13px;
+            font-size: 14px;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(15px) scale(0.8);
             transition: all 0.5s ease;
-            backdrop-filter: blur(10px);
-            max-width: 200px;
+            backdrop-filter: blur(15px);
+            max-width: 220px;
             text-align: center;
             z-index: 1600;
         }
@@ -881,62 +773,53 @@
         .speech-bubble::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid var(--primary-color);
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid var(--primary-color);
         }
 
         .speech-bubble.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        .speech-bubble.excited {
-            animation: bounce 0.6s ease-in-out;
-            border-color: #00ff00;
+        /* Character Animations */
+        @keyframes characterIdle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
         }
 
-        .speech-bubble.thinking {
-            border-color: #ffaa00;
+        @keyframes bodyBreathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        .character.excited {
-            animation: characterExcited 0.8s ease-in-out;
+        @keyframes eyeBlink {
+            0%, 85%, 100% { transform: scaleY(1); }
+            90%, 95% { transform: scaleY(0.1); }
         }
 
-        .character.thinking {
-            animation: characterThinking 2s ease-in-out infinite;
+        @keyframes armWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(10deg); }
         }
 
-        .character.moving {
-            animation: characterMoving 2s ease-in-out;
+        @keyframes legWalk {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
-        /* Typing Cursor */
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background-color: var(--primary-color);
-            animation: blink 1s infinite;
-            margin-left: 2px;
-        }
-
-        /* Animations */
-        @keyframes titleGlow {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.2); }
-        }
-
+        /* Animation keyframes */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -944,108 +827,10 @@
             }
         }
 
-        @keyframes imageFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes characterFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes eyeBlink {
-            0%, 90%, 100% { transform: scaleY(1); }
-            95% { transform: scaleY(0.1); }
-        }
-
-        @keyframes armWave {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-15deg); }
-        }
-
-        @keyframes legMove {
-            0%, 100% { transform: translateX(0px); }
-            50% { transform: translateX(3px); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-10px) scale(1.1); }
-        }
-
-        @keyframes characterExcited {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-5deg) scale(1.1); }
-            75% { transform: rotate(5deg) scale(1.1); }
-        }
-
-        @keyframes characterThinking {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(3deg); }
-        }
-
-        @keyframes characterMoving {
-            0% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.1) rotate(-3deg); }
-            75% { transform: scale(1.1) rotate(3deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark-bg);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid var(--primary-color);
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        .loader-text {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-
-        /* Responsive Design */
+        /* Mobile Optimization */
         @media (max-width: 1024px) {
             .character-guide {
                 display: none;
-            }
-            
-            .skills-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
             }
             
             .about-content {
@@ -1056,6 +841,32 @@
         }
 
         @media (max-width: 768px) {
+            .hero-title { 
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            
+            .about-image {
+                width: 250px;
+                height: 250px;
+                font-size: 6rem;
+            }
+            
+            .timeline-item { 
+                width: 100%; 
+                left: 0 !important; 
+                margin-left: 0;
+                padding: 1.5rem 2rem;
+            }
+            
+            .timeline::after { 
+                left: 20px; 
+            }
+            
+            .timeline-item::after {
+                left: -30px !important;
+                right: auto !important;
+            }
+            
             .nav-links { 
                 display: none; 
             }
@@ -1064,1438 +875,648 @@
                 justify-content: center;
             }
             
-            .timeline-item { 
-                width: 100%; 
-                left: 0 !important;
-                padding: 1.5rem;
-            }
-            
-            .timeline::after { 
-                left: 20px; 
-            }
-            
-            .timeline-item::after {
-                left: -25px !important;
-                right: auto !important;
-            }
-            
             .cta-buttons { 
                 flex-direction: column; 
                 align-items: center; 
+                gap: 1rem;
             }
             
             .contact-links { 
                 flex-direction: column; 
                 align-items: center; 
+                gap: 1rem;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .section {
-                padding: 4rem 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 1rem;
-            }
-            
-            .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: clamp(2rem, 6vw, 2.5rem);
-            }
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --text-primary: #ffffff;
-                --text-secondary: #ffffff;
-                --primary-color: #00ffff;
-                --card-bg: #000000;
+                padding: 4rem 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Skip Link for Screen Readers -->
-    <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
-
-    <!-- Loading Screen -->
-    <div class="loader" id="loadingScreen" role="status" aria-label="Loading portfolio">
-        <div class="loader-spinner" aria-hidden="true"></div>
-        <div class="loader-text">Loading Cybersecurity Experience...</div>
-    </div>
-
-    <!-- Enhanced Character Guide -->
-    <div class="character-guide" id="characterGuide" role="img" aria-label="Interactive guide character" tabindex="0">
+    <!-- CHARACTER GUIDE -->
+    <div class="character-guide" id="characterGuide">
         <div class="character">
             <div class="character-head">
                 <div class="character-eyes">
-                    <div class="eye left" aria-hidden="true"></div>
-                    <div class="eye right" aria-hidden="true"></div>
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
                 </div>
-                <div class="character-smile" aria-hidden="true"></div>
+                <div class="character-smile"></div>
             </div>
-            <div class="character-body" aria-hidden="true"></div>
-            <div class="character-arm left" aria-hidden="true"></div>
-            <div class="character-arm right" aria-hidden="true"></div>
-            <div class="character-leg left" aria-hidden="true"></div>
-            <div class="character-leg right" aria-hidden="true"></div>
+            <div class="character-body"></div>
+            <div class="character-arm left"></div>
+            <div class="character-arm right"></div>
+            <div class="character-leg left"></div>
+            <div class="character-leg right"></div>
         </div>
-        <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">
-            Welcome! Let me guide you through Anubhav's cybersecurity journey!
-        </div>
+        <div class="speech-bubble" id="speechBubble">Welcome! Let me guide you through Anubhav's cybersecurity journey!</div>
     </div>
 
-    <div class="bg-animation" role="presentation" aria-hidden="true">
-        <div class="floating-particles" aria-hidden="true"></div>
+    <div class="bg-animation">
+        <div class="floating-particles"></div>
     </div>
 
-    <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <nav id="navbar">
         <div class="nav-container">
-            <div class="logo" role="img" aria-label="Anubhav Mohandas">Anubhav Mohandas</div>
+            <div class="logo">Anubhav Mohandas</div>
             <ul class="nav-links">
-                <li><a href="#home" aria-label="Go to home section">Home</a></li>
-                <li><a href="#about" aria-label="Go to about section">About</a></li>
-                <li><a href="#experience" aria-label="Go to experience section">Experience</a></li>
-                <li><a href="#projects" aria-label="Go to projects section">Projects</a></li>
-                <li><a href="#contact" aria-label="Go to contact section">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <main id="main-content">
-        <section id="home" class="hero section-transition" role="banner">
-            <div class="hero-content">
-                <h1 class="hero-title">Anubhav Mohandas</h1>
-                <p class="hero-subtitle">Cybersecurity Professional & Digital Forensics Specialist</p>
-                <p class="hero-location">Making the Digital World Safer</p>
-                <p class="hero-description">
-                    Passionate about making the digital world safer through cyber forensics research, 
-                    threat analysis, and innovative security solutions. Driven by curiosity and committed 
-                    to excellence in cybersecurity.
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Anubhav Mohandas</h1>
+            <p class="hero-subtitle">Cybersecurity Professional & Digital Forensics Specialist</p>
+            <p class="hero-location">🌍 Making the Digital World Safer</p>
+            <p class="hero-description">
+                Passionate about making the digital world safer through cyber forensics research, 
+                threat analysis, and innovative security solutions. Driven by curiosity and committed 
+                to excellence in cybersecurity.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+                <p class="about-text">
+                    I'm a passionate cybersecurity professional specializing in cyber forensics and digital investigations. 
+                    My journey in cybersecurity is driven by curiosity and a commitment to making the digital world safer.
+                    I focus on cyber forensics research, investigative methodologies, and developing innovative security tools.
                 </p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary" aria-label="View portfolio projects">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary" aria-label="Contact information">Get In Touch</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section section-transition">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image" role="img" aria-label="Cybersecurity shield icon">
-                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                </div>
-                <div>
-                    <p class="about-text">
-                        I'm a passionate cybersecurity professional specializing in cyber forensics and digital investigations. 
-                        My journey in cybersecurity is driven by curiosity and a commitment to making the digital world safer.
-                        I focus on cyber forensics research, investigative methodologies, and developing innovative security tools.
-                    </p>
-                    <p class="about-text">
-                        When I'm not diving deep into code or analyzing security threats, I love traveling and exploring 
-                        new places. I'm always learning and staying updated with the latest cybersecurity trends and techniques.
-                    </p>
-                    
-                    <div class="stats-grid" role="region" aria-label="Professional statistics">
-                        <div class="stat-item" tabindex="0" role="button" aria-label="5 plus years of experience">
-                            <div class="stat-number">5+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item" tabindex="0" role="button" aria-label="50 plus security tools mastered">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Security Tools</div>
-                        </div>
-                        <div class="stat-item" tabindex="0" role="button" aria-label="100 plus cases analyzed">
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label">Cases Analyzed</div>
-                        </div>
-                        <div class="stat-item" tabindex="0" role="button" aria-label="24/7 security focus">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Security Focus</div>
-                        </div>
-                    </div>
-
-                    <div class="skills-container">
-                        <div class="skills-category">
-                            <h3><i class="fas fa-search" aria-hidden="true"></i> Digital Forensics</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Disk Analysis expertise">
-                                    <i class="fas fa-hdd" aria-hidden="true"></i>
-                                    <div>Disk Analysis</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Mobile Forensics expertise">
-                                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
-                                    <div>Mobile Forensics</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Network Analysis expertise">
-                                    <i class="fas fa-network-wired" aria-hidden="true"></i>
-                                    <div>Network Analysis</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Memory Analysis expertise">
-                                    <i class="fas fa-memory" aria-hidden="true"></i>
-                                    <div>Memory Analysis</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skills-category">
-                            <h3><i class="fas fa-bug" aria-hidden="true"></i> Security Research</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Malware Analysis expertise">
-                                    <i class="fas fa-virus" aria-hidden="true"></i>
-                                    <div>Malware Analysis</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Threat Hunting expertise">
-                                    <i class="fas fa-shield-virus" aria-hidden="true"></i>
-                                    <div>Threat Hunting</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="Tool Development expertise">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                    <div>Tool Development</div>
-                                </div>
-                                <div class="skill-item" tabindex="0" role="button" aria-label="OSINT expertise">
-                                    <i class="fas fa-eye" aria-hidden="true"></i>
-                                    <div>OSINT</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="section section-transition">
-            <h2 class="section-title">Experience & Focus Areas</h2>
-            <div class="timeline" role="region" aria-label="Professional timeline">
-                <div class="timeline-item" tabindex="0" role="article" aria-label="Current cybersecurity research focus">
-                    <div class="timeline-date">Current Focus</div>
-                    <h3 class="timeline-title">Cyber Forensics Research</h3>
-                    <p class="timeline-company">Digital Investigations & Security Research</p>
-                    <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis. Actively researching new techniques in digital evidence collection and analysis.</p>
-                </div>
-                <div class="timeline-item" tabindex="0" role="article" aria-label="Security tool development projects">
-                    <div class="timeline-date">Active Development</div>
-                    <h3 class="timeline-title">Security Tool Development</h3>
-                    <p class="timeline-company">Open Source Projects</p>
-                    <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities. Contributing to the cybersecurity community through practical tools and research.</p>
-                </div>
-                <div class="timeline-item" tabindex="0" role="article" aria-label="Digital forensics specialization">
-                    <div class="timeline-date">Specialization</div>
-                    <h3 class="timeline-title">Digital Forensics & Threat Analysis</h3>
-                    <p class="timeline-company">Cybersecurity Research</p>
-                    <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and investigative methodologies. Always staying updated with the latest cybersecurity trends and techniques to enhance security posture.</p>
-                </div>
-                <div class="timeline-item" tabindex="0" role="article" aria-label="Professional development and interests">
-                    <div class="timeline-date">Personal Interest</div>
-                    <h3 class="timeline-title">Continuous Learning & Travel</h3>
-                    <p class="timeline-company">Professional Development</p>
-                    <p class="timeline-description">Love traveling and exploring new places when not diving deep into code or analyzing security threats. Always learning and sharing knowledge with the cybersecurity community.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section section-transition">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card" tabindex="0" role="button" aria-label="Ultimate Digital Forensics Toolkit project" data-url="https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit">
-                    <div class="project-icon">
-                        <i class="fas fa-toolbox" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Ultimate Digital Forensics Toolkit</h3>
-                        <p class="project-description">
-                            Comprehensive all-in-one digital forensics toolkit featuring multiple investigation tools, 
-                            evidence collection utilities, and analysis capabilities for cybersecurity professionals.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Digital Forensics</span>
-                            <span class="tech-tag">Investigation</span>
-                            <span class="tech-tag">Evidence Analysis</span>
-                            <span class="tech-tag">All-in-One</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="Recon Scanner project" data-url="https://github.com/anubhavmohandas/recon_scanner">
-                    <div class="project-icon">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Recon Scanner</h3>
-                        <p class="project-description">
-                            Advanced reconnaissance tool designed for cybersecurity professionals to perform comprehensive 
-                            security assessments and automated reconnaissance on target domains.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Network Security</span>
-                            <span class="tech-tag">Reconnaissance</span>
-                            <span class="tech-tag">OSINT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="SIEM Kernel Exploit Detection project" data-url="https://github.com/anubhavmohandas/siem-kernel-exploit-detection">
-                    <div class="project-icon">
-                        <i class="fas fa-shield-virus" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">SIEM Kernel Exploit Detection</h3>
-                        <p class="project-description">
-                            Security Information and Event Management system specialized in detecting kernel-level 
-                            exploits and advanced persistent threats through comprehensive monitoring.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SIEM</span>
-                            <span class="tech-tag">Exploit Detection</span>
-                            <span class="tech-tag">Kernel Security</span>
-                            <span class="tech-tag">Threat Monitoring</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="Enhanced CVSS Calculator project" data-url="https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator">
-                    <div class="project-icon">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Enhanced CVSS Calculator</h3>
-                        <p class="project-description">
-                            Advanced Common Vulnerability Scoring System calculator with enhanced features for 
-                            accurate vulnerability assessment and risk prioritization.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CVSS</span>
-                            <span class="tech-tag">Vulnerability Assessment</span>
-                            <span class="tech-tag">Risk Management</span>
-                            <span class="tech-tag">Security Metrics</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="AuthGuard project" data-url="https://github.com/anubhavmohandas/AuthGuard">
-                    <div class="project-icon">
-                        <i class="fas fa-user-shield" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AuthGuard</h3>
-                        <p class="project-description">
-                            Robust authentication and authorization security system designed to protect applications 
-                            from unauthorized access and authentication bypass attacks.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Authentication</span>
-                            <span class="tech-tag">Authorization</span>
-                            <span class="tech-tag">Access Control</span>
-                            <span class="tech-tag">Security</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="Jerry AI Assistant project" data-url="https://github.com/anubhavmohandas/Jerry">
-                    <div class="project-icon">
-                        <i class="fas fa-robot" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Jerry - Personalized Virtual AI</h3>
-                        <p class="project-description">
-                            Advanced personalized virtual AI assistant designed to provide intelligent automation 
-                            and personalized interactions for enhanced user experience.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">AI Assistant</span>
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">Automation</span>
-                            <span class="tech-tag">Personalization</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="Web Detection System project" data-url="https://github.com/anubhavmohandas/web_detection">
-                    <div class="project-icon">
-                        <i class="fas fa-globe" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Web Detection System</h3>
-                        <p class="project-description">
-                            Advanced web-based detection system for identifying security threats, malicious activities, 
-                            and anomalous behavior in web applications and networks.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Web Security</span>
-                            <span class="tech-tag">Threat Detection</span>
-                            <span class="tech-tag">Anomaly Detection</span>
-                            <span class="tech-tag">Monitoring</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" tabindex="0" role="button" aria-label="Password Strength Checker project" data-url="https://github.com/anubhavmohandas/password_strength_checker">
-                    <div class="project-icon">
-                        <i class="fas fa-key" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Password Strength Checker</h3>
-                        <p class="project-description">
-                            Comprehensive password strength evaluation tool that analyzes password security, 
-                            provides recommendations, and helps enforce strong password policies.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Password Security</span>
-                            <span class="tech-tag">Security Assessment</span>
-                            <span class="tech-tag">Policy Enforcement</span>
-                            <span class="tech-tag">Authentication</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section section-transition">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="contact-content">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
-                    Open for collaboration on cybersecurity projects. Let's secure the digital world together!
+                <p class="about-text">
+                    When I'm not diving deep into code or analyzing security threats, I love traveling and exploring 
+                    new places. I'm always learning and staying updated with the latest cybersecurity trends and techniques.
                 </p>
-                <div class="contact-links">
-                    <a href="https://github.com/anubhavmohandas" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Visit Anubhav's GitHub profile">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Visit Anubhav's LinkedIn profile">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://x.com/anubhavmohandas" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Visit Anubhav's Twitter profile">
-                        <i class="fab fa-twitter" aria-hidden="true"></i>
-                        <span>Twitter</span>
-                    </a>
-                    <a href="mailto:anubhav.manav147@gmail.com" class="contact-link" aria-label="Send email to Anubhav">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>Email</span>
-                    </a>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Security Tools</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Cases Analyzed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Security Focus</div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <section id="tools" class="section">
+        <h2 class="section-title">Tools & Technologies</h2>
+        <div class="tools-grid">
+            <div class="tool-category">
+                <h3><i class="fas fa-terminal"></i> Operating Systems & Platforms</h3>
+                <div class="tool-item">
+                    <i class="fab fa-linux"></i>
+                    <div>
+                        <div class="tool-name">Kali Linux</div>
+                        <div class="tool-description">Primary penetration testing OS</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fab fa-windows"></i>
+                    <div>
+                        <div class="tool-name">Windows</div>
+                        <div class="tool-description">Windows security & forensics</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fab fa-ubuntu"></i>
+                    <div>
+                        <div class="tool-name">Ubuntu Server</div>
+                        <div class="tool-description">Linux server administration</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-search"></i> Digital Forensics Tools</h3>
+                <div class="tool-item">
+                    <i class="fas fa-microscope"></i>
+                    <div>
+                        <div class="tool-name">Autopsy</div>
+                        <div class="tool-description">Digital forensics investigation platform</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-toolbox"></i>
+                    <div>
+                        <div class="tool-name">FTK (Forensic Toolkit)</div>
+                        <div class="tool-description">Computer forensics software</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-hdd"></i>
+                    <div>
+                        <div class="tool-name">EnCase</div>
+                        <div class="tool-description">Digital investigation suite</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-bug"></i> Penetration Testing</h3>
+                <div class="tool-item">
+                    <i class="fas fa-crosshairs"></i>
+                    <div>
+                        <div class="tool-name">Burp Suite</div>
+                        <div class="tool-description">Web application security testing</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-bomb"></i>
+                    <div>
+                        <div class="tool-name">Metasploit</div>
+                        <div class="tool-description">Exploitation framework</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-network-wired"></i>
+                    <div>
+                        <div class="tool-name">Nmap</div>
+                        <div class="tool-description">Network discovery & security auditing</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-eye"></i> Network Analysis</h3>
+                <div class="tool-item">
+                    <i class="fas fa-shark"></i>
+                    <div>
+                        <div class="tool-name">Wireshark</div>
+                        <div class="tool-description">Network protocol analyzer</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-ethernet"></i>
+                    <div>
+                        <div class="tool-name">tcpdump</div>
+                        <div class="tool-description">Command-line packet analyzer</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <div class="tool-name">NetworkMiner</div>
+                        <div class="tool-description">Network forensic analysis tool</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-code"></i> Development & Scripting</h3>
+                <div class="tool-item">
+                    <i class="fab fa-python"></i>
+                    <div>
+                        <div class="tool-name">Python</div>
+                        <div class="tool-description">Security automation & scripting</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-terminal"></i>
+                    <div>
+                        <div class="tool-name">Bash Scripting</div>
+                        <div class="tool-description">Linux automation scripts</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-file-code"></i>
+                    <div>
+                        <div class="tool-name">PowerShell</div>
+                        <div class="tool-description">Windows automation & forensics</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h3><i class="fas fa-shield-virus"></i> Security & Analysis</h3>
+                <div class="tool-item">
+                    <i class="fas fa-virus"></i>
+                    <div>
+                        <div class="tool-name">YARA</div>
+                        <div class="tool-description">Malware identification & classification</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <div>
+                        <div class="tool-name">OWASP ZAP</div>
+                        <div class="tool-description">Web application security scanner</div>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <i class="fas fa-database"></i>
+                    <div>
+                        <div class="tool-name">Splunk</div>
+                        <div class="tool-description">Security information & event management</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="section-title">Experience & Focus Areas</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Current Focus</div>
+                <h3 class="timeline-title">Cyber Forensics Research</h3>
+                <p class="timeline-company">Digital Investigations & Security Research</p>
+                <p class="timeline-description">Focusing on advanced cyber forensics research and developing innovative investigative methodologies to enhance digital crime detection and analysis. Actively researching new techniques in digital evidence collection and analysis.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Active Development</div>
+                <h3 class="timeline-title">Security Tool Development</h3>
+                <p class="timeline-company">Open Source Projects</p>
+                <p class="timeline-description">Created recon_scanner and other security utilities to assist cybersecurity professionals in reconnaissance and threat assessment activities. Contributing to the cybersecurity community through practical tools and research.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Specialization</div>
+                <h3 class="timeline-title">Digital Forensics & Threat Analysis</h3>
+                <p class="timeline-company">Cybersecurity Research</p>
+                <p class="timeline-description">Specializing in comprehensive threat analysis, security reconnaissance, and investigative methodologies. Always staying updated with the latest cybersecurity trends and techniques to enhance security posture.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Personal Interest</div>
+                <h3 class="timeline-title">Continuous Learning & Travel</h3>
+                <p class="timeline-company">Professional Development</p>
+                <p class="timeline-description">Love traveling and exploring new places when not diving deep into code or analyzing security threats. Always learning and sharing knowledge with the cybersecurity community.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Ultimate-Digital-Forensics-Toolkit', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Ultimate Digital Forensics Toolkit</h3>
+                    <p class="project-description">
+                        Comprehensive all-in-one digital forensics toolkit featuring multiple investigation tools, 
+                        evidence collection utilities, and analysis capabilities for cybersecurity professionals.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Digital Forensics</span>
+                        <span class="tech-tag">Investigation</span>
+                        <span class="tech-tag">Evidence Analysis</span>
+                        <span class="tech-tag">All-in-One</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/recon_scanner', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Recon Scanner</h3>
+                    <p class="project-description">
+                        Advanced reconnaissance tool designed for cybersecurity professionals to perform comprehensive 
+                        security assessments and automated reconnaissance on target domains.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Network Security</span>
+                        <span class="tech-tag">Reconnaissance</span>
+                        <span class="tech-tag">OSINT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/siem-kernel-exploit-detection', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">SIEM Kernel Exploit Detection</h3>
+                    <p class="project-description">
+                        Security Information and Event Management system specialized in detecting kernel-level 
+                        exploits and advanced persistent threats through comprehensive monitoring.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SIEM</span>
+                        <span class="tech-tag">Exploit Detection</span>
+                        <span class="tech-tag">Kernel Security</span>
+                        <span class="tech-tag">Threat Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Enhanced-CVSS-Calculator', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Enhanced CVSS Calculator</h3>
+                    <p class="project-description">
+                        Advanced Common Vulnerability Scoring System calculator with enhanced features for 
+                        accurate vulnerability assessment and risk prioritization.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">CVSS</span>
+                        <span class="tech-tag">Vulnerability Assessment</span>
+                        <span class="tech-tag">Risk Management</span>
+                        <span class="tech-tag">Security Metrics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/AuthGuard', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AuthGuard</h3>
+                    <p class="project-description">
+                        Robust authentication and authorization security system designed to protect applications 
+                        from unauthorized access and authentication bypass attacks.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Authentication</span>
+                        <span class="tech-tag">Authorization</span>
+                        <span class="tech-tag">Access Control</span>
+                        <span class="tech-tag">Security</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/Jerry', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Jerry - Personalized Virtual AI</h3>
+                    <p class="project-description">
+                        Advanced personalized virtual AI assistant designed to provide intelligent automation 
+                        and personalized interactions for enhanced user experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">AI Assistant</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">Personalization</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/web_detection', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Web Detection System</h3>
+                    <p class="project-description">
+                        Advanced web-based detection system for identifying security threats, malicious activities, 
+                        and anomalous behavior in web applications and networks.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Web Security</span>
+                        <span class="tech-tag">Threat Detection</span>
+                        <span class="tech-tag">Anomaly Detection</span>
+                        <span class="tech-tag">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/anubhavmohandas/password_strength_checker', '_blank')">
+                <div class="project-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Password Strength Checker</h3>
+                    <p class="project-description">
+                        Comprehensive password strength evaluation tool that analyzes password security, 
+                        provides recommendations, and helps enforce strong password policies.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Password Security</span>
+                        <span class="tech-tag">Security Assessment</span>
+                        <span class="tech-tag">Policy Enforcement</span>
+                        <span class="tech-tag">Authentication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-content">
+            <p class="about-text">
+                Open for collaboration on cybersecurity projects. Let's secure the digital world together!
+            </p>
+            <div class="contact-links">
+                <a href="https://github.com/anubhavmohandas" class="contact-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/anubhavmohandas/" class="contact-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://x.com/anubhavmohandas" class="contact-link" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="mailto:anubhav.manav147@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <script>
-        'use strict';
-        
-        // Enhanced Security Rate Limiter
-        class RateLimiter {
-            constructor() {
-                this.actions = new Map();
-                this.cleanup();
-            }
-
-            isAllowed(key, maxActions = 10, timeWindow = 1000) {
-                const now = Date.now();
-                const actionKey = String(key).substring(0, 100);
-                
-                if (!this.actions.has(actionKey)) {
-                    this.actions.set(actionKey, []);
-                }
-                
-                const timestamps = this.actions.get(actionKey);
-                
-                while (timestamps.length > 0 && now - timestamps[0] > timeWindow) {
-                    timestamps.shift();
-                }
-                
-                if (timestamps.length >= maxActions) {
-                    return false;
-                }
-                
-                timestamps.push(now);
-                return true;
-            }
-
-            cleanup() {
-                setInterval(() => {
-                    const now = Date.now();
-                    for (const [key, timestamps] of this.actions.entries()) {
-                        this.actions.set(key, timestamps.filter(time => now - time <= 60000));
-                        if (timestamps.length === 0) {
-                            this.actions.delete(key);
-                        }
-                    }
-                }, 60000);
-            }
-        }
-
-        // Enhanced Character Guide
+        // Enhanced Character Guide System
         class EnhancedCharacterGuide {
-            constructor(app, characterElement, speechElement) {
-                this.app = app;
-                this.character = characterElement;
-                this.speech = speechElement;
-                this.messages = [
-                    "Welcome to Anubhav's cybersecurity portfolio!",
-                    "Check out the amazing security tools below!",
-                    "Don't miss the digital forensics projects!",
-                    "Hover over the skills to learn more!",
-                    "Try the Konami code for a surprise!",
-                    "Click on projects to visit GitHub!",
-                    "Love the particle effects? They're interactive!"
-                ];
-                this.messageIndex = 0;
+            constructor() {
+                this.character = document.getElementById('characterGuide');
+                this.speechBubble = document.getElementById('speechBubble');
+                this.currentSection = 'home';
+                this.isUserInteracting = false;
+                
+                this.messages = {
+                    home: "Welcome! I'm your cyber guide! Ready to explore?",
+                    about: "Discover Anubhav's cybersecurity expertise!",
+                    tools: "Check out these amazing security tools!",
+                    experience: "Look at this impressive journey in security!",
+                    projects: "Amazing security projects and tools ahead!",
+                    contact: "Ready to connect? Let's secure the world together!"
+                };
+                
                 this.init();
             }
 
             init() {
+                this.startAutoGuide();
+                this.setupSectionObserver();
                 this.setupInteractions();
-                this.startMessageRotation();
-                this.setupSectionTracking();
             }
 
-            setupInteractions() {
-                if (!this.character || !this.speech) return;
+            showMessage(message) {
+                this.speechBubble.textContent = message;
+                this.speechBubble.classList.add('show');
                 
-                this.app.addEventListener(this.character, 'click', () => {
-                    this.showRandomMessage();
-                });
-
-                this.app.addEventListener(this.character, 'mouseenter', () => {
-                    this.character.classList.add('excited');
-                    this.showSpeechBubble();
-                });
-
-                this.app.addEventListener(this.character, 'mouseleave', () => {
-                    this.character.classList.remove('excited');
-                    this.hideSpeechBubble();
-                });
+                setTimeout(() => {
+                    this.speechBubble.classList.remove('show');
+                }, 4000);
             }
 
-            showRandomMessage() {
-                if (!this.speech) return;
+            startAutoGuide() {
+                let sectionIndex = 0;
+                const sections = ['home', 'about', 'tools', 'experience', 'projects', 'contact'];
                 
-                const message = this.messages[Math.floor(Math.random() * this.messages.length)];
-                this.speech.textContent = message;
-                this.speech.classList.add('excited');
-                
-                this.app.setManagedTimeout(() => {
-                    if (this.speech) {
-                        this.speech.classList.remove('excited');
-                    }
-                }, 1000);
-            }
-
-            showSpeechBubble() {
-                if (this.speech) {
-                    this.speech.classList.add('show');
-                }
-            }
-
-            hideSpeechBubble() {
-                if (this.speech) {
-                    this.speech.classList.remove('show');
-                }
-            }
-
-            startMessageRotation() {
-                this.app.setManagedInterval(() => {
-                    if (this.speech && !this.speech.classList.contains('show')) {
-                        const message = this.messages[this.messageIndex];
-                        this.speech.textContent = message;
-                        this.messageIndex = (this.messageIndex + 1) % this.messages.length;
+                setInterval(() => {
+                    if (!this.isUserInteracting) {
+                        sectionIndex = (sectionIndex + 1) % sections.length;
+                        this.showMessage(this.messages[sections[sectionIndex]]);
                     }
                 }, 8000);
             }
 
-            setupSectionTracking() {
-                const sections = ['home', 'about', 'experience', 'projects', 'contact'];
-                const sectionMessages = {
-                    'home': "Welcome! This is Anubhav's cybersecurity journey!",
-                    'about': "Learn about Anubhav's expertise and skills!",
-                    'experience': "Check out this professional timeline!",
-                    'projects': "Amazing security projects await!",
-                    'contact': "Ready to connect? Let's collaborate!"
-                };
-
-                sections.forEach(sectionId => {
-                    const section = document.getElementById(sectionId);
-                    if (!section) return;
-
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && this.speech) {
-                                const message = sectionMessages[sectionId];
-                                if (message) {
-                                    this.speech.textContent = message;
-                                    this.speech.classList.add('thinking');
-                                    this.app.setManagedTimeout(() => {
-                                        if (this.speech) {
-                                            this.speech.classList.remove('thinking');
-                                        }
-                                    }, 2000);
-                                }
-                            }
-                        });
-                    }, { threshold: 0.5 });
-
-                    observer.observe(section);
-                });
-            }
-        }
-
-        // Secure Portfolio Application
-        class SecurePortfolioApp {
-            constructor() {
-                this.intervals = new Set();
-                this.timeouts = new Set();
-                this.eventListeners = new Map();
-                this.isUserInteracting = false;
-                this.currentSection = 'home';
-                this.isDestroyed = false;
-                this.rateLimiter = new RateLimiter();
-                this.particles = [];
-                this.maxParticles = 30;
-                
-                this.sanitizeInput = (input) => {
-                    if (typeof input !== 'string') return '';
-                    return input
-                        .replace(/[<>'"&`]/g, match => {
-                            const entities = { 
-                                '<': '&lt;', '>': '&gt;', '"': '&quot;', 
-                                "'": '&#39;', '&': '&amp;', '`': '&#96;' 
-                            };
-                            return entities[match] || match;
-                        })
-                        .replace(/javascript:/gi, '')
-                        .replace(/data:/gi, '')
-                        .replace(/vbscript:/gi, '')
-                        .trim()
-                        .substring(0, 500);
-                };
-                
-                this.handleError = (error, context, fallback = null) => {
-                    if (this.isDestroyed) return;
-                    
-                    const errorInfo = {
-                        message: error?.message || String(error),
-                        context: String(context).substring(0, 100),
-                        timestamp: new Date().toISOString(),
-                        stack: error?.stack?.substring(0, 1000) || 'No stack trace'
-                    };
-                    
-                    console.error(`Portfolio Security Error:`, errorInfo);
-                    
-                    if (fallback && typeof fallback === 'function') {
-                        try {
-                            fallback();
-                        } catch (fallbackError) {
-                            console.error('Fallback function failed:', fallbackError.message);
-                        }
-                    }
-                };
-                
-                this.boundCheck = (value, min = 0, max = Infinity) => {
-                    const num = Number(value);
-                    if (!Number.isFinite(num)) return min;
-                    return Math.max(min, Math.min(max, num));
-                };
-                
-                this.init();
-            }
-
-            init() {
-                try {
-                    this.setupLoadingScreen();
-                    this.setupNavigation();
-                    this.setupScrollEffects();
-                    this.setupAccessibility();
-                    this.setupPerformanceOptimizations();
-                    this.setupAnimations();
-                    this.setupParticleSystem();
-                    this.setupEasterEgg();
-                    this.setupTypingEffect();
-                    this.setupKeyboardNavigation();
-                    this.setupCharacterGuide();
-                    
-                    this.addEventListener(window, 'beforeunload', () => this.cleanup());
-                    this.setManagedInterval(() => this.periodicCleanup(), 300000);
-                    this.initializeSectionTransitions();
-                } catch (error) {
-                    this.handleError(error, 'initialization');
-                }
-            }
-
-            addEventListener(element, event, handler, options = {}) {
-                if (this.isDestroyed || !element) return null;
-                
-                try {
-                    const key = `${element.constructor.name}_${event}_${Date.now()}_${Math.random()}`;
-                    const wrappedHandler = (e) => {
-                        if (this.isDestroyed) return;
-                        
-                        if (!this.rateLimiter.isAllowed(`${event}_${key}`, 50, 1000)) {
-                            console.warn('Rate limit exceeded for event:', event);
-                            return;
-                        }
-                        
-                        try {
-                            handler(e);
-                        } catch (error) {
-                            this.handleError(error, `event_handler_${event}`);
-                        }
-                    };
-                    
-                    element.addEventListener(event, wrappedHandler, options);
-                    this.eventListeners.set(key, { element, event, handler: wrappedHandler, options });
-                    return key;
-                } catch (error) {
-                    this.handleError(error, 'addEventListener');
-                    return null;
-                }
-            }
-
-            removeEventListener(key) {
-                if (!key) return;
-                
-                const listener = this.eventListeners.get(key);
-                if (listener) {
-                    try {
-                        listener.element.removeEventListener(listener.event, listener.handler, listener.options);
-                    } catch (error) {
-                        this.handleError(error, 'removeEventListener');
-                    }
-                    this.eventListeners.delete(key);
-                }
-            }
-
-            setManagedInterval(callback, delay) {
-                if (this.isDestroyed) return null;
-                
-                try {
-                    const safeDelay = this.boundCheck(delay, 16, 600000);
-                    const intervalId = setInterval(() => {
-                        if (this.isDestroyed) {
-                            this.clearManagedInterval(intervalId);
-                            return;
-                        }
-                        try {
-                            callback();
-                        } catch (error) {
-                            this.handleError(error, 'interval_callback');
-                        }
-                    }, safeDelay);
-                    
-                    this.intervals.add(intervalId);
-                    return intervalId;
-                } catch (error) {
-                    this.handleError(error, 'setManagedInterval');
-                    return null;
-                }
-            }
-
-            clearManagedInterval(intervalId) {
-                if (intervalId) {
-                    clearInterval(intervalId);
-                    this.intervals.delete(intervalId);
-                }
-            }
-
-            setManagedTimeout(callback, delay) {
-                if (this.isDestroyed) return null;
-                
-                try {
-                    const safeDelay = this.boundCheck(delay, 0, 300000);
-                    const timeoutId = setTimeout(() => {
-                        this.timeouts.delete(timeoutId);
-                        if (!this.isDestroyed) {
-                            try {
-                                callback();
-                            } catch (error) {
-                                this.handleError(error, 'timeout_callback');
-                            }
-                        }
-                    }, safeDelay);
-                    
-                    this.timeouts.add(timeoutId);
-                    return timeoutId;
-                } catch (error) {
-                    this.handleError(error, 'setManagedTimeout');
-                    return null;
-                }
-            }
-
-            clearManagedTimeout(timeoutId) {
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                    this.timeouts.delete(timeoutId);
-                }
-            }
-
-            cleanup() {
-                this.isDestroyed = true;
-                
-                this.intervals.forEach(id => clearInterval(id));
-                this.intervals.clear();
-                
-                this.timeouts.forEach(id => clearTimeout(id));
-                this.timeouts.clear();
-                
-                this.eventListeners.forEach((listener, key) => {
-                    this.removeEventListener(key);
-                });
-                
-                this.particles.forEach(particle => {
-                    if (particle && particle.parentNode) {
-                        particle.remove();
-                    }
-                });
-                this.particles = [];
-            }
-
-            periodicCleanup() {
-                if (this.isDestroyed) return;
-                
-                try {
-                    while (this.particles.length > this.maxParticles) {
-                        const oldParticle = this.particles.shift();
-                        if (oldParticle && oldParticle.parentNode) {
-                            oldParticle.remove();
-                        }
-                    }
-                    
-                    this.particles = this.particles.filter(particle => {
-                        if (!particle || !particle.parentNode) {
-                            return false;
-                        }
-                        return true;
-                    });
-                    
-                    if (window.gc) {
-                        window.gc();
-                    }
-                } catch (error) {
-                    this.handleError(error, 'periodicCleanup');
-                }
-            }
-
-            setupLoadingScreen() {
-                try {
-                    const loadingScreen = document.getElementById('loadingScreen');
-                    if (!loadingScreen) return;
-                    
-                    this.setManagedTimeout(() => {
-                        if (loadingScreen) {
-                            loadingScreen.style.opacity = '0';
-                            this.setManagedTimeout(() => {
-                                if (loadingScreen.parentNode) {
-                                    loadingScreen.remove();
-                                }
-                            }, 500);
-                        }
-                    }, 2000);
-                } catch (error) {
-                    this.handleError(error, 'setupLoadingScreen');
-                }
-            }
-
-            setupNavigation() {
-                try {
-                    let scrollTimeout = null;
-                    const handleScroll = () => {
-                        if (this.isDestroyed || scrollTimeout) return;
-                        
-                        scrollTimeout = this.setManagedTimeout(() => {
-                            scrollTimeout = null;
-                            const navbar = document.getElementById('navbar');
-                            if (navbar) {
-                                const shouldScroll = this.boundCheck(window.scrollY, 0) > 50;
-                                navbar.classList.toggle('scrolled', shouldScroll);
-                            }
-                        }, 16);
-                    };
-
-                    this.addEventListener(window, 'scroll', handleScroll, { passive: true });
-
-                    const navLinks = document.querySelectorAll('a[href^="#"]');
-                    navLinks.forEach(anchor => {
-                        this.addEventListener(anchor, 'click', (e) => {
-                            e.preventDefault();
-                            const targetId = this.sanitizeInput(anchor.getAttribute('href'));
-                            
-                            if (!targetId.startsWith('#') || targetId.length < 2) return;
-                            
-                            const target = document.querySelector(targetId);
-                            if (target && target.scrollIntoView) {
-                                try {
-                                    target.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'start'
-                                    });
-                                } catch (scrollError) {
-                                    target.scrollIntoView();
-                                }
-                            }
-                        });
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupNavigation');
-                }
-            }
-
-            setupCharacterGuide() {
-                try {
-                    if (window.innerWidth < 1024) return;
-                    
-                    const characterGuide = document.getElementById('characterGuide');
-                    const speechBubble = document.getElementById('speechBubble');
-                    
-                    if (!characterGuide || !speechBubble) return;
-                    
-                    this.characterGuide = new EnhancedCharacterGuide(this, characterGuide, speechBubble);
-                } catch (error) {
-                    this.handleError(error, 'setupCharacterGuide');
-                }
-            }
-
-            initializeSectionTransitions() {
-                document.querySelectorAll('.section-transition').forEach(section => {
-                    if (section.id === 'home') {
-                        section.classList.add('visible');
-                    }
-                });
-            }
-
-            setupScrollEffects() {
-                try {
-                    const observerOptions = {
-                        threshold: 0.1,
-                        rootMargin: '0px 0px -50px 0px'
-                    };
-
-                    const scrollObserver = new IntersectionObserver((entries) => {
-                        if (this.isDestroyed) return;
-                        
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible');
-                                
-                                if (entry.target.id === 'experience') {
-                                    const timelineItems = entry.target.querySelectorAll('.timeline-item');
-                                    timelineItems.forEach((item, index) => {
-                                        const delay = this.boundCheck(index * 200, 0, 5000);
-                                        this.setManagedTimeout(() => {
-                                            if (!this.isDestroyed && item) {
-                                                item.classList.add('animate');
-                                            }
-                                        }, delay);
-                                    });
-                                }
-                            }
-                        });
-                    }, observerOptions);
-
-                    document.querySelectorAll('.section-transition').forEach(el => {
-                        if (el) scrollObserver.observe(el);
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupScrollEffects');
-                }
-            }
-
-            setupAccessibility() {
-                try {
-                    const interactiveElements = document.querySelectorAll('.project-card, .skill-item, .stat-item, .timeline-item');
-                    
-                    interactiveElements.forEach(element => {
-                        if (!element) return;
-                        
-                        if (!element.hasAttribute('tabindex')) {
-                            element.setAttribute('tabindex', '0');
-                        }
-                        
-                        this.addEventListener(element, 'keydown', (e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                element.click();
-                            }
-                        });
-                    });
-
-                    document.querySelectorAll('.project-card').forEach(card => {
-                        if (!card) return;
-                        
-                        this.addEventListener(card, 'click', () => {
-                            if (!this.rateLimiter.isAllowed('project_card_click', 5, 2000)) return;
-                            
-                            try {
-                                const url = this.sanitizeInput(card.getAttribute('data-url') || '');
-                                
-                                if (url && this.isValidGitHubUrl(url)) {
-                                    card.style.transform = 'scale(0.98)';
-                                    this.setManagedTimeout(() => {
-                                        if (!this.isDestroyed && card) {
-                                            card.style.transform = '';
-                                            window.open(url, '_blank', 'noopener,noreferrer');
-                                        }
-                                    }, 150);
-                                }
-                            } catch (error) {
-                                this.handleError(error, 'project_card_click');
-                            }
-                        });
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupAccessibility');
-                }
-            }
-
-            isValidGitHubUrl(url) {
-                try {
-                    const validUrl = new URL(url);
-                    return validUrl.hostname === 'github.com' && 
-                           validUrl.pathname.startsWith('/anubhavmohandas/') &&
-                           validUrl.protocol === 'https:' &&
-                           !validUrl.pathname.includes('..') &&
-                           validUrl.pathname.length < 200;
-                } catch {
-                    return false;
-                }
-            }
-
-            setupPerformanceOptimizations() {
-                try {
-                    const throttle = (func, wait) => {
-                        let timeout;
-                        return (...args) => {
-                            if (this.isDestroyed) return;
-                            const later = () => {
-                                clearTimeout(timeout);
-                                timeout = null;
-                                try {
-                                    func.apply(this, args);
-                                } catch (error) {
-                                    this.handleError(error, 'throttled_function');
-                                }
-                            };
-                            if (!timeout) {
-                                timeout = setTimeout(later, this.boundCheck(wait, 16, 1000));
-                            }
-                        };
-                    };
-
-                    const handleParallax = throttle(() => {
-                        const scrolled = this.boundCheck(window.pageYOffset, 0);
-                        const heroContent = document.querySelector('.hero-content');
-                        
-                        if (heroContent && scrolled < window.innerHeight) {
-                            const transform = this.boundCheck(scrolled * 0.3, -200, 200);
-                            heroContent.style.transform = `translateY(${transform}px)`;
-                        }
-
-                        this.particles.slice(0, 20).forEach((particle, index) => {
-                            if (particle && particle.parentNode) {
-                                const speed = this.boundCheck((index % 3 + 1) * 0.1, 0, 0.5);
-                                const transform = this.boundCheck(scrolled * speed, -500, 500);
-                                particle.style.transform = `translateY(${transform}px)`;
-                            }
-                        });
-                    }, 16);
-
-                    this.addEventListener(window, 'scroll', handleParallax, { passive: true });
-
-                    const handleResize = throttle(() => {
-                        if (window.innerWidth < 1024) {
-                            const characterGuide = document.getElementById('characterGuide');
-                            if (characterGuide) {
-                                characterGuide.style.display = 'none';
-                            }
-                        }
-                    }, 250);
-
-                    this.addEventListener(window, 'resize', handleResize, { passive: true });
-                } catch (error) {
-                    this.handleError(error, 'setupPerformanceOptimizations');
-                }
-            }
-
-            setupAnimations() {
-                try {
-                    document.querySelectorAll('.project-card').forEach(card => {
-                        if (!card) return;
-                        
-                        this.addEventListener(card, 'mouseenter', () => {
-                            card.style.transform = 'translateY(-15px) rotateX(5deg) rotateY(2deg)';
-                            card.style.boxShadow = '0 25px 50px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.2)';
-                        });
-                        
-                        this.addEventListener(card, 'mouseleave', () => {
-                            card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
-                            card.style.boxShadow = '';
-                        });
-                    });
-
-                    document.querySelectorAll('.skill-item').forEach(skill => {
-                        if (!skill) return;
-                        
-                        this.addEventListener(skill, 'mouseenter', () => {
-                            const icon = skill.querySelector('i');
-                            if (icon) {
-                                icon.style.transform = 'scale(1.3) rotate(10deg)';
-                                icon.style.color = '#ffffff';
-                            }
-                        });
-
-                        this.addEventListener(skill, 'mouseleave', () => {
-                            const icon = skill.querySelector('i');
-                            if (icon) {
-                                icon.style.transform = 'scale(1) rotate(0deg)';
-                                icon.style.color = 'var(--primary-color)';
-                            }
-                        });
-                    });
-
-                    document.querySelectorAll('.stat-item').forEach(stat => {
-                        if (!stat) return;
-                        
-                        this.addEventListener(stat, 'click', () => {
-                            if (!this.rateLimiter.isAllowed('stat_click', 3, 1000)) return;
-                            
-                            stat.style.transform = 'translateY(-10px) scale(1.05)';
-                            this.setManagedTimeout(() => {
-                                if (!this.isDestroyed && stat) {
-                                    stat.style.transform = '';
-                                }
-                            }, 200);
-                        });
-                    });
-
-                    document.querySelectorAll('.contact-link').forEach(link => {
-                        if (!link) return;
-                        
-                        this.addEventListener(link, 'mouseenter', () => {
-                            link.style.transform = 'translateY(-5px) scale(1.05)';
-                            const icon = link.querySelector('i');
-                            if (icon) {
-                                icon.style.textShadow = '0 0 20px var(--primary-color)';
-                            }
-                        });
-                        
-                        this.addEventListener(link, 'mouseleave', () => {
-                            link.style.transform = '';
-                            const icon = link.querySelector('i');
-                            if (icon) {
-                                icon.style.textShadow = 'none';
-                            }
-                        });
-                    });
-
-                    document.querySelectorAll('.timeline-item').forEach(item => {
-                        if (!item) return;
-                        
-                        this.addEventListener(item, 'click', () => {
-                            if (!this.rateLimiter.isAllowed('timeline_click', 5, 1000)) return;
-                            
-                            item.style.transform = 'scale(1.02)';
-                            item.style.boxShadow = '0 20px 60px rgba(0, 212, 255, 0.4)';
-                            
-                            this.setManagedTimeout(() => {
-                                if (!this.isDestroyed && item) {
-                                    item.style.transform = '';
-                                    item.style.boxShadow = '';
-                                }
-                            }, 300);
-                        });
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupAnimations');
-                }
-            }
-
-            setupParticleSystem() {
-                try {
-                    const particlesContainer = document.querySelector('.floating-particles');
-                    if (!particlesContainer) return;
-                    
-                    const particleCount = this.boundCheck(Math.min(30, Math.floor(window.innerWidth / 50)), 10, 30);
-
-                    const createParticle = () => {
-                        if (this.particles.length >= this.maxParticles) return null;
-                        
-                        const particle = document.createElement('div');
-                        particle.classList.add('particle');
-                        
-                        const size = this.boundCheck(Math.random() * 4 + 1, 1, 6);
-                        const startX = this.boundCheck(Math.random() * window.innerWidth, 0, window.innerWidth);
-                        const startY = this.boundCheck(Math.random() * window.innerHeight, 0, window.innerHeight);
-                        const animationDuration = this.boundCheck(Math.random() * 4 + 4, 4, 8);
-                        const opacity = this.boundCheck(Math.random() * 0.6 + 0.2, 0.1, 0.8);
-                        
-                        particle.style.cssText = `
-                            width: ${size}px;
-                            height: ${size}px;
-                            left: ${startX}px;
-                            top: ${startY}px;
-                            animation-duration: ${animationDuration}s;
-                            animation-delay: ${Math.random() * 2}s;
-                            opacity: ${opacity};
-                        `;
-                        
-                        particlesContainer.appendChild(particle);
-                        this.particles.push(particle);
-                        return particle;
-                    };
-
-                    for (let i = 0; i < particleCount; i++) {
-                        createParticle();
-                    }
-
-                    const moveParticles = () => {
-                        if (this.isDestroyed) return;
-                        
-                        this.particles.forEach(particle => {
-                            if (!particle || !particle.parentNode) return;
-                            
-                            const newX = this.boundCheck(Math.random() * window.innerWidth, 0, window.innerWidth - 10);
-                            const newY = this.boundCheck(Math.random() * window.innerHeight, 0, window.innerHeight - 10);
-                            
-                            particle.style.left = `${newX}px`;
-                            particle.style.top = `${newY}px`;
-                        });
-                    };
-
-                    this.setManagedInterval(moveParticles, 6000);
-
-                    let trailTimeout = null;
-                    
-                    this.addEventListener(document, 'mousemove', (e) => {
-                        if (trailTimeout || this.isDestroyed) return;
-                        if (!this.rateLimiter.isAllowed('mouse_trail', 20, 1000)) return;
-                        
-                        trailTimeout = this.setManagedTimeout(() => {
-                            if (Math.random() < 0.03 && this.particles.length < this.maxParticles) {
-                                this.createTrailParticle(e.clientX, e.clientY);
-                            }
-                            trailTimeout = null;
-                        }, 100);
-                    }, { passive: true });
-                } catch (error) {
-                    this.handleError(error, 'setupParticleSystem');
-                }
-            }
-
-            createTrailParticle(x, y) {
-                try {
-                    if (this.particles.length >= this.maxParticles) return;
-                    
-                    const particle = document.createElement('div');
-                    const safeX = this.boundCheck(x, 0, window.innerWidth - 10);
-                    const safeY = this.boundCheck(y, 0, window.innerHeight - 10);
-                    
-                    particle.style.cssText = `
-                        position: fixed;
-                        left: ${safeX}px;
-                        top: ${safeY}px;
-                        width: 4px;
-                        height: 4px;
-                        background: var(--primary-color);
-                        border-radius: 50%;
-                        pointer-events: none;
-                        z-index: 9999;
-                        opacity: 0.8;
-                        transition: all 1s ease-out;
-                    `;
-                    
-                    document.body.appendChild(particle);
-                    this.particles.push(particle);
-                    
-                    requestAnimationFrame(() => {
-                        if (particle) {
-                            particle.style.transform = 'scale(0) translateY(-50px)';
-                            particle.style.opacity = '0';
-                        }
-                    });
-                    
-                    this.setManagedTimeout(() => {
-                        if (particle && particle.parentNode) {
-                            particle.remove();
-                            const index = this.particles.indexOf(particle);
-                            if (index > -1) {
-                                this.particles.splice(index, 1);
-                            }
-                        }
-                    }, 1000);
-                } catch (error) {
-                    this.handleError(error, 'createTrailParticle');
-                }
-            }
-
-            setupEasterEgg() {
-                try {
-                    let konamiCode = [];
-                    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
-                    
-                    this.addEventListener(document, 'keydown', (e) => {
-                        if (!e.code.startsWith('Arrow')) return;
-                        if (!this.rateLimiter.isAllowed('konami_input', 20, 5000)) return;
-                        
-                        konamiCode.push(e.code);
-                        if (konamiCode.length > konamiSequence.length) {
-                            konamiCode.shift();
-                        }
-                        
-                        if (konamiCode.join(',') === konamiSequence.join(',')) {
-                            this.triggerEasterEgg();
-                            konamiCode = [];
-                        }
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupEasterEgg');
-                }
-            }
-
-            triggerEasterEgg() {
-                try {
-                    const speechBubble = document.getElementById('speechBubble');
-                    const characterGuide = document.getElementById('characterGuide');
-                    
-                    if (speechBubble) {
-                        speechBubble.textContent = "Konami Code activated! You found the secret!";
-                        speechBubble.classList.add('show', 'excited');
-                    }
-                    
-                    if (characterGuide) {
-                        characterGuide.classList.add('excited');
-                    }
-                    
-                    document.body.style.animation = 'rainbow 4s ease-in-out';
-                    
-                    this.setManagedTimeout(() => {
-                        if (!this.isDestroyed) {
-                            document.body.style.animation = '';
-                            if (speechBubble) {
-                                speechBubble.classList.remove('show', 'excited');
-                            }
-                            if (characterGuide) {
-                                characterGuide.classList.remove('excited');
-                            }
-                        }
-                    }, 4000);
-                } catch (error) {
-                    this.handleError(error, 'triggerEasterEgg');
-                }
-            }
-
-            setupTypingEffect() {
-                try {
-                    const typeWriter = (element, text, speed = 100) => {
-                        if (!element || !text || this.isDestroyed) return;
-                        
-                        const sanitizedText = this.sanitizeInput(text);
-                        let i = 0;
-                        element.textContent = '';
-                        
-                        const cursor = document.createElement('span');
-                        cursor.className = 'typing-cursor';
-                        cursor.innerHTML = '&nbsp;';
-                        element.appendChild(cursor);
-                        
-                        const type = () => {
-                            if (this.isDestroyed || i >= sanitizedText.length) {
-                                if (cursor && cursor.parentNode) {
-                                    cursor.remove();
-                                }
-                                return;
-                            }
-                            
-                            const char = sanitizedText.charAt(i);
-                            const textNode = document.createTextNode(char);
-                            element.insertBefore(textNode, cursor);
-                            i++;
-                            
-                            const safeSpeed = this.boundCheck(speed, 50, 200);
-                            this.setManagedTimeout(type, safeSpeed);
-                        };
-                        
-                        type();
-                    };
-
-                    const heroTitle = document.querySelector('.hero-title');
-                    if (heroTitle) {
-                        typeWriter(heroTitle, 'Anubhav Mohandas', 150);
-                    }
-                } catch (error) {
-                    this.handleError(error, 'setupTypingEffect');
-                }
-            }
-
-            setupKeyboardNavigation() {
-                try {
-                    this.addEventListener(document, 'keydown', (e) => {
-                        if (e.key === 'Tab') {
-                            document.body.classList.add('keyboard-navigation');
-                        }
-                        
-                        if (e.key === 'Escape') {
-                            const focusedElement = document.activeElement;
-                            if (focusedElement && focusedElement.blur) {
-                                focusedElement.blur();
+            setupSectionObserver() {
+                const sections = document.querySelectorAll('section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const sectionId = entry.target.id;
+                            if (this.messages[sectionId] && !this.isUserInteracting) {
+                                this.currentSection = sectionId;
+                                this.showMessage(this.messages[sectionId]);
                             }
                         }
                     });
+                }, { threshold: 0.5 });
 
-                    this.addEventListener(document, 'mousedown', () => {
-                        document.body.classList.remove('keyboard-navigation');
-                    });
-                } catch (error) {
-                    this.handleError(error, 'setupKeyboardNavigation');
-                }
+                sections.forEach(section => observer.observe(section));
             }
-        }
 
-        // Initialize application with error handling
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                new SecurePortfolioApp();
-            } catch (error) {
-                console.error('Failed to initialize portfolio application:', error);
-                
-                // Fallback: Remove loading screen if initialization fails
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
+            setupInteractions() {
+                this.character.addEventListener('click', () => {
+                    this.isUserInteracting = true;
+                    this.showMessage("Hi there! Click any section to explore!");
+                    
                     setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            if (loadingScreen.parentNode) {
-                                loadingScreen.remove();
-                            }
-                        }, 500);
-                    }, 1000);
-                }
+                        this.isUserInteracting = false;
+                    }, 5000);
+                });
+
+                // Project card interactions
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        this.showMessage("Cool project! Click to explore on GitHub!");
+                    });
+                });
+
+                // Tool interactions
+                document.querySelectorAll('.tool-item').forEach(tool => {
+                    tool.addEventListener('mouseenter', () => {
+                        this.showMessage("Professional security tool in action!");
+                    });
+                });
+            }
+        }
+
+        // Initialize enhanced character guide
+        if (window.innerWidth > 768) {
+            const characterGuide = new EnhancedCharacterGuide();
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // Service Worker Registration for offline support
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
+                }
             });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.floating-particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
+
+        // Initialize particles
+        createParticles();
+
+        // Enhanced hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotateX(5deg)';
+                this.style.boxShadow = '0 25px 50px rgba(0, 212, 255, 0.4)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0deg)';
+                this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            });
+        });
+
+        console.log('🔒 Anubhav Mohandas Cybersecurity Portfolio Loaded Successfully! 🔒');
+        console.log('👋 Welcome to the interactive cybersecurity experience!');
     </script>
 </body>
 </html>
